@@ -96,7 +96,7 @@ And Save.
 
 Only difference is use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
-insert this into home-html.chunk.js
+insert this into home-html.RANDOMSTRINGHERE.chunk.js
 
 ```js
 <style>.featurediframe { width: 100vw; height: 100vh; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px}</style><iframe class="featurediframe" src="/web/avatars/spotlight.html"></iframe>
