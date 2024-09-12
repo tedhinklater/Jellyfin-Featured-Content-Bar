@@ -89,3 +89,9 @@ And Save.
 8. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 
 9. That's it.
+
+
+#Mobile View
+
+https://github.com/user-attachments/assets/14eb9cd2-40bf-4ec9-ab6d-7aa0a7bfb298
+
