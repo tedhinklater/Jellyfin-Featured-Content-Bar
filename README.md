@@ -12,7 +12,7 @@
 
 5. Paste this after the >
 
-```html
+```js
 <style>.featurediframe { width: 95vw; height: 350px; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px}</style><iframe class="featurediframe" src="/web/avatars/spotlight.html"></iframe>
 ```
 6. Save the file.
@@ -99,7 +99,15 @@ https://github.com/user-attachments/assets/14eb9cd2-40bf-4ec9-ab6d-7aa0a7bfb298
 
 ![full](https://github.com/user-attachments/assets/aee57cbc-9e1f-4cd5-b0a7-3a9842fa9218)
 
-Only difference is use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) and add this CSS import at the end of your Custom CSS
+Only difference is use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
+
+insert this into home-html.chunk.js
+
+```js
+<style>.featurediframe { width: 100vw; height: 100vh; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px}</style><iframe class="featurediframe" src="/web/avatars/spotlight.html"></iframe>
+```
+
+and add this CSS import at the end of your Custom CSS
 
 ```css
 
