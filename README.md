@@ -13,7 +13,7 @@
 5. Paste this after the >
 
 ```html
-<style>.featurediframe { width: 93vw; height: 350px; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px}</style><iframe class="featurediframe" src="/web/avatars/spotlight.html"></iframe>
+<style>.featurediframe { width: 95vw; height: 350px; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px}</style><iframe class="featurediframe" src="/web/avatars/spotlight.html"></iframe>
 ```
 6. Save the file.
 
