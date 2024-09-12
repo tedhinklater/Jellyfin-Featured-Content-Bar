@@ -94,7 +94,7 @@ And Save.
 
 ![full](https://github.com/user-attachments/assets/aee57cbc-9e1f-4cd5-b0a7-3a9842fa9218)
 
-Only difference is use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
+Just use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
 insert this into home-html.RANDOMSTRINGHERE.chunk.js
 
@@ -109,5 +109,3 @@ and add this CSS import at the end of your Custom CSS
 @import url("https://cdn.jsdelivr.net/gh/tedhinklater/Jellyfin-Featured-Content-Bar@main/fullscreen/fullscreenspotlight.css");
 
 ```
-
-
