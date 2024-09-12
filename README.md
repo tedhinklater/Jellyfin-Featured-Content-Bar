@@ -90,11 +90,6 @@ And Save.
 
 9. That's it.
 
-
-# Mobile View
-
-https://github.com/user-attachments/assets/14eb9cd2-40bf-4ec9-ab6d-7aa0a7bfb298
-
 # Full Page Version
 
 ![full](https://github.com/user-attachments/assets/aee57cbc-9e1f-4cd5-b0a7-3a9842fa9218)
