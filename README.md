@@ -95,3 +95,16 @@ And Save.
 
 https://github.com/user-attachments/assets/14eb9cd2-40bf-4ec9-ab6d-7aa0a7bfb298
 
+# Full Page Version
+
+![full](https://github.com/user-attachments/assets/aee57cbc-9e1f-4cd5-b0a7-3a9842fa9218)
+
+Only difference is use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) and add this CSS import at the end of your Custom CSS
+
+```css
+
+@import url("https://cdn.jsdelivr.net/gh/tedhinklater/Jellyfin-Featured-Content-Bar@main/fullscreen/fullscreenspotlight.css");
+
+```
+
+
