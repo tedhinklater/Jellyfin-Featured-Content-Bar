@@ -64,7 +64,8 @@
         #close-overlay { position: absolute; top: -1em; right: 0em; font-size: 1.5em; color: #7b7b7b; cursor: pointer;} 
 		#countdown-bar-container { display: none; position: absolute; left: 0%; top: 3.1em; width: 110%; height: 0.15em !important; background-color: rgba(0,0,0,0); z-index: 10;}
 		#countdown-bar { height: 100%; width: 0%; background-color: #ffffff; opacity: 0.5; transition: width 0.1s linear; border-radius: 1em;}
-		.video-player { mask-image: linear-gradient(90deg, rgb(0% 0% 0% / 0) 0%, rgb(0% 0% 0% / 0.2275238037109375) 6.25%, rgb(0% 0% 0% / 0.413818359375) 12.5%, rgb(0% 0% 0% / 0.5641937255859375) 18.75%, rgb(0% 0% 0% / 0.68359375) 25%, rgb(0% 0% 0% / 0.7765960693359375) 31.25%, rgb(0% 0% 0% / 0.847412109375) 37.5%, rgb(0% 0% 0% / 0.8998870849609375) 43.75%, rgb(0% 0% 0% / 0.9375) 50%, rgb(0% 0% 0% / 0.9633636474609375) 56.25%, rgb(0% 0% 0% / 0.980224609375) 62.5%, rgb(0% 0% 0% / 0.9904632568359375) 68.75%, rgb(0% 0% 0% / 0.99609375) 75%, rgb(0% 0% 0% / 0.9987640380859375) 81.25%, rgb(0% 0% 0% / 0.999755859375) 87.5%, rgb(0% 0% 0% / 0.9999847412109375) 93.75%, rgb(0% 0% 0%) 100% ); -webkit-mask-image: linear-gradient(90deg, rgb(0% 0% 0% / 0) 0%, rgb(0% 0% 0% / 0.2275238037109375) 6.25%, rgb(0% 0% 0% / 0.413818359375) 12.5%, rgb(0% 0% 0% / 0.5641937255859375) 18.75%, rgb(0% 0% 0% / 0.68359375) 25%, rgb(0% 0% 0% / 0.7765960693359375) 31.25%, rgb(0% 0% 0% / 0.847412109375) 37.5%, rgb(0% 0% 0% / 0.8998870849609375) 43.75%, rgb(0% 0% 0% / 0.9375) 50%, rgb(0% 0% 0% / 0.9633636474609375) 56.25%, rgb(0% 0% 0% / 0.980224609375) 62.5%, rgb(0% 0% 0% / 0.9904632568359375) 68.75%, rgb(0% 0% 0% / 0.99609375) 75%, rgb(0% 0% 0% / 0.9987640380859375) 81.25%, rgb(0% 0% 0% / 0.999755859375) 87.5%, rgb(0% 0% 0% / 0.9999847412109375) 93.75%, rgb(0% 0% 0%) 100% ); transition: mask-image 5s ease, -webkit-mask-image 5s ease; }
+		.video-player { mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.5) 7%, rgba(0, 0, 0, 0.75) 15%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 100%);
+		-webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.5) 7%, rgba(0, 0, 0, 0.75) 15%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 100%); transition: mask-image 5s ease, -webkit-mask-image 5s ease;}
 		.slide:hover .video-player { mask-image: none; -webkit-mask-image: none;}
 	</style>
 </head>
@@ -304,7 +305,7 @@
 							document.querySelector('.backdrop').style.width = '100%';
 							document.querySelector('.plot').style.width = '31%';
 							document.querySelector('.lorem-ipsum').style.width = 'calc(34em)';
-							videoContainer.style.width = '29.2vw';
+							videoContainer.style.width = '30.6vw';
 						},
 						'onStateChange': event => {
 							if (event.data === YT.PlayerState.ENDED) {
