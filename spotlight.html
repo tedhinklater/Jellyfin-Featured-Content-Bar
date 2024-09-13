@@ -6,7 +6,7 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 		body { margin: 0; padding: 0; overflow: hidden; }
-		.slide { position: relative; width: 100vw; height: 23.5em; min-height: 100vh; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); cursor: pointer; }
+		.slide { position: relative; width: 100vw; height: 22em; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); cursor: pointer; }
 		.slide:focus { outline: 2px solid #fff; }
 		.backdrop { position: absolute; top: 3.15em; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 1; transition: width 0.5s ease, filter 0.8s ease, scale 2s ease; transform-origin: top; animation: objectPositionAnimation 25s ease-in-out infinite;}
 		.logo { position: relative; transform: translateX(-50%) translateY(-50%); top: 56%; left: 14.5%; max-height: 40%; max-width: 25%; width: auto; z-index: 3; text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; transition: transform 0.3s ease, max-height 0.3s ease, max-width 0.3s ease;}
@@ -53,7 +53,7 @@
 		.video-container::before { content: ""; position: absolute; top: 0; left: -1.4em; width: 1.4em; height: 100%; background: linear-gradient(90deg, rgb(0% 0% 0% / 0) 0%, rgb(0% 0% 0% / 0.000014495849609375) 6.25%, rgb(0% 0% 0% / 0.00023193359375) 12.5%, rgb(0% 0% 0% / 0.001174163818359375) 18.75%, rgb(0% 0% 0% / 0.0037109375) 25%, rgb(0% 0% 0% / 0.009059906005859375) 31.25%, rgb(0% 0% 0% / 0.01878662109375) 37.5%, rgb(0% 0% 0% / 0.03480453491210937) 43.75%, rgb(0% 0% 0% / 0.059375) 50%, rgb(0% 0% 0% / 0.09510726928710937) 56.25%, rgb(0% 0% 0% / 0.14495849609375) 62.5%, rgb(0% 0% 0% / 0.21223373413085936) 68.75%, rgb(0% 0% 0% / 0.3005859375) 75%, rgb(0% 0% 0% / 0.41401596069335933) 81.25%, rgb(0% 0% 0% / 0.55687255859375) 87.5%, rgb(0% 0% 0% / 0.7338523864746094) 93.75%, rgb(0% 0% 0% / 0.95) 100% ); z-index: 8; opacity: 0.58; }
 		.watch-trailer-button { position: absolute; background-color: transparent; color: white; border: none; border-radius: 5px; padding: 0.5em 0.5em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; cursor: pointer; z-index: 10; transition: background-color 0.3s ease; align-items: center; justify-content: center; transform: translateX(0%); left: 1%; top: 0.65em;}
 		.watch-trailer-button .fa-play { margin-right: 0.5em;}
-		.slide { position: relative; width: 100%; height: 100vh; overflow: hidden; opacity: 1; transition: opacity 0.31s ease-in-out; }
+		.slide { position: relative; width: 100%; overflow: hidden; opacity: 1; transition: opacity 0.31s ease-in-out; }
 		.fade-in { opacity: 0; visibility: hidden; transition: opacity 0.31s ease-in-out;}
 		.fade-in-active { opacity: 1; visibility: visible;}
 		.fade-out {	opacity: 0;}
