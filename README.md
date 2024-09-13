@@ -1,6 +1,6 @@
 # [Featured Content Bar](https://github.com/BobHasNoSoul/jellyfin-mods/blob/main/10.9.x.md#featured-content-bar-109xx) originally by [BobHasNoSoul](https://github.com/BobHasNoSoul) and [SethBacon](https://forum.jellyfin.org/u-sethbacon)
 
-![feat7](https://github.com/user-attachments/assets/a5d91482-91c8-4b19-a5e2-54b9ac75a277)
+![feat8](https://github.com/user-attachments/assets/e1dee7fa-c557-447e-a16c-5648b0f7c961)
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
