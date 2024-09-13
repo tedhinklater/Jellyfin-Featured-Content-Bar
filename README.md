@@ -90,7 +90,7 @@ And Save.
 
 9. That's it.
 
-# Full Page Version
+# Full Screen Version
 
 ![full1](https://github.com/user-attachments/assets/54383317-5ec1-4850-80e8-f9c6cf68777c)
 
