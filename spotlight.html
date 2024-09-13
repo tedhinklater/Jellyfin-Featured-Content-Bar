@@ -304,6 +304,7 @@
 					events: {
 						'onReady': event => {
 							event.target.playVideo();
+							event.target.setVolume(50);
 							document.querySelector('.backdrop').style.width = '83%';
 							document.querySelector('.plot').style.width = '31%';
 							document.querySelector('.lorem-ipsum').style.width = 'calc(34em)';
