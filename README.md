@@ -94,7 +94,7 @@ And Save.
 
 ![full1](https://github.com/user-attachments/assets/54383317-5ec1-4850-80e8-f9c6cf68777c)
 
-Just use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
+Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
 insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype="movie,series,book">``` 
 
