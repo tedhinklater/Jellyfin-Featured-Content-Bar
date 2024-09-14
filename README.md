@@ -105,14 +105,14 @@ insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype=
 and add this CSS to the very ```end``` of your Custom CSS
 
 ```css
-
-.layout-desktop .libraryPage:not(.noSecondaryNavPage) { padding-top: 0em !important; }
-.layout-desktop .overflowBackdropCard, .overflowSmallBackdropCard { width: 12.7vw !important;  padding-right: 1.85em; }
-.layout-desktop .skinHeader-withBackground { background-color: transparent; backdrop-filter: blur(0px); }
-.layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left { display: flex !important; } 
-.layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left { display: none !important; }
-.layout-desktop #homeTab .verticalSection.section0.emby-scroller-container { position: absolute; top: 82.8vh; }
-.layout-desktop #homeTab .verticalSection.section0.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1; }
-[dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons { right: -5em; top: -2em; }
-
+.layout-desktop .libraryPage:not(.noSecondaryNavPage) {  padding-top: 0em !important;}
+.layout-desktop .overflowBackdropCard, .overflowSmallBackdropCard {  width: 12.7vw !important;  padding-right: 1.85em;}
+.layout-desktop .skinHeader-withBackground {background-color: transparent; backdrop-filter: blur(0px);}
+.layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: flex !important; } 
+.layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: none !important;}
+.layout-desktop #homeTab .verticalSection.section0.emby-scroller-container {position: relative; top: -2em;}
+.layout-desktop #homeTab .verticalSection.section0.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1;}
+[dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
+.layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
+.layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: -10em;}
 ```
