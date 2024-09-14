@@ -92,7 +92,7 @@ And Save.
 
 # Full Screen Version
 
-![full](https://github.com/user-attachments/assets/9a57b4dc-65d5-412b-94e7-059c5b6d3795)
+![Full](https://github.com/user-attachments/assets/bc311c4c-c4f6-44ea-8027-8f5f52b52ccd)
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
