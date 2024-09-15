@@ -90,6 +90,10 @@ And Save.
 
 9. That's it.
 
+# Uninstallation
+
+Simply delete Step 5's snippet added to ```home-html.chunk.js``` and step 7's script in ```index.html``` (remember to leave ```</body></html>``` at the end) then refresh your browser's cache.
+
 # Full Screen Version
 
 ![feat3](https://github.com/user-attachments/assets/80b688b3-9ae6-48cd-b3c0-4dcbc63edb20)
