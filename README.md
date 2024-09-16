@@ -109,7 +109,7 @@ insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype=
 and add this CSS to the very ```end``` of your Custom CSS
 
 ```css
-.layout-desktop .libraryPage:not(.noSecondaryNavPage) {  padding-top: 0em !important;}
+.layout-desktop .page.homePage.libraryPage.allLibraryPage.backdropPage.pageWithAbsoluteTabs.withTabs.mainAnimatedPage { margin-top:-4.5em;}
 .layout-desktop .overflowBackdropCard, .overflowSmallBackdropCard {  width: 12.7vw !important;  padding-right: 1.85em;}
 .layout-desktop .skinHeader-withBackground {background-color: transparent; backdrop-filter: blur(0px);}
 .layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: flex !important; } 
