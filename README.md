@@ -96,7 +96,7 @@ Simply delete Step 5's snippet added to ```home-html.chunk.js``` and step 7's sc
 
 # Full Screen Version
 
-![feat4](https://github.com/user-attachments/assets/91cb5bce-f115-4982-ad5b-8ca4b2890cfc)
+![feat5](https://github.com/user-attachments/assets/5cf22567-85fa-4e6f-81f4-d676b1a1eee9)
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
