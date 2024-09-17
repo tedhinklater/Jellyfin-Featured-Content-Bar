@@ -4,7 +4,7 @@
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
-2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```avatars``` and drop ```spotlight.html``` in that folder
+2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` in that folder
 
 3. (Important: Open Notepad with Administrator rights, or use Notepad++ for this) In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
 
@@ -17,82 +17,13 @@
 ```
 6. Save the file.
 
-7. In the same folder (jellyfin-web) open ```index.html``` with a text editor and find ```<\body><\html>``` and replace it with
+7. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 
-```js
-<script>
-// Function to save credentials to sessionStorage
-function saveCredentialsToSessionStorage(credentials) {
-  try {
-    // Store the credentials in sessionStorage
-    sessionStorage.setItem('json-credentials', JSON.stringify(credentials));
-    console.log('Credentials saved to sessionStorage.');
-  } catch (error) {
-    console.error('Error saving credentials:', error);
-  }
-}
-
-// Function to save the API key to sessionStorage
-function saveApiKey(apiKey) {
-  try {
-    sessionStorage.setItem('api-key', apiKey);
-    console.log('API key saved to sessionStorage.');
-  } catch (error) {
-    console.error('Error saving API key:', error);
-  }
-}
-
-// Override the default console.log function
-(function() {
-  var originalConsoleLog = console.log;
-
-  console.log = function(message) {
-    // Call the original console.log method
-    originalConsoleLog.apply(console, arguments);
-
-    // Check if the message contains the JSON credentials
-    if (typeof message === 'string' && message.startsWith('Stored JSON credentials:')) {
-      try {
-        // Extract the JSON credentials from the message
-        var jsonString = message.substring('Stored JSON credentials: '.length);
-        var credentials = JSON.parse(jsonString);
-
-        // Save the credentials to sessionStorage
-        saveCredentialsToSessionStorage(credentials);
-      } catch (error) {
-        console.error('Error parsing credentials:', error);
-      }
-    }
-
-    // Check if the message contains the WebSocket URL with api_key
-    if (typeof message === 'string' && message.startsWith('opening web socket with url:')) {
-      try {
-        // Extract the API key from the message
-        var url = message.split('url:')[1].trim();
-        var urlParams = new URL(url).searchParams;
-        var apiKey = urlParams.get('api_key');
-
-        if (apiKey) {
-          saveApiKey(apiKey);
-        }
-      } catch (error) {
-        console.error('Error extracting API key:', error);
-      }
-    }
-  };
-})();
-</script>
-</body></html>
-```
-And Save. 
-
-8. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
-
-9. That's it.
+8. That's it.
 
 # Uninstallation
 
-Simply delete Step 5's snippet added to ```home-html.chunk.js``` and step 7's script in ```index.html``` (remember to leave ```</body></html>``` at the end) then refresh your browser's cache.
+Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
 
 # Full Screen Version
 
