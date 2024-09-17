@@ -6,7 +6,7 @@
 
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` in that folder
 
-3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight, copy the key, and insert it into ```line 81``` of spotlight.html
+3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight, copy the key, and insert it into ```line 84``` of spotlight.html
 
 4. (Important: Open Notepad with Administrator rights, or use Notepad++ for this) In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
 
