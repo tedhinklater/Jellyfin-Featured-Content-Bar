@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-	<title>Jellyfin Spotlight v2.1.5</title>
-	<style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Jellyfin Spotlight v2.3.2</title>
+    <style>
 		@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 		body { margin: 0; padding: 0; overflow: hidden; }
 		.slide { position: relative; width: 100vw; height: 100vh; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);}
@@ -17,20 +17,21 @@
 		.clickable-overlay { position: absolute; top: 50px; left: 0; width: 100%; height: calc(100%); z-index: 2; cursor: pointer; background: transparent; transition: background 0.8s ease, backdrop-filter 0.8s ease;}
 		.clickable-overlay::before { content: ''; position: absolute; top: 25%; left: 0; width: 100%; height: 75%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgba(0, 0, 0, 0.99) 6.25%, rgba(0, 0, 0, 0.96) 12.5%, rgba(0, 0, 0, 0.92) 18.75%, rgba(0, 0, 0, 0.86) 25%, rgba(0, 0, 0, 0.78) 31.25%, rgba(0, 0, 0, 0.69) 37.5%, rgba(0, 0, 0, 0.6) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.4) 56.25%, rgba(0, 0, 0, 0.31) 62.5%, rgba(0, 0, 0, 0.22) 68.75%, rgba(0, 0, 0, 0.14) 75%, rgba(0, 0, 0, 0.08) 81.25%, rgba(0, 0, 0, 0.04) 87.5%, rgba(0, 0, 0, 0.01) 93.75%, rgba(0, 0, 0, 0) 100% ); opacity: 0.15; transition: opacity 0.3s ease; z-index: 1;}
 		.clickable-overlay::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgb(0% 0% 0% / 0.9) 0%, rgb(0% 0% 0% / 0.6952285766601562) 6.25%, rgb(0% 0% 0% / 0.5275634765625) 12.5%, rgb(0% 0% 0% / 0.39222564697265627) 18.75%, rgb(0% 0% 0% / 0.284765625) 25%, rgb(0% 0% 0% / 0.20106353759765627) 31.25%, rgb(0% 0% 0% / 0.1373291015625) 37.5%, rgb(0% 0% 0% / 0.09010162353515627) 43.75%, rgb(0% 0% 0% / 0.05625000000000002) 50%, rgb(0% 0% 0% / 0.03297271728515627) 56.25%, rgb(0% 0% 0% / 0.017797851562500022) 62.5%, rgb(0% 0% 0% / 0.00858306884765625) 68.75%, rgb(0% 0% 0% / 0.003515625000000022) 75%, rgb(0% 0% 0% / 0.0011123657226562722) 81.25%, rgb(0% 0% 0% / 0.0002197265625000222) 87.5%, rgb(0% 0% 0% / 0.000013732910156272204) 93.75%, rgb(0% 0% 0% / 0) 100% ); opacity: 0.25; transition: opacity 0.3s ease, visibility 0.8s ease; z-index: 3; border-radius: 0.25em; }
-		.lorem-ipsum { position: absolute; top: 3.4em; left: 0em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 95%; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; transition: opacity 0.3s ease, backdrop-filter 0.3s ease, max-width 0.3s ease; color: #fff; z-index: 4; box-sizing: border-box; background: transparent; border-radius: 0.25em; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; backdrop-filter: blur(2px); display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em;}
+		.lorem-ipsum {position: relative; bottom: -44em; left: 59em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 92%; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 4; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
 		.lorem-ipsum span { margin-right: 0.2em;}
+		.age-rating {position: absolute; top: 3.5em; left: 0em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 95%; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 4; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
 		.plot { position: absolute; bottom: 0; left: -0.25em; right: 0; color: #fff; font-family: "Titillium Web", sans-serif; font-size: 0.9em; font-weight: 500; background: transparent; padding: 10px; z-index: 7; box-sizing: border-box; padding-bottom: 3px; padding-top: 0.5em; line-height: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; border-bottom-left-radius: 0.45em; transition: opacity 0.1s ease, max-height 0.8s ease; opacity: 0; max-width: 31%; opacity: 1; -webkit-line-clamp: 3; max-height: 7.8em;}
-		.genres { position: absolute; top: 4.1em; color: #fff; z-index: 2; font-family: "Titillium Web", sans-serif; font-size: 0.79em; opacity: 1; transition: opacity 0.3s ease; max-width: 39em; overflow: hidden; height: 1.95em; padding-top: 0.25em; line-height: 2em; white-space: nowrap;}		
+		.genres { position: relative; bottom: -44.1em; color: #fff; z-index: 2; font-family: "Titillium Web", sans-serif; font-size: 0.79em; opacity: 1; transition: opacity 0.3s ease; max-width: 39em; overflow: hidden; height: 1.95em; padding-top: 0.25em; line-height: 2em; white-space: nowrap;}		
 		.premiere-year {position: absolute; top: 5.75em; left: 0.5em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 0; transition: opacity 0.3s; text-align: center; width: 3.5em;}
 		.additional-info {position: absolute; top: 7.3em; left: 31em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: right; width: 5em;}
 		.community-rating {position: absolute; top: 5.75em; right: 69.5%; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: center; width: 3.6em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
 		.critic-rating {position: absolute; top: 5.75em; right: 73%; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: center; width: 3.9em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
 		@keyframes objectPositionAnimation { 0% { object-position: center 30%; } 40% { object-position: center 80%; } 80% { object-position: center 20%; } 100% { object-position: center 30%; }}
-		.star-icon { color: gold; font-size: 1em; margin-right: 0em; }
-		@media (max-width: 1000px) { .lorem-ipsum {font-size: 90%; top: 3.45em;} .logo { transform: translateX(-50%) translateY(-50%); top: 8.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 100% !important; max-width: 100%; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.823974609375) 6.25%, rgb(0% 0% 0% / 0.669921875) 12.5%, rgb(0% 0% 0% / 0.536376953125) 18.75%, rgb(0% 0% 0% / 0.421875) 25%, rgb(0% 0% 0% / 0.324951171875) 31.25%, rgb(0% 0% 0% / 0.244140625) 37.5%, rgb(0% 0% 0% / 0.177978515625) 43.75%, rgb(0% 0% 0% / 0.125) 50%, rgb(0% 0% 0% / 0.083740234375) 56.25%, rgb(0% 0% 0% / 0.052734375) 62.5%, rgb(0% 0% 0% / 0.030517578125) 68.75%, rgb(0% 0% 0% / 0.015625) 75%, rgb(0% 0% 0% / 0.006591796875) 81.25%, rgb(0% 0% 0% / 0.001953125) 87.5%, rgb(0% 0% 0% / 0.000244140625) 93.75%, rgb(0% 0% 0% / 0) 100% ); transform: scale(1.025); transition: transform 1s ease;} .backdrop {left: 0% !important; width: 100% !important; top: 2.95em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px);} .slide:hover .clickable-overlay::before { opacity: 0.98;} .next-button {font-size: 0.9em; top: 1.1em; color: #fff; right: 1em;} .genres {overflow: hidden; max-width: 69vw !important; white-space: nowrap; left: 0; z-index: 8; padding-left: 0.5em; color: #fff;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important;} .slide { box-shadow: none;} #countdown-bar-container {top: 3em !important;}}
-		@media (max-width:1000px) and (orientation:landscape) { .logo {top:10.5em;} .community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .next-button {right:0.5em;} .genres {top: 20.45em !important; max-width: 69vw;}}
-		@media (max-width:1000px) and (orientation:portrait) { .logo {top:10.5em;} .genres {max-width: 68vw !important; overflow:hidden; top: 20.5em;} .next-button {right:0.25em;}}
-		@media (min-width: 1001px) { .clickable-overlay {pointer-events: none;} .logo {max-height: 34vh; position: absolute; top: 29em; transition: transform 0.1s ease, max-height 0.3s ease; max-width: 40vw; left: 10em; transform: translateX(0%) translateY(-50%);} .watch-trailer-button {display: none;} .backdrop {filter: brightness(95%) contrast(105%) saturate(105%); left: 0%; width: 100%; transition: width 0.5s ease, filter 0.8s ease, transform 2s ease; filter: brightness(95%) contrast(105%) saturate(105%);} .slide {margin-top: -3.15em; height: 100vh;} .next-button {top: 17.5em; right: 0.5em; font-size: 2em;} .video-container {top: 9em; height: 18.62em; right: 4em; border-radius: 0em; transform-origin: 100% 0; transition: transform 0.5s ease; transition-delay: 1s;} .plot {position: relative; top: 35.5em; left: 4em; font-size: 1.25em; max-width: 49em !important; width: 49em !important; -webkit-line-clamp: 3;} .genres {z-index: 3; top: 11.4em; left: 5.1em; font-size: 1.1em; max-width: 74em;} .age-rating {font-size: 1.8em !important; position: absolute; left: 3.25em; top: 3.25em; white-space: nowrap;} .community-rating {top: 44em; left: 50em; font-size: 1.2em;} .critic-rating {top: 44em; left: 43em; font-size: 1.2em;} .heading::before {content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9903926402016152) 6.25%, rgb(0% 0% 0% / 0.9619397662556434) 12.5%, rgb(0% 0% 0% / 0.9157348061512727) 18.75%, rgb(0% 0% 0% / 0.8535533905932737) 25%, rgb(0% 0% 0% / 0.7777851165098011) 31.25%, rgb(0% 0% 0% / 0.6913417161825449) 37.5%, rgb(0% 0% 0% / 0.5975451610080642) 43.75%, rgb(0% 0% 0% / 0.5) 50%, rgb(0% 0% 0% / 0.4024548389919359) 56.25%, rgb(0% 0% 0% / 0.3086582838174552) 62.5%, rgb(0% 0% 0% / 0.22221488349019902) 68.75%, rgb(0% 0% 0% / 0.14644660940672627) 75%, rgb(0% 0% 0% / 0.08426519384872733) 81.25%, rgb(0% 0% 0% / 0.03806023374435663) 87.5%, rgb(0% 0% 0% / 0.009607359798384785) 93.75%, rgb(0% 0% 0% / 0) 100% ); height: 100vh; z-index:6; opacity: 1; bottom: 0;}}
+		.star-icon { color: gold; font-size: 0.71em; vertical-align: super; padding-right: 0.2em; margin-left: -0.1em;}
+		@media (max-width: 1000px) { .lorem-ipsum {font-size: 0.79em; bottom: -44em; left: 59em;} .logo { transform: translateX(-50%) translateY(-50%); top: 10.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 100% !important; max-width: 100%; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.823974609375) 6.25%, rgb(0% 0% 0% / 0.669921875) 12.5%, rgb(0% 0% 0% / 0.536376953125) 18.75%, rgb(0% 0% 0% / 0.421875) 25%, rgb(0% 0% 0% / 0.324951171875) 31.25%, rgb(0% 0% 0% / 0.244140625) 37.5%, rgb(0% 0% 0% / 0.177978515625) 43.75%, rgb(0% 0% 0% / 0.125) 50%, rgb(0% 0% 0% / 0.083740234375) 56.25%, rgb(0% 0% 0% / 0.052734375) 62.5%, rgb(0% 0% 0% / 0.030517578125) 68.75%, rgb(0% 0% 0% / 0.015625) 75%, rgb(0% 0% 0% / 0.006591796875) 81.25%, rgb(0% 0% 0% / 0.001953125) 87.5%, rgb(0% 0% 0% / 0.000244140625) 93.75%, rgb(0% 0% 0% / 0) 100% ); transform: scale(1.025); transition: transform 1s ease;} .backdrop {left: 0% !important; width: 100% !important; top: 2.95em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px);} .slide:hover .clickable-overlay::before { opacity: 0.98;} .skip-button {font-size: 0.9em; top: 1.1em; color: #fff; right: 1em;} .genres {overflow: hidden; max-width: 100vw !important; white-space: nowrap; left: 0; z-index: 8; padding-left: 0.5em; color: #fff;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important;} .slide { box-shadow: none;} #countdown-bar-container {top: 3em !important;}}
+		@media (max-width:1000px) and (orientation:landscape) {.community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .skip-button {right:0.5em;} .genres {position: absolute; bottom: 4em;} .lorem-ipsum {position: absolute; bottom: 4em; left: unset; right: 0em;}}
+		@media (max-width:1000px) and (orientation:portrait) {.genres {position: absolute; max-width: 100vw !important; overflow:hidden; bottom: 4em;} .skip-button {right:0.25em;} .lorem-ipsum {position: absolute; left: unset; right: 0em; bottom: unset; top: 5em;}}
+		@media (min-width: 1001px) { .lorem-ipsum { bottom: -47em; left: 59em; font-size: 1.1em; transform: translateX(-100%);} clickable-overlay {pointer-events: none;} .logo {max-height: 34vh; position: absolute; top: 29em; transition: transform 0.1s ease, max-height 0.3s ease; max-width: 40vw; left: 10em; transform: translateX(0%) translateY(-50%);} .watch-trailer-button {display: none;} .backdrop {filter: brightness(95%) contrast(105%) saturate(105%); left: 0%; width: 100%; transition: width 0.5s ease, filter 0.8s ease, transform 2s ease; filter: brightness(95%) contrast(105%) saturate(105%);} .slide {margin-top: -3.15em; height: 100vh;} .skip-button {top: 17.5em; right: 0.5em; font-size: 2em;} .video-container {top: 9em; height: 18.62em; right: 4em; border-radius: 0em; transform-origin: 100% 0; transition: transform 0.5s ease; transition-delay: 1s;} .plot {position: relative; bottom: -33.5em; left: 4em; font-size: 1.25em; max-width: 49em !important; width: 49em !important; -webkit-line-clamp: 3;} .genres {z-index: 3; bottom: -49em; left: 5.1em; font-size: 1.1em; max-width: 74em;} .age-rating {font-size: 1.8em !important; position: absolute; left: 2.8em; top: 4.25em; white-space: nowrap;} .community-rating {top: 44em; left: 50em; font-size: 1.2em;} .critic-rating {top: 44em; left: 43em; font-size: 1.2em;} .heading::before {content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9903926402016152) 6.25%, rgb(0% 0% 0% / 0.9619397662556434) 12.5%, rgb(0% 0% 0% / 0.9157348061512727) 18.75%, rgb(0% 0% 0% / 0.8535533905932737) 25%, rgb(0% 0% 0% / 0.7777851165098011) 31.25%, rgb(0% 0% 0% / 0.6913417161825449) 37.5%, rgb(0% 0% 0% / 0.5975451610080642) 43.75%, rgb(0% 0% 0% / 0.5) 50%, rgb(0% 0% 0% / 0.4024548389919359) 56.25%, rgb(0% 0% 0% / 0.3086582838174552) 62.5%, rgb(0% 0% 0% / 0.22221488349019902) 68.75%, rgb(0% 0% 0% / 0.14644660940672627) 75%, rgb(0% 0% 0% / 0.08426519384872733) 81.25%, rgb(0% 0% 0% / 0.03806023374435663) 87.5%, rgb(0% 0% 0% / 0.009607359798384785) 93.75%, rgb(0% 0% 0% / 0) 100% ); height: 100vh; z-index:6; opacity: 1; bottom: 0;} .skip-button { position: absolute; top: 0.4em; right: 0.25em; font-size: 1.5em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; font-size: 1.35em; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);}}
 		@media (max-width: 500px) { .community-rating {left: 0em; top: 5.6em;} .critic-rating {left: 0em; top: 7.6em;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .heading::before {display: none;} .logo {max-width: 60%; max-height: 35%; left: 50% !important;}}
 		@media (min-width: 2000px) { .slide {font-size: 133%;} .backdrop {top: 2em;}}
 		@media (min-width: 3000px) { .slide {font-size: 200%;} .backdrop {top: 0em;} .slide {margin-top: -4vh;}}
@@ -63,462 +64,264 @@
 		.video-player { mask-image: linear-gradient(45deg, rgb(0% 0% 0% / 0) 0%, rgb(0% 0% 0% / 0.1) 25%, rgb(0% 0% 0% / 0.7) 50%, rgb(0% 0% 0% / 1) 100% ); -webkit-mask-image: linear-gradient(45deg, rgb(0% 0% 0% / 0) 0%, rgb(0% 0% 0% / 0.1) 25%, rgb(0% 0% 0% / 0.7) 50%, rgb(0% 0% 0% / 1) 100% ); transition: mask-image 5s ease, -webkit-mask-image 5s ease; }
 		.video-container:hover { mask-image: none; -webkit-mask-image: none; transform:scale(1.3);  transition-delay: 0s;}
 		.video-container:hover .video-player { mask-image: none; -webkit-mask-image: none;}
-		.next-button {font-size: 2em; top: 18em; opacity: 0.5; transition: opacity 0.3s ease;} .next-button:hover {opacity: 1;}
+		.skip-button {font-size: 2em; top: 18em; opacity: 0.5; transition: opacity 0.3s ease;} .skip-button:hover {opacity: 1;}
 		.buttons-container {display: flex; position: absolute; top: 52em; left: 5.5em; z-index: 10;} .details-button { color: white; background: #101010e3; font-size: 1.75em; padding: 0.25em; padding-left: 0.5em; padding-right: 0.75em; transition: background-color 0.3s ease; cursor: pointer; border-radius: 0.5em;}
-		.details-button:hover { background-color: #444;}		
-	</style>
+		.details-button:hover { background-color: #444;}	
+    </style>
 </head>
 <body>
-	<div id="slides-container"></div>
-	    <div id="video-overlay" style="display: none;">
-        <div id="video-overlay-content">
-            <span id="close-overlay" class="fas fa-times"></span>
-            <iframe id="trailer-video" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-	
-<!-- Horizontal Countdown Bar -->
-<div id="countdown-bar-container">
-    <div id="countdown-bar"></div>
-</div>
-	<script>
-		let title = '', moviesSeriesBoth = 3, shuffleInterval = 10000, plotMaxLength = 700, userId = 'null', token = 'null', useTrailers = true;  // Changeable variables
-		let isChangingSlide = false, player = null, slideChangeTimeout = null;
+    <div id="slides-container"></div>
+    <script>
+		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 110000, plotMaxLength = 350, token = '040866ba82054bca91c77c90d3b5373e', useTrailers = true;
+		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false;
 		let currentLocation = window.top.location.href;
-		
-		// Countdown timer
-		const countdownBarContainer = document.getElementById('countdown-bar-container');
-		const countdownBar = document.getElementById('countdown-bar');
-		let countdownInterval;
+		let movieList = [], currentMovieIndex = 0;
 
-		function startCountdownBar() {
-			clearInterval(countdownInterval);
-			countdownBarContainer.style.display = 'block'; // Show the countdown bar when starting
-			countdownBar.style.width = '0%'; // Reset the bar
-			let countdownProgress = 0;
-			const totalProgress = 100;
-			const intervalTime = shuffleInterval / totalProgress;
-
-			countdownInterval = setInterval(() => {
-				countdownProgress++;
-				countdownBar.style.width = countdownProgress + '%'; // Increase width of bar
-
-				if (countdownProgress >= totalProgress) {
-					clearInterval(countdownInterval);
-					countdownBarContainer.style.display = 'none'; // Hide the bar when countdown is complete
-				}
-			}, intervalTime);
-		}
-
-		function stopCountdownBar() {
-			clearInterval(countdownInterval);
-			countdownBarContainer.style.display = 'none'; // Hide the countdown bar when stopped
-		}
-		
-		// Fetch credentials from sessionStorage
-		const jsonCredentials = sessionStorage.getItem('json-credentials');
-		if (jsonCredentials) {
-			const credentials = JSON.parse(jsonCredentials);
-			userId = credentials.Servers[0].UserId;
-			token = credentials.Servers[0].AccessToken;
-		}		
-
-		function createElem(tag, className, textContent, src, alt) {
+		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
 			if (className) elem.className = className;
 			if (textContent) elem.textContent = textContent;
 			if (src) elem.src = src;
 			if (alt) elem.alt = alt;
 			return elem;
-		}
-		
-        // Check for screen size below 1000px
-        function isMobile() {
-            return window.innerWidth <= 1000;
-        }		
+		};
 
-		function truncateText(text, maxLength) {
-			return text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
-		}
+		const truncateText = (text, maxLength) => text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
 
-		function cleanup() {
-			if (player) {
-				player.destroy();
-				player = null;
-			}
-			clearSlideChangeTimeout();
+		const cleanup = () => {
+			if (player) { player.destroy(); player = null; }
+			clearTimeout(slideChangeTimeout);
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
-		}
+		};
 
-		function createSlideElement(movie, hasVideo = false) {
+		const createSlideElement = (movie, hasVideo = false) => {
+			cleanup();
 			const container = document.getElementById('slides-container');
-			const newSlide = createElem('div', 'slide', null, null, null);
-
-			const backdropImg = createElem('img', 'backdrop', null, `/Items/${movie.Id}/Images/Backdrop/0`, 'Backdrop');
-			newSlide.appendChild(backdropImg);
-			newSlide.appendChild(createElem('img', 'logo', null, `/Items/${movie.Id}/Images/Logo`, 'Logo'));
-			newSlide.appendChild(createElem('div', 'heading', title));
+			const slide = createElem('div', 'slide');
+			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
+			slide.appendChild(createElem('div', 'heading', title));
 
 			const textContainer = createElem('div', 'text-container');
-
 			const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : 'Unknown';
-			let additionalInfo;
+			const additionalInfo = movie.Type === 'Series' ? 
+				(movie.ChildCount ? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` : 'Unknown Seasons') : 
+				(movie.RunTimeTicks ? `${Math.round(movie.RunTimeTicks / 600000000)} min` : 'Unknown Runtime');
 
-			if (movie.Type === 'Series') {
-				additionalInfo = movie.ChildCount ? `${movie.ChildCount} Seasons` : 'Unknown Seasons';
-			} else {
-				const runtimeMinutes = movie.RunTimeTicks ? Math.round(movie.RunTimeTicks / 600000000) : 'Unknown';
-				additionalInfo = runtimeMinutes !== 'Unknown' ? `${runtimeMinutes} min` : 'Unknown Runtime';
+			let loremText = `
+				<span style="border: 1px solid #fff8; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
+				<span style="border: 1px solid #fff8; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
+
+			if (movie.CommunityRating) {
+				loremText += `<span style="border: 1px solid #fff8; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
+				</span> `;
 			}
-
+			if (movie.CriticRating) {
+				loremText += `<span style="border: 1px solid #fff8; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				<img src="https://i.imgur.com/iMfwDk7.png" alt="Rotten Tomatoes" style="width: 0.85em; height: 0.85em; vertical-align: super; font-size: 0.9em; padding-right: 0.1em; margin-left: -0.1em;"> 
+				${movie.CriticRating}%</span>`;
+			}
+			
+			// Age Rating
+			
 			const ageRating = movie.OfficialRating ? movie.OfficialRating : 'NR';
 			const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
-			const criticRating = movie.CriticRating ? `${movie.CriticRating}%` : null;
-			const communityRating = movie.CommunityRating ? `${movie.CommunityRating.toFixed(1)}` : null;
-
-			const loremDiv = createElem('div', 'lorem-ipsum');
-			loremDiv.innerHTML = `
-				<div class="age-rating">
-					<span class="${ratingClass}" style="border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;">${ageRating}</span>
-				</div>
-			`;
-			
-			 // Create individual divs for additionalInfo, premiereYear, communityRating, and criticRating
-				const additionalInfoDiv = createElem('div', 'additional-info', additionalInfo);
-				const premiereYearDiv = createElem('div', 'premiere-year', premiereYear);
-				const communityRatingDiv = createElem('div', 'community-rating');
-				const criticRatingDiv = createElem('div', 'critic-rating');
-
-				// Add community rating and critic rating icons if present
-				if (communityRating) {
-					const communityRatingIcon = createElem('i', 'star-icon fas fa-star');
-					communityRatingDiv.appendChild(communityRatingIcon);
-					communityRatingDiv.appendChild(document.createTextNode(` ${communityRating}`));
-				}
-
-				if (criticRating) {
-					const criticRatingIcon = createElem('img', null, null, 'https://i.imgur.com/iMfwDk7.png', 'Rotten Tomatoes');
-					criticRatingIcon.style.width = '1.1em';
-					criticRatingIcon.style.height = '1.1em';
-					criticRatingIcon.style.paddingLeft = '0em';
-					criticRatingIcon.style.verticalAlign = 'sub';
-					criticRatingDiv.appendChild(criticRatingIcon);
-					criticRatingDiv.appendChild(document.createTextNode(` ${criticRating}`));
-				}
-				
-				newSlide.appendChild(additionalInfoDiv);
-				newSlide.appendChild(premiereYearDiv);
-				newSlide.appendChild(communityRatingDiv);
-				newSlide.appendChild(criticRatingDiv);
+	
+			const ageRatingDiv = createElem('div', 'age-rating');
+			const ageRatingSpan = createElem('span', ratingClass, ageRating);
+			ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
+			ageRatingDiv.appendChild(ageRatingSpan);
+			slide.appendChild(ageRatingDiv);
 			
 			// Genres Section
 			const genresDiv = createElem('div', 'genres');
 			if (movie.Genres && movie.Genres.length > 0) {
 				movie.Genres.forEach(genre => {
 					const genreElem = createElem('span', 'genre-item');
-					genreElem.textContent = genre;
-
-					// CSS
-					genreElem.style.backgroundColor = '#101010e3';
+					genreElem.textContent = genre;		
+					genreElem.style.backgroundColor = 'transparent';
 					genreElem.style.paddingLeft = '0.5em';
 					genreElem.style.paddingRight = '0.5em';
-					genreElem.style.paddingTop = '0.1em';
-					genreElem.style.paddingBottom = '0.1em';
+					genreElem.style.paddingTop = '0.05em';
+					genreElem.style.paddingBottom = '0.05em';
 					genreElem.style.color = 'white';
-					genreElem.style.borderRadius = '0.5em';
+					genreElem.style.borderRadius = '0em';
 					genreElem.style.marginRight = '1em';
 					genreElem.style.border = '1px solid #fff8';
-
 					genresDiv.appendChild(genreElem);
 				});
 			} else {
 				genresDiv.textContent = 'Genres: N/A';
 			}
-			newSlide.appendChild(genresDiv);
-	
+			slide.appendChild(genresDiv);
+
+			const loremDiv = createElem('div', 'lorem-ipsum');
+			loremDiv.innerHTML = loremText;
 			textContainer.appendChild(loremDiv);
 			textContainer.appendChild(createElem('div', 'plot', truncateText(movie.Overview, plotMaxLength)));
-			newSlide.appendChild(textContainer);
+			slide.appendChild(textContainer);
+
+			const skipButton = createElem('div', 'skip-button');
+			const skipIcon = createElem('i', 'fas fa-arrow-circle-right');
 			
-			// Create Details buttons
-			const buttonsContainer = createElem('div', 'buttons-container');
-
-			// Details Button
-			const detailsButton = createElem('button', 'details-button');
-			const playIcon = createElem('i', 'fas fa-play');
-			detailsButton.appendChild(playIcon);
-			detailsButton.appendChild(document.createTextNode(' Play'));
-			detailsButton.onclick = (e) => {
-				e.stopPropagation();
-				window.top.location.href = `/#!/details?id=${movie.Id}`; // Navigate to details page
-			};
-
-			// Append buttons to the container
-			buttonsContainer.appendChild(detailsButton);
-			newSlide.appendChild(buttonsContainer);
-
-			const nextButton = createElem('div', 'next-button');
-			const nextIcon = createElem('i', 'fas fas fa-arrow-circle-right');
-			const nextText = document.createTextNode('');
-
-			nextIcon.style.marginLeft = '0.5em';
-			nextButton.appendChild(nextText);
-			nextButton.appendChild(nextIcon);
-
-			nextButton.onclick = (e) => {
-				e.stopPropagation();
-				fetchRandomMovie();
-				cleanup();
-			};
-
-			newSlide.appendChild(nextButton);
+			skipIcon.style.marginLeft = '0.5em';
+			skipButton.appendChild(skipIcon);
+			
+			skipButton.onclick = (e) => { e.stopPropagation(); fetchRandomMovie(); };
+			slide.appendChild(skipButton);
 
 			const overlay = createElem('div', 'clickable-overlay');
-			overlay.onclick = () => {
-				window.top.location.href = `/#!/details?id=${movie.Id}`;
-			};
-			newSlide.appendChild(overlay);
+			overlay.onclick = () => window.top.location.href = `/#!/details?id=${movie.Id}`;
+			slide.appendChild(overlay);
 
-            if (hasVideo && movie.RemoteTrailers && movie.RemoteTrailers.length > 0) {
-                const trailerUrl = movie.RemoteTrailers[0].Url;
-                const watchTrailerButton = createElem('button', 'watch-trailer-button');
-                const playIcon = document.createElement('i');
-                playIcon.className = 'fas fa-play';
-                watchTrailerButton.appendChild(playIcon);
-                watchTrailerButton.appendChild(document.createTextNode(' Watch Trailer'));
-
-                watchTrailerButton.onclick = (e) => {
-                    e.stopPropagation();
-                    if (isMobile()) {
-                        // Show the video in an overlay for mobile
-                        showVideoOverlay(trailerUrl);
-                    } else {
-                        // Open the trailer in a new tab for desktop
-                        window.open(trailerUrl, '_blank');
-                    }
-                };
-
-                newSlide.appendChild(watchTrailerButton);
-            }
-
-			if (useTrailers && hasVideo && movie.RemoteTrailers && movie.RemoteTrailers.length > 0 && window.innerWidth > 1000) {
-				const trailerUrl = movie.RemoteTrailers[0].Url;
-				const videoId = new URL(trailerUrl).searchParams.get('v');
-
+			if (useTrailers && hasVideo && movie.RemoteTrailers?.length > 0) {
+				const videoId = new URL(movie.RemoteTrailers[0].Url).searchParams.get('v');
 				const videoContainer = createElem('div', 'video-container');
 				const videoElement = createElem('div', 'video-player');
 				videoContainer.appendChild(videoElement);
-				newSlide.appendChild(videoContainer);
+				slide.appendChild(videoContainer);
 
 				player = new YT.Player(videoElement, {
-					height: '100%',
-					width: '100%',
-					videoId: videoId,
+					height: '100%', width: '100%', videoId,
 					events: {
 						'onReady': event => {
 							event.target.playVideo();
-							event.target.setVolume(50);
-							document.querySelector('.backdrop').style.width = '100%';
-							document.querySelector('.plot').style.width = '31%';
-							document.querySelector('.lorem-ipsum').style.width = 'calc(34em)';
-							videoContainer.style.width = '37.33em';
+							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
+								const element = document.querySelector(`.${cls}`);
+								if (element) element.style.width = 'calc(100%)';
+							});
+							videoContainer.style.width = '30vw';
 						},
-						'onStateChange': event => {
-							if (event.data === YT.PlayerState.ENDED) {
-								setTimeout(fetchRandomMovie, 100);
-							}
-						},
+						'onStateChange': event => { if (event.data === YT.PlayerState.ENDED) setTimeout(fetchRandomMovie, 100); },
 						'onError': () => {
-							console.error(`YouTube playback prevented for '${movie.Name}'`);
-							if (player) {
-								player.destroy();
-								player = null;
-							}
-
-							const backdrop = document.querySelector('.backdrop');
-							const plot = document.querySelector('.plot');
-							const videoContainer = document.querySelector('.video-container');
-
-							if (backdrop) backdrop.style.width = '100%';
-							if (plot) plot.style.width = '100%';
-							if (videoContainer) videoContainer.style.width = '0';
-
+							console.error(`YouTube prevented playback of '${movie.Name}'`);
+							if (player) { player.destroy(); player = null; }
+							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
+								const element = document.querySelector(`.${cls}`);
+								if (element) element.style.width = '100%';
+							});
+							videoContainer.style.width = '0';
 							startSlideChangeTimer();
 						}
 					}
 				});
-			} else {
-				startSlideChangeTimer();
-			}
+			} else startSlideChangeTimer();
 
-			if (container.children.length > 0) {
-				const currentSlide = container.querySelector('.slide');
-				currentSlide.classList.add('fade-out');
-				const fadeInSlide = () => {
-					container.innerHTML = '';
-					newSlide.classList.add('fade-in');
-					container.appendChild(newSlide);
-					setTimeout(() => newSlide.classList.add('fade-in-active'), 0);
-				};
-				setTimeout(fadeInSlide, 1000);
-			} else {
-				container.innerHTML = '';
-				newSlide.classList.add('fade-in');
-				container.appendChild(newSlide);
-				setTimeout(() => newSlide.classList.add('fade-in-active'), 0);
-			}
-			
-			addSwipeListeners(newSlide);
-		}
+			container.innerHTML = '';
+			container.appendChild(slide);
+		};
 
-		function addSwipeListeners(slide) {
-			let startX, startY, distX, distY;
-			const threshold = 50;
-			const restraint = 100;
+		const startSlideChangeTimer = () => { clearTimeout(slideChangeTimeout); slideChangeTimeout = setTimeout(fetchRandomMovie, shuffleInterval); };
 
-			slide.addEventListener('touchstart', e => {
-				const touch = e.touches[0];
-				startX = touch.clientX;
-				startY = touch.clientY;
-			});
+		const checkBackdropAndLogo = movie => {
+			Promise.all(['/Images/Backdrop/0', '/Images/Logo'].map(url => 
+				fetch(`/Items/${movie.Id}${url}`, { method: 'HEAD' }).then(response => response.ok)
+			)).then(([backdropExists, logoExists]) => 
+				backdropExists && logoExists ? createSlideElement(movie, true) : fetchRandomMovie()
+			).catch(() => fetchRandomMovie());
+		};
 
-			slide.addEventListener('touchmove', e => {
-				const touch = e.touches[0];
-				distX = touch.clientX - startX;
-				distY = touch.clientY - startY;
-			});
+		const readCustomList = () => 
+			fetch('list.txt?' + new Date().getTime())
+				.then(response => response.ok ? response.text() : null)
+				.then(text => {
+					if (!text) return null;
+					const lines = text.split('\n').filter(Boolean);
+					title = lines.shift() || title;
+					return lines.map(line => line.trim().substring(0, 32));
+				})
+				.catch(() => null);
 
-			slide.addEventListener('touchend', () => {
-				if (Math.abs(distX) > threshold && Math.abs(distY) < restraint) {
-					if (distX > 0) {
-						console.log('Swipe Right');
-					} else {
-						console.log('Swipe Left');
-						fetchRandomMovie();
-					}
-				}
-				distX = distY = 0;
-			});
-		}
-		
-        // Show the video overlay
-        function showVideoOverlay(trailerUrl) {
-            const videoOverlay = document.getElementById('video-overlay');
-            const videoFrame = document.getElementById('trailer-video');
-            const closeOverlay = document.getElementById('close-overlay');
-
-            // Extract video ID from trailer URL
-            const videoId = new URL(trailerUrl).searchParams.get('v');
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-
-            // Set iframe's source to trailer URL
-            videoFrame.src = embedUrl;
-
-            // Show the overlay
-            videoOverlay.style.display = 'block';
-
-			// Pause the slide timer when the video overlay is open
-			clearSlideChangeTimeout();
-
-            // Close the overlay when the X is clicked
-            closeOverlay.onclick = () => {
-                videoOverlay.style.display = 'none';
-                videoFrame.src = '';  // Stop the video
-            };
-
-            // Close the overlay when clicking outside content
-            window.onclick = (event) => {
-                if (event.target === videoOverlay) {
-                    videoOverlay.style.display = 'none';
-                    videoFrame.src = '';
-                }
-            };
-        }	
-
-		// Close video overlay and restart slide timer
-		function closeVideoOverlay() {
-			const videoOverlay = document.getElementById('video-overlay');
-			const videoFrame = document.getElementById('trailer-video');
-
-			// Hide overlay
-			videoOverlay.style.display = 'none';
-
-			// Reset the iframe source
-			videoFrame.src = '';
-
-			// Restart slide change timer when video overlay is closed
-			startSlideChangeTimer();
-		}		
-
-		function startSlideChangeTimer() {
-			clearSlideChangeTimeout();
-			slideChangeTimeout = setTimeout(fetchRandomMovie, shuffleInterval);
-			startCountdownBar(); // Start countdown with slide change
-		}
-
-		function clearSlideChangeTimeout() {
-			if (slideChangeTimeout) {
-				clearTimeout(slideChangeTimeout);
-				stopCountdownBar(); // Stop countdown when clearing timer
-				slideChangeTimeout = null;
-			}
-		}
-
-		function checkBackdropAndLogo(movie) {
-			const backdropUrl = `/Items/${movie.Id}/Images/Backdrop/0`;
-			const logoUrl = `/Items/${movie.Id}/Images/Logo`;
-
-			Promise.all([
-				fetch(backdropUrl, { method: 'HEAD' }).then(response => response.ok),
-				fetch(logoUrl, { method: 'HEAD' }).then(response => response.ok)
-			]).then(([backdropExists, logoExists]) => {
-				if (backdropExists && logoExists) {
-					createSlideElement(movie, true);
-				} else {
-					fetchRandomMovie();
-				}
-			}).catch(() => fetchRandomMovie());
-		}
-
-		function fetchRandomMovie() {
+		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
 			isChangingSlide = true;
-
-			const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-			const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
-
-			fetch(`/Users/${userId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-				.then(response => response.json())
-				.then(data => {
-					const movie = data.Items[0];
-					if (movie) checkBackdropAndLogo(movie);
-					else throw new Error('No items found');
-				})
-				.catch(error => {
-					console.error('Failed to fetch movie:', error);
-					startSlideChangeTimer();
-				})
-				.finally(() => {
-					isChangingSlide = false;
+			if (movieList.length === 0) {
+				readCustomList().then(list => {
+					if (list) { movieList = list; currentMovieIndex = 0; }
+					fetchNextMovie();
 				});
-		}
+			} else fetchNextMovie();
+		};
 
-		function checkNavigation() {
-			if (window.top.location.href !== currentLocation) {
-				currentLocation = window.top.location.href;
-				cleanup();
+		const fetchNextMovie = () => {
+			const fetchCurrentUserId = () => 
+				fetch('/Sessions', {
+					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
+				})
+				.then(response => response.json())
+				.then(sessions => {
+					const currentSession = sessions.find(session => session.UserId);
+					return currentSession ? currentSession.UserId : null;
+				})
+				.catch(() => null);
+
+			fetchCurrentUserId().then(currentUserId => {
+				if (!currentUserId) {
+					console.error('Could not retrieve the current user ID.');
+					return;
+				}
+
+				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
+
+				if (movieList.length > 0) {
+					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
+					const movieId = movieList[currentMovieIndex];
+					currentMovieIndex++;
+
+					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+						.then(response => response.json())
+						.then(checkBackdropAndLogo)
+						.catch(() => startSlideChangeTimer())
+						.finally(() => { isChangingSlide = false; });
+				} else {
+					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+						.then(response => response.json())
+						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+						.catch(() => startSlideChangeTimer())
+						.finally(() => { isChangingSlide = false; });
+				}
+			});
+		};
+
+		const checkNavigation = () => {
+			const newLocation = window.top.location.href;
+			if (newLocation !== currentLocation) {
+				currentLocation = newLocation;
+				const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
+				if (isHomePage(newLocation)) {
+					if (!isHomePageActive) {
+						console.log("Returning to homepage, reactivating slideshow");
+						isHomePageActive = true;
+						cleanup();
+						fetchRandomMovie();
+					}
+				} else if (isHomePageActive) {
+					console.log("Leaving homepage, cleaning up slideshow");
+					isHomePageActive = false;
+					cleanup();
+				}
 			}
-		}
+		};
 
-		setInterval(checkNavigation, 1000);
+		setInterval(checkNavigation, 100);
 
 		document.addEventListener('DOMContentLoaded', () => {
-			fetchRandomMovie();
+			if (window.innerWidth < 1001) useTrailers = false;
+			const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
+			if (isHomePage(window.top.location.href)) {
+				isHomePageActive = true;
+				readCustomList().then(list => {
+					if (list) { movieList = list; currentMovieIndex = 0; }
+					fetchRandomMovie();
+				});
+			}
 		});
 
 		window.addEventListener('unload', cleanup);
-	</script>
-	<script src="https://www.youtube.com/iframe_api"></script>
+		window.addEventListener('popstate', checkNavigation);
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
