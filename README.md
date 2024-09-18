@@ -23,11 +23,17 @@
 
 9. That's it.
 
+# How to feature content in the bar
+
+By default, the bar will feature content at random as long as it is available to the current user. 
+
+To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+
 # Uninstallation
 
 Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
 
-# Full Screen Version
+# Fullscreen Version
 
 ![feat7](https://github.com/user-attachments/assets/e681d7e4-851a-4d03-9e38-4f4e6411bf13)
 
