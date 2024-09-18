@@ -47,7 +47,7 @@ and add this CSS to the very ```end``` of your Custom CSS
 .layout-desktop .skinHeader-withBackground {background-color: transparent; backdrop-filter: blur(0px);}
 .layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: none !important;}
 .layout-desktop #homeTab .verticalSection.section1.emby-scroller-container {  position: relative;  top: -27em;  left: 73em; width: 44vw; margin-bottom: -17em;}
-.layout-desktop #homeTab .verticalSection.section1.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1;}
+.layout-desktop #homeTab .verticalSection.section2.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1;}
 [dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
 .layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
 .layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
