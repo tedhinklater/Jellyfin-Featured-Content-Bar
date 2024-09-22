@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Jellyfin Spotlight v2.3.2</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
 		@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 		body { margin: 0; padding: 0; overflow: hidden; }
@@ -11,7 +12,7 @@
 		.slide:focus { outline: 2px solid #fff; }
 		.backdrop { position: absolute; top: 3.15em; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 1; transition: width 0.5s ease, filter 0.8s ease, scale 2s ease; transform-origin: top; animation: objectPositionAnimation 45s ease-in-out infinite;}
 		.logo { position: relative; transform: translateX(-50%) translateY(-50%); top: 56%; max-height: 9em; max-width: 29em; width: auto; z-index: 3; text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; transition: transform 0.3s ease, max-height 0.3s ease, max-width 0.3s ease, left 0.5s ease;}
-		.heading::before { content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; height: 100vh; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9990234375) 6.25%, rgba(0, 0, 0, 0.99) 12.5%, rgba(0, 0, 0, 0.97) 18.75%, rgba(0, 0, 0, 0.94) 25%, rgba(0, 0, 0, 0.88) 31.25%, rgba(0, 0, 0, 0.79) 37.5%, rgba(0, 0, 0, 0.67) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.33) 56.25%, rgba(0, 0, 0, 0.21) 62.5%, rgba(0, 0, 0, 0.12) 68.75%, rgba(0, 0, 0, 0.06) 75%, rgba(0, 0, 0, 0.03) 81.25%, rgba(0, 0, 0, 0.01) 87.5%, rgba(0, 0, 0, 0) 93.75%, rgba(0, 0, 0, 0) 100% ); z-index: 7; opacity: 0.7;}
+		.heading::before { content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; height: 100vh; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9990234375) 6.25%, rgba(0, 0, 0, 0.99) 12.5%, rgba(0, 0, 0, 0.97) 18.75%, rgba(0, 0, 0, 0.94) 25%, rgba(0, 0, 0, 0.88) 31.25%, rgba(0, 0, 0, 0.79) 37.5%, rgba(0, 0, 0, 0.67) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.33) 56.25%, rgba(0, 0, 0, 0.21) 62.5%, rgba(0, 0, 0, 0.12) 68.75%, rgba(0, 0, 0, 0.06) 75%, rgba(0, 0, 0, 0.03) 81.25%, rgba(0, 0, 0, 0.01) 87.5%, rgba(0, 0, 0, 0) 93.75%, rgba(0, 0, 0, 0) 100% ); z-index: 7; opacity: 0;}
 		.heading { position: absolute; top: 0; left: 0; width: 100%; height: 2.3em; background-color: transparent; font-family: "Titillium Web", sans-serif; color: #D3D3D3; font-size: 22px; display: flex; align-items: center; justify-content: flex-start; z-index: 2; padding: 10px; padding-left: 0px; box-sizing: border-box; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); }
 		.skip-button { position: absolute; right: 0.25em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);}
 		.back-button { position: absolute; right: 2em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); display: none;}
@@ -19,13 +20,11 @@
 		.video-container { position: absolute; right: 0; top: 50px; width: 0; height: calc(100% - 50px); overflow: hidden; z-index: 2; transition: width 0.5s ease; z-index: 6; border-top-right-radius: 0.5em; border-bottom-right-radius: 0.5em; }
 		.video-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 7; }
 		.clickable-overlay { position: absolute; top: 50px; left: 0; width: 100%; height: calc(100% - 50px); z-index: 2; cursor: pointer; background: transparent; transition: background 0.8s ease, backdrop-filter 0.8s ease;}
-		.clickable-overlay::before { content: ''; position: absolute; top: 25%; left: 0; width: 100%; height: 75%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgba(0, 0, 0, 0.99) 6.25%, rgba(0, 0, 0, 0.96) 12.5%, rgba(0, 0, 0, 0.92) 18.75%, rgba(0, 0, 0, 0.86) 25%, rgba(0, 0, 0, 0.78) 31.25%, rgba(0, 0, 0, 0.69) 37.5%, rgba(0, 0, 0, 0.6) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.4) 56.25%, rgba(0, 0, 0, 0.31) 62.5%, rgba(0, 0, 0, 0.22) 68.75%, rgba(0, 0, 0, 0.14) 75%, rgba(0, 0, 0, 0.08) 81.25%, rgba(0, 0, 0, 0.04) 87.5%, rgba(0, 0, 0, 0.01) 93.75%, rgba(0, 0, 0, 0) 100% ); opacity: 0.15; transition: opacity 0.3s ease; z-index: 1;}
-		.clickable-overlay::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgb(0% 0% 0% / 0.9) 0%, rgb(0% 0% 0% / 0.6952285766601562) 6.25%, rgb(0% 0% 0% / 0.5275634765625) 12.5%, rgb(0% 0% 0% / 0.39222564697265627) 18.75%, rgb(0% 0% 0% / 0.284765625) 25%, rgb(0% 0% 0% / 0.20106353759765627) 31.25%, rgb(0% 0% 0% / 0.1373291015625) 37.5%, rgb(0% 0% 0% / 0.09010162353515627) 43.75%, rgb(0% 0% 0% / 0.05625000000000002) 50%, rgb(0% 0% 0% / 0.03297271728515627) 56.25%, rgb(0% 0% 0% / 0.017797851562500022) 62.5%, rgb(0% 0% 0% / 0.00858306884765625) 68.75%, rgb(0% 0% 0% / 0.003515625000000022) 75%, rgb(0% 0% 0% / 0.0011123657226562722) 81.25%, rgb(0% 0% 0% / 0.0002197265625000222) 87.5%, rgb(0% 0% 0% / 0.000013732910156272204) 93.75%, rgb(0% 0% 0% / 0) 100% ); opacity: 0.25; transition: opacity 0.3s ease, visibility 0.8s ease; z-index: 3; border-radius: 0.25em; }
-		.lorem-ipsum {position: absolute; bottom: 3.6em; Right: 1em; font-family: "Titillium Web", sans-serif; font-size: 0.79em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 9; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 90vw; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap; transition: padding-right 0.3s ease;}
+		.lorem-ipsum {position: absolute; bottom: 17em; Right: 1em; font-family: "Titillium Web", sans-serif; font-size: 1em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 9; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 90vw; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap; transition: padding-right 0.3s ease;}
 		.lorem-ipsum span { margin-right: 0.2em;}
-		.age-rating {position: absolute; top: 3.75em; left: 0.15em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 0.91em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 7; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
-		.plot { position: absolute; bottom: 0.2em; left: 0.2em; right: 0; color: #fff; font-family: "Titillium Web", sans-serif; font-size: 0.9em; font-weight: 500; background: transparent; padding: 10px; z-index: 7; box-sizing: border-box; padding-bottom: 3px; padding-top: 0.5em; line-height: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; border-bottom-left-radius: 0.45em; transition: opacity 0.1s ease, max-height 0.8s ease, width 0.3s ease; opacity: 0; max-width: 99vw; opacity: 1; -webkit-line-clamp: 2; max-height: 7.8em;}
-		.genres { position: absolute; bottom: 3.5em; color: #fff; font-family: "Titillium Web", sans-serif; font-size: 0.79em; opacity: 1; transition: opacity 0.3s ease; max-width: 39em; overflow: hidden; height: 1.95em; padding-top: 0.25em; line-height: 2em; white-space: nowrap;}		
+		.age-rating {position: absolute; top: 3.4em; left: 0.2em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 1em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 7; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
+		.plot { position: absolute; bottom: 0.1em; left: 0.2em; right: 0; color: #fff; font-family: "Titillium Web", sans-serif; font-size: 0.95em; font-weight: 500; background: transparent; padding: 10px; z-index: 7; box-sizing: border-box; padding-bottom: 3px; padding-top: 0.5em; line-height: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; border-bottom-left-radius: 0.45em; transition: opacity 0.1s ease, max-height 0.8s ease, width 0.3s ease; opacity: 0; max-width: 99vw; opacity: 1; -webkit-line-clamp: 2; max-height: 7.8em;}
+		.genres { position: absolute; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); top: 2.95em; color: #fff; font-family: "Titillium Web", sans-serif; font-size: 1em; opacity: 1; transition: opacity 0.3s ease; max-width: 39em; overflow: hidden; height: 1.95em; padding-top: 0.25em; line-height: 2em; white-space: nowrap;}		
 		.premiere-year {position: absolute; top: 5.75em; left: 0.5em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 0; transition: opacity 0.3s; text-align: center; width: 3.5em;}
 		.additional-info {position: absolute; top: 7.3em; left: 31em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: right; width: 5em;}
 		.community-rating {position: absolute; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: center; width: 3.6em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
@@ -38,10 +37,10 @@
 		.slide:hover .plot { }
 		.slide:hover .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0); }
 		.star-icon { color: gold; font-size: 0.9em;  padding-right: 0.2em; margin-left: -0.1em;}
-		@media (max-width: 1000px) { .age-rating {position: absolute; top: 3.5em; left: 0em;} .lorem-ipsum {font-size: 0.79em; transform: none;} .logo { transform: translateX(-50%) translateY(-50%); top: 10.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 100% !important; max-width: 100%; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.823974609375) 6.25%, rgb(0% 0% 0% / 0.669921875) 12.5%, rgb(0% 0% 0% / 0.536376953125) 18.75%, rgb(0% 0% 0% / 0.421875) 25%, rgb(0% 0% 0% / 0.324951171875) 31.25%, rgb(0% 0% 0% / 0.244140625) 37.5%, rgb(0% 0% 0% / 0.177978515625) 43.75%, rgb(0% 0% 0% / 0.125) 50%, rgb(0% 0% 0% / 0.083740234375) 56.25%, rgb(0% 0% 0% / 0.052734375) 62.5%, rgb(0% 0% 0% / 0.030517578125) 68.75%, rgb(0% 0% 0% / 0.015625) 75%, rgb(0% 0% 0% / 0.006591796875) 81.25%, rgb(0% 0% 0% / 0.001953125) 87.5%, rgb(0% 0% 0% / 0.000244140625) 93.75%, rgb(0% 0% 0% / 0) 100% ); transform: scale(1.025); transition: transform 1s ease;} .backdrop {left: 0% !important; width: 100% !important; top: 2.95em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px);} .slide:hover .clickable-overlay::before { opacity: 0.98;} .skip-button {font-size: 0.9em; top: 1.1em; color: #fff;} .genres {bottom: 4em; left: 0.2em; overflow: hidden; max-width: 100vw !important; white-space: nowrap; left: 0; z-index: 8; padding-left: 0.5em; color: #fff;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important;} .slide { box-shadow: none;} #countdown-bar-container {top: 3em !important;}}
-		@media (max-width:1000px) and (orientation:landscape) {.community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .back-button {right:70vw;} .skip-button {right:30vw;} .genres {position: absolute; bottom: 4em !important;} .lorem-ipsum {position: absolute; top: 3.9em; left: unset; right: 0em;}}
-		@media (max-width:1000px) and (orientation:portrait) {.back-button {right:58vw;} .skip-button {right:39vw;} .genres {position: absolute; max-width: 100vw !important; overflow:hidden; bottom: 4em;} .lorem-ipsum {position: absolute; left: unset; right: 0em; bottom: unset; top: 3.9em;}}
-		@media (min-width: 1001px) { .logo {max-height: 40%; top: 11em; max-width: 47em; left: 50%;} transition: transform 0.1s ease, max-height 0.3s ease;} .watch-trailer-button {display: none;} .backdrop {left: 0em; width: 100%; transition: width 0.5s ease, left 0.5s ease, filter 0.8s ease, transform 2s ease;} .genres { left: 0.75em; z-index: 3; max-width: 39em;} .community-rating {top: 16.45em; left: 31em; font-size: 1em;} .critic-rating { position: absolute; top: 16.45em; left: 26.5em; font-size: 1em;} .back-button {font-size: 1.67em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.1em; padding-right: 0.1em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";} .back-button:hover {background: #ffffff70; opacity: 1;} .skip-button {font-size: 1.62em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.1em; padding-right: 0.1em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";} .skip-button:hover {background: #ffffff70; opacity: 1;}}
+		@media (max-width: 1000px) { .age-rating {position: absolute; top: 3.25em; left: 0em;} .lorem-ipsum {font-size: 0.79em; transform: none;} .logo { transform: translateX(-50%) translateY(-50%); top: 10.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 100% !important; max-width: 100%; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.823974609375) 6.25%, rgb(0% 0% 0% / 0.669921875) 12.5%, rgb(0% 0% 0% / 0.536376953125) 18.75%, rgb(0% 0% 0% / 0.421875) 25%, rgb(0% 0% 0% / 0.324951171875) 31.25%, rgb(0% 0% 0% / 0.244140625) 37.5%, rgb(0% 0% 0% / 0.177978515625) 43.75%, rgb(0% 0% 0% / 0.125) 50%, rgb(0% 0% 0% / 0.083740234375) 56.25%, rgb(0% 0% 0% / 0.052734375) 62.5%, rgb(0% 0% 0% / 0.030517578125) 68.75%, rgb(0% 0% 0% / 0.015625) 75%, rgb(0% 0% 0% / 0.006591796875) 81.25%, rgb(0% 0% 0% / 0.001953125) 87.5%, rgb(0% 0% 0% / 0.000244140625) 93.75%, rgb(0% 0% 0% / 0) 100% ); transform: scale(1.025); transition: transform 1s ease;} .backdrop {left: 0% !important; width: 100% !important; top: 2.95em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px);} .slide:hover .clickable-overlay::before { opacity: 0.98;} .skip-button {opacity: 1 !important; font-size: 0.9em; top: 1.1em; color: #fff;} .genres {bottom: 4em; left: unset !important; overflow: hidden; max-width: 100vw !important; white-space: nowrap; left: 0; z-index: 8; padding-left: 0.5em; color: #fff; font-size: 0.8em;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important;} .slide { box-shadow: none;} .text-container::before { top: -16.4em !important;}}
+		@media (max-width:1000px) and (orientation:landscape) {.community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .back-button {right:70vw;} .skip-button {right: 0em; top: 7em !important;} .genres {position: absolute; top: 3.75em; right: 0.5em;} .lorem-ipsum {position: absolute; top: 3.9em; left: unset; right: 0em;}}
+		@media (max-width:1000px) and (orientation:portrait) {.back-button {right:58vw;} .skip-button {right: 0em; top: 7em !important;} .genres {right: 0.5em; position: absolute; max-width: 80vw !important; overflow:hidden; top: 3.75em;} .lorem-ipsum {position: absolute; left: unset; right: 0em; bottom: unset; top: 3.9em;}}
+		@media (min-width: 1001px) { .logo {max-height: 45%; top: 12.45em; max-width: 47em; left: 50%;} transition: transform 0.1s ease, max-height 0.3s ease;} .watch-trailer-button {display: none;} .backdrop {left: 0em; width: 100%; transition: width 0.5s ease, left 0.5s ease, filter 0.8s ease, transform 2s ease;} .genres { left: 5.5em; z-index: 9; max-width: 39em;} .community-rating {top: 16.45em; left: 31em; font-size: 1em;} .critic-rating { position: absolute; top: 16.45em; left: 26.5em; font-size: 1em;} .back-button {font-size: 1.67em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.1em; padding-right: 0.1em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";} .back-button:hover {background: #ffffff70; opacity: 1;} .skip-button {font-size: 1.62em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.1em; padding-right: 0.1em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";} .skip-button:hover {background: #ffffff70; opacity: 1;} .text-container::before { content: ''; z-index: 5; display: flex; position: absolute; width: 100vw; top: -16.2em; height: 3em; background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 6.25%, rgba(0, 0, 0, 0.68) 12.5%, rgba(0, 0, 0, 0.66) 18.75%, rgba(0, 0, 0, 0.64) 25%, rgba(0, 0, 0, 0.6) 31.25%, rgba(0, 0, 0, 0.56) 37.5%, rgba(0, 0, 0, 0.51) 43.75%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.38) 56.25%, rgba(0, 0, 0, 0.31) 62.5%, rgba(0, 0, 0, 0.22) 68.75%, rgba(0, 0, 0, 0.14) 75%, rgba(0, 0, 0, 0.13) 81.25%, rgba(0, 0, 0, 0) 100% ); opacity: 0.6; backdrop-filter: blur(2px);} .text-container::after { content: ''; background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 6.25%, rgba(0, 0, 0, 0.68) 12.5%, rgba(0, 0, 0, 0.66) 18.75%, rgba(0, 0, 0, 0.64) 25%, rgba(0, 0, 0, 0.6) 31.25%, rgba(0, 0, 0, 0.56) 37.5%, rgba(0, 0, 0, 0.51) 43.75%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0.38) 56.25%, rgba(0, 0, 0, 0.31) 62.5%, rgba(0, 0, 0, 0.22) 68.75%, rgba(0, 0, 0, 0.14) 75%, rgba(0, 0, 0, 0.13) 81.25%, rgba(0, 0, 0, 0) 100% ); z-index: 5; display: flex; position: absolute; width: 100vw; bottom: 0em; height: 2.7em; opacity: 0.6; backdrop-filter: blur(2px);}}
 		.age-rating { font-weight: 600; font-size: 1.1em;} .additional-info {display: none;}
 		.age-rating span.gb-u, .age-rating span.u { background-color: #078c6d; color: white; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
 		.age-rating span.gb-pg, .age-rating span.pg { background-color: #d7a203; color: white; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
@@ -63,16 +62,18 @@
 		.fade-in-active { opacity: 1; visibility: visible;}
 		.fade-out {	opacity: 0;}
 		.backdrop {	transition: opacity 0.3s ease-in-out, width 0.5s ease, transform 1.5s ease, filter 1s ease;}
-		@media (min-width: 2000px) { .slide {font-size: 133%;} .backdrop {top: 2.4em;} .age-rating {top: 2.82em; position: absolute;} .skip-button {font-size: 133%;} .video-container { top: 51px;}}
-		@media (min-width: 3000px) { .slide {font-size: 200%;} .skip-button {top: 0em; font-size: 126%;} .age-rating {top: 2.2em;} .backdrop {top: 1.6em; height: 100%;}}
-        #video-overlay { position: fixed; top: 13vh; left: 0vw; width: 100%; height: 140vh; background-color: rgb(0, 0, 0); z-index: 1000; display: flex; background-size: cover; padding: 6vh; padding-top: 10vh; margin-top: -10vh;}
-        #video-overlay-content { position: relative; width: 90%; max-width: 100%; height: 60%; background-color: #000;}
-        #close-overlay { position: absolute; top: -1em; right: 0em; font-size: 1.5em; color: #7b7b7b; cursor: pointer;} 
+		@media (min-width: 2000px) { .slide {font-size: 133%;} .backdrop {top: 2.4em;} .age-rating {top: 2.6em; position: absolute;} .skip-button {font-size: 133%;} .video-container { top: 51px;} .text-container::before { top: -16.9em !important;} .genres {top: 2.1em;} .lorem-ipsum {bottom: 17.8em;}}
+		@media (min-width: 3000px) { .slide {font-size: 200%;} .age-rating {top: 2em;} .skip-button {top: 0em; font-size: 126%;} .backdrop {top: 1.6em; height: 100%;} .text-container::before {top: -17.7em !important;} .genres {top: 1.5em;} .lorem-ipsum {bottom: 18.4em;}}
+        	#video-overlay { position: fixed; top: 13vh; left: 0vw; width: 100%; height: 140vh; background-color: rgb(0, 0, 0); z-index: 1000; display: flex; background-size: cover; padding: 6vh; padding-top: 10vh; margin-top: -10vh;}
+        	#video-overlay-content { position: relative; width: 90%; max-width: 100%; height: 60%; background-color: #000;}
+        	#close-overlay { position: absolute; top: -1em; right: 0em; font-size: 1.5em; color: #7b7b7b; cursor: pointer;} 
 		#countdown-bar-container { display: none; position: absolute; left: 0%; top: 3.1em; width: 110%; height: 0.15em !important; background-color: rgba(0,0,0,0); z-index: 10;}
 		#countdown-bar { height: 100%; width: 0%; background-color: #ffffff; opacity: 0.5; transition: width 0.1s linear; border-radius: 1em;}
 		.video-player { mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.5) 7%, rgba(0, 0, 0, 0.75) 15%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 100%);
 		-webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 3%, rgba(0, 0, 0, 0.5) 7%, rgba(0, 0, 0, 0.75) 15%, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 1) 100%); transition: mask-image 5s ease, -webkit-mask-image 5s ease;}
 		.video-container:hover .video-player { mask-image: none; -webkit-mask-image: none;}
+		.text-container { z-index: 5; display: flex; position: absolute; width: 100vw; bottom: 0em; height: 2.7em; opacity: 1;}
+		.material-symbols-outlined { vertical-align: middle; font-size: 0.85em; opacity: 0.75; }
     </style>
 </head>
 <body>
@@ -126,17 +127,17 @@
 				(movie.RunTimeTicks ? `${Math.round(movie.RunTimeTicks / 600000000)} min` : 'Unknown Runtime');
 
 			let loremText = `
-				<span style="border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
-				<span style="border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
 
 			if (movie.CommunityRating) {
-				loremText += `<span style="border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
 				<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
 				</span> `;
 			}
 			if (movie.CriticRating) {
-				loremText += `<span style="border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				<img src="https://i.imgur.com/iMfwDk7.png" alt="Rotten Tomatoes" style="width: 1em; height: 1em; font-size: 0.9em; padding-right: 0.1em; margin-left: -0.1em;"> 
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				<img src="https://i.imgur.com/rMvyQMt.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.9em; padding-right: 0.1em; margin-left: -0.1em; vertical-align: bottom;"> 
 				${movie.CriticRating}%</span>`;
 			}
 			
@@ -151,28 +152,32 @@
 			ageRatingDiv.appendChild(ageRatingSpan);
 			slide.appendChild(ageRatingDiv);
 			
-			// Genres Section
-			const genresDiv = createElem('div', 'genres');
-			if (movie.Genres && movie.Genres.length > 0) {
-				movie.Genres.forEach(genre => {
-					const genreElem = createElem('span', 'genre-item');
-					genreElem.textContent = genre;		
-					genreElem.style.backgroundColor = '#101010e3';
-					genreElem.style.paddingLeft = '0.5em';
-					genreElem.style.paddingRight = '0.5em';
-					genreElem.style.paddingTop = '0.1em';
-					genreElem.style.paddingBottom = '0.1em';
-					genreElem.style.color = 'white';
-					genreElem.style.borderRadius = '0em';
-					genreElem.style.marginRight = '1em';
-					genreElem.style.border = '1px solid #fff8';
-					genreElem.style.borderRadius = '0.5em';
-					genresDiv.appendChild(genreElem);
-				});
-			} else {
-				genresDiv.textContent = 'Genres: N/A';
+	// Genres Section
+	const genresDiv = createElem('div', 'genres');
+	if (movie.Genres && movie.Genres.length > 0) {
+		movie.Genres.forEach((genre, index) => {
+			const genreElem = createElem('span', 'genre-item');
+			genreElem.textContent = genre;
+			genreElem.style.backgroundColor = 'transparent';
+			genreElem.style.paddingLeft = '0.5em';
+			genreElem.style.paddingRight = '0.5em';
+			genreElem.style.paddingTop = '0.1em';
+			genreElem.style.paddingBottom = '0.1em';
+			genreElem.style.color = 'white';
+			genreElem.style.borderRadius = '0em';
+			genreElem.style.marginRight = '0em';
+			genresDiv.appendChild(genreElem);
+
+			if (index < movie.Genres.length - 1) {
+				const separator = createElem('span', 'material-symbols-outlined');
+				separator.textContent = 'stat_0'; // The separator symbol
+				genresDiv.appendChild(separator);
 			}
-			slide.appendChild(genresDiv);
+		});
+	} else {
+		genresDiv.textContent = 'Genres: N/A';
+	}
+	slide.appendChild(genresDiv);
 
 			const loremDiv = createElem('div', 'lorem-ipsum');
 			loremDiv.innerHTML = loremText;
@@ -237,7 +242,7 @@
 						},
 						'onStateChange': event => {
 							if (event.data === YT.PlayerState.PLAYING) {
-								// Only adjust layout when the video is successfully playing
+								// Only show when YT video is successfully playing
 								const backdrop = document.querySelector('.backdrop');
 								if (backdrop) {
 									backdrop.style.width = 'calc(100% - 5vw)';
