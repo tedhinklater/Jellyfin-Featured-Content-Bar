@@ -25,7 +25,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 9. That's it.
 
 # Mobile View (Portrait / Landscape)
-![Mobile](https://i.imgur.com/Ds699j5.png)
+![Mobile](https://i.imgur.com/zNuA2Ko.png)
 
 # How to feature content in the bar
 
