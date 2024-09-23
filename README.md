@@ -23,6 +23,9 @@
 
 9. That's it.
 
+# Mobile View (Portrait / Landscape)
+![Mobile](https://i.imgur.com/Ds699j5.png)
+
 # How to feature content in the bar
 
 By default, the bar will feature content at random as long as it is available to the current user. 
