@@ -252,28 +252,61 @@
 				slide.appendChild(videoContainer);
 
 				player = new YT.Player(videoElement, {
-					height: '100%', width: '100%', videoId,
+					height: '100%',
+					width: '100%',
+					videoId,
 					events: {
 						'onReady': event => {
-                            				if (isMuted) {
+							if (isMuted) {
                                 				event.target.setVolume(0);  // Mute the video if the setting is MuteOn
-                           		 		}
+                            				}
 							event.target.playVideo();
-							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
-								const element = document.querySelector(`.${cls}`);
-								if (element) element.style.width = '100%';
-							});
-							videoContainer.style.width = '27.6vw';
 						},
-						'onStateChange': event => { if (event.data === YT.PlayerState.ENDED) setTimeout(fetchRandomMovie, 100); },
+						'onStateChange': event => {
+							if (event.data === YT.PlayerState.PLAYING) {
+								// Only show when YT video is successfully playing
+								const backdrop = document.querySelector('.backdrop');
+								if (backdrop) {
+									backdrop.style.width = 'calc(100% - 23vw)';
+									backdrop.style.left = '0vw';
+								}
+
+								const plot = document.querySelector('.plot');
+								if (plot) plot.style.width = 'calc(100% - 36.4vw)';
+
+								const loremIpsum = document.querySelector('.lorem-ipsum');
+								if (loremIpsum) loremIpsum.style.paddingRight = '32.4vw';
+
+								const logo = document.querySelector('.logo');
+								if (logo) logo.style.left = 'calc(50% - 14.2vw)';
+
+								videoContainer.style.width = '34.4vw';
+							} else if (event.data === YT.PlayerState.ENDED) {
+								setTimeout(fetchRandomMovie, 100);
+							}
+						},
 						'onError': () => {
 							console.error(`YouTube prevented playback of '${movie.Name}'`);
-							if (player) { player.destroy(); player = null; }
-							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
-								const element = document.querySelector(`.${cls}`);
-								if (element) element.style.width = '100%';
-							});
+							if (player) {
+								player.destroy();
+								player = null;
+							}
+
+							// Reset style when a YT error occurs
+							const backdrop = document.querySelector('.backdrop');
+							if (backdrop) backdrop.style.width = '100%';
+
+							const plot = document.querySelector('.plot');
+							if (plot) plot.style.width = '98%';
+
+							const loremIpsum = document.querySelector('.lorem-ipsum');
+							if (loremIpsum) loremIpsum.style.paddingRight = '0';
+
+							const logo = document.querySelector('.logo');
+							if (logo) logo.style.left = '50%';
+
 							videoContainer.style.width = '0';
+
 							startSlideChangeTimer();
 						}
 					}
