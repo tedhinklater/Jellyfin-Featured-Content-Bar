@@ -255,6 +255,9 @@
 					height: '100%',
 					width: '100%',
 					videoId,
+					playerVars: {
+						mute: 1  // Start the video muted
+					},
 					events: {
 						'onReady': event => {
 							event.target.playVideo();
