@@ -31,7 +31,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 
 # Mobile Layout, but on Desktop-sized screens
 
-![Screenshot 2024-11-15 205459](https://github.com/user-attachments/assets/ff428013-f535-4a22-ba2d-46eddce62984)
+![mobiledesktop](https://i.imgur.com/EsSydIQ.png)
 
 Same as above but use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html)
 
