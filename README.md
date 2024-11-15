@@ -29,6 +29,12 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/Y0wEa81.png)
 
+# Mobile Layout, but on Desktop-sized screens
+
+![Screenshot 2024-11-15 205459](https://github.com/user-attachments/assets/ff428013-f535-4a22-ba2d-46eddce62984)
+
+Same as above but use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html)
+
 # How to feature content in the bar
 
 By default, the bar will feature content at random as long as it is available to the current user. 
@@ -63,16 +69,4 @@ and add this CSS to the very ```end``` of your Custom CSS
 [dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
 .layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
 .layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
-```
-
-# Mobile Layout, but on Desktop-sized screens
-
-![Screenshot 2024-11-15 205459](https://github.com/user-attachments/assets/ff428013-f535-4a22-ba2d-46eddce62984)
-
-Use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (remember to add your API key)
-
-insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype="movie,series,book">``` 
-
-```js
-<style>.featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;} @media (min-width: 2000px) {.featurediframe {height: 18em; font-size: 175%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;}} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh;}} @media (max-width:400px) and (orientation:portrait) {.featurediframe {height: 52vh;}} @media (max-height: 400px) and (orientation:landscape) {.featurediframe {height: 100vh;}} @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 16/10) and (max-height: 1200px) {.featurediframe {height: 34em;}} @media screen and (aspect-ratio: 10/16) and (max-height: 1280px) {.featurediframe {height: 25em;}} </style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
 ```
