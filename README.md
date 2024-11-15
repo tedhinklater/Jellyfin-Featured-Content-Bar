@@ -69,7 +69,7 @@ and add this CSS to the very ```end``` of your Custom CSS
 
 ![Screenshot 2024-11-15 205459](https://github.com/user-attachments/assets/ff428013-f535-4a22-ba2d-46eddce62984)
 
-Use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) 
+Use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (remember to add your API key)
 
 insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype="movie,series,book">``` 
 
