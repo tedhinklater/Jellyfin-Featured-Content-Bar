@@ -69,4 +69,5 @@ and add this CSS to the very ```end``` of your Custom CSS
 [dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
 .layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
 .layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
+.layout-desktop .sectionTitle.sectionTitle-cards.padded-left + .itemsContainer { margin-bottom: 2em;}
 ```
