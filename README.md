@@ -71,3 +71,31 @@ and add this CSS to the very ```end``` of your Custom CSS
 .layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
 .layout-desktop .sectionTitle.sectionTitle-cards.padded-left + .itemsContainer { margin-bottom: 2em;}
 ```
+
+# Linux installation
+
+1) Create the ui Directory
+
+```sudo mkdir -p /usr/share/jellyfin/web/ui```
+
+2) Copy your chosen spotlight.html file (making sure you inserted your API key) to the new "ui" folder
+
+```sudo cp /path/to/spotlight.html /usr/share/jellyfin/web/ui/```
+
+3) Add the relevant script to home-html.chunk.js
+
+```sudo nano /usr/share/jellyfin/web/home-html.chunk.js```
+
+4) Ensure the ui folder & spotlight.html are readable by Jellyfin
+
+```sudo chown -R jellyfin:jellyfin /usr/share/jellyfin/web/ui```
+
+```sudo chmod -R 755 /usr/share/jellyfin/web/ui```
+
+5) Restart Jellyfin
+
+```sudo systemctl restart jellyfin```
+
+6) Clear Browser Cache
+
+Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
