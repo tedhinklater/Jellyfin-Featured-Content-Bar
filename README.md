@@ -35,16 +35,6 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 
 Same as above but use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html)
 
-# How to feature content in the bar
-
-By default, the bar will feature content at random as long as it is available to the current user. 
-
-To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
-
-# Uninstallation
-
-Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
-
 # Fullscreen Version
 
 ![fsfcb](https://github.com/user-attachments/assets/65253a76-1bd8-4cf3-8ec3-514cd3bb6775)
@@ -99,3 +89,13 @@ and add this CSS to the very ```end``` of your Custom CSS
 6) Clear Browser Cache
 
 Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
+
+# How to feature content in the bar
+
+By default, the bar will feature content at random as long as it is available to the current user. 
+
+To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+
+# Uninstallation
+
+Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
