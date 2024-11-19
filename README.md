@@ -24,7 +24,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 
 9. That's it.
 
-![feat17](https://github.com/user-attachments/assets/af916d90-ec7c-4af0-b6e8-0f6f94ef1f07)
+![fcb2](https://github.com/user-attachments/assets/c4a739b3-43b3-410b-a999-2f423c9d1be0)
 
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/Y0wEa81.png)
