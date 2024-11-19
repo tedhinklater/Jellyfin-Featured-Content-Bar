@@ -47,7 +47,8 @@ Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh yo
 
 # Fullscreen Version
 
-![feat8](https://i.imgur.com/rbYiYCk.gif)
+![fsfcb](https://i.imgur.com/rbYiYCk.gif)
+
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
