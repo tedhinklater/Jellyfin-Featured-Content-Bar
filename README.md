@@ -1,7 +1,7 @@
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](https://github.com/BobHasNoSoul) & [MakD](https://github.com/MakD) for their talents
 
-![feat3](https://i.imgur.com/1Bfwz9w.png)
+![fcb](https://github.com/user-attachments/assets/71949af9-398c-4665-b5d1-271f4bc1e514)
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
