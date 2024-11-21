@@ -94,7 +94,7 @@ Make sure to clear your browser cache to load the updated home-html.chunk.js & s
 
 By default, the bar will feature content at random as long as it is available to the current user. 
 
-To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+To preselect content, place a [list.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
 
 # Uninstallation
 
