@@ -422,7 +422,7 @@
 		};
 
 		const readCustomList = () =>
-            		fetch('list.txt?' + new Date().getTime())
+            		fetch('List.txt?' + new Date().getTime())
                 		.then(response => response.ok ? response.text() : null)
                 		.then(text => {
                     			if (!text) return null;
