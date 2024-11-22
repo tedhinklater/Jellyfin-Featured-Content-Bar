@@ -109,10 +109,7 @@
 		const truncateText = (text, maxLength) => text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
 
 		const cleanup = () => {
-			if (player) {
-				player.destroy();
-				player = null;
-			}
+			if (player) { player.destroy();	player = null; }
 			clearTimeout(slideChangeTimeout);
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
@@ -263,11 +260,12 @@
 					},
 					events: {
 						'onReady': event => {
-							if (isMuted) {
-                                				event.target.setVolume(0);  // Mute the video if the setting is MuteOn
-                            				}
+					if (isMuted){
+									event.target.setVolume(0);  // Mute the video if the setting is MuteOn
+								} else {
+									event.target.setVolume(4);
+								}
 							event.target.playVideo();
-							event.target.setVolume(4);
 						},
 						'onStateChange': event => {
 							if (event.data === YT.PlayerState.PLAYING) {
