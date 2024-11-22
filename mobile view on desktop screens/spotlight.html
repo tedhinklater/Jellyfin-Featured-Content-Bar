@@ -532,7 +532,7 @@
 		setInterval(checkNavigation, 100);
 
 		document.addEventListener('DOMContentLoaded', () => {
-			if (window.innerWidth < 1001) useTrailers = false;
+			if (window.innerWidth < 5001) useTrailers = false;
 			const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
 			if (isHomePage(window.top.location.href)) {
 				isHomePageActive = true;
