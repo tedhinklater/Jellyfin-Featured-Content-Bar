@@ -518,13 +518,36 @@
 					fetchRandomMovie();
 				}
 			}
+			
+						// Check if parent is available and if the iframe is in an embedded environment
+			if (!showOnOtherPages && window.parent && window.parent !== window) {
+				const homeTab = window.parent.document.getElementById('homeTab');
+				const isHomeTabActive = homeTab && homeTab.classList.contains('is-active');
+				// Check if the user is switching tabs while on the homepage to eg. favorites or requests, if so, stop the slideshow
+				if (isHomeTabActive && !isHomePageActive) {
+					console.log("HomeTab is active, reactivating slideshow");
+					isHomePageActive = true;
+					window.parent.document.querySelector('.featurediframe').style.display = 'block';
+					cleanup();
+					fetchRandomMovie();
+				} else if (!isHomeTabActive && isHomePageActive) {
+					console.log("Leaving HomeTab, cleaning up slideshow");
+					isHomePageActive = false;
+					window.parent.document.querySelector('.featurediframe').style.display = 'none';
+					cleanup();
+				}
+			} else {
+				console.error("Spotlight iframe is not in an embedded environment, has a different domain or showOnOtherPages is set to true");
+			}
 		};
 				
 		const stopBackgroundVideo = () => {
 			if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
 				player.stopVideo();
 			}
-		};		
+		};
+
+		
 
 		setInterval(checkNavigation, 100);
 
