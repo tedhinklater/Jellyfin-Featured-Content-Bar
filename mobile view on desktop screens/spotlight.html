@@ -86,7 +86,7 @@
         </div>
     </div>
     <script>
-		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'd91d8a924ff945afb49100791a56cf04', useTrailers = true;
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
@@ -425,7 +425,7 @@
 		};
 
 		const readCustomList = () =>
-            		fetch('list.txt?' + new Date().getTime())
+            		fetch('List.txt?' + new Date().getTime())
                 		.then(response => response.ok ? response.text() : null)
                 		.then(text => {
                     			if (!text) return null;
