@@ -108,7 +108,10 @@
 		const truncateText = (text, maxLength) => text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
 
 		const cleanup = () => {
-			if (player) { player.destroy(); player = null; }
+			if (player) {
+				player.destroy();
+				player = null;
+			}
 			clearTimeout(slideChangeTimeout);
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
@@ -138,7 +141,7 @@
 			}
 			if (movie.CriticRating) {
 				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.15em; padding-bottom: 0.05em; margin-left: 1em;">
-				<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;"> 
+				<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">  
 				${movie.CriticRating}%</span>`;
 			}
 			
@@ -256,10 +259,15 @@
 					width: '100%',
 					videoId,
 					playerVars: {
-						mute: 1  // Start the video muted
+						mute: 0  // Change to start the video muted
 					},
 					events: {
 						'onReady': event => {
+					if (isMuted){
+									event.target.setVolume(0);  // Mute the video if the setting is MuteOn
+								} else {
+									event.target.setVolume(4);
+								}
 							event.target.playVideo();
 						},
 						'onStateChange': event => {
@@ -416,16 +424,31 @@
 			).catch(() => fetchRandomMovie());
 		};
 
-		const readCustomList = () => 
-			fetch('list.txt?' + new Date().getTime())
-				.then(response => response.ok ? response.text() : null)
-				.then(text => {
-					if (!text) return null;
-					const lines = text.split('\n').filter(Boolean);
-					title = lines.shift() || title;
-					return lines.map(line => line.trim().substring(0, 32));
-				})
-				.catch(() => null);
+		const readCustomList = () =>
+            		fetch('list.txt?' + new Date().getTime())
+                		.then(response => response.ok ? response.text() : null)
+                		.then(text => {
+                    			if (!text) return null;
+                    			const lines = text.split('\n').filter(Boolean);
+
+                    			// First line contains the title and optional mute setting
+                    			const firstLine = lines.shift().trim();
+                    			const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
+
+                    			// Set title
+                    			title = parsedTitle || title;
+
+                    			// Check for mute setting
+                   	 		if (muteSetting === "MuteOn") {
+                        			isMuted = true;
+                    			} else {
+                        			isMuted = false; // Default to MuteOff if not specified
+                    			}
+
+                    			// Remaining lines are media IDs
+                    			return lines.map(line => line.trim().substring(0, 32));
+                		})
+                		.catch(() => null);
 
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
@@ -484,47 +507,32 @@
 			if (newLocation !== currentLocation) {
 				currentLocation = newLocation;
 				const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
-				if (isHomePage(newLocation)) {
-					if (!isHomePageActive) {
-						console.log("Returning to homepage, reactivating slideshow");
-						isHomePageActive = true;
-						cleanup();
-						fetchRandomMovie();
-					}
-				} else if (isHomePageActive) {
-					console.log("Leaving homepage, cleaning up slideshow");
+				
+				if (!isHomePage(newLocation) && isHomePageActive) {
+					console.log("Leaving homepage, cleaning up slideshow and stopping video");
 					isHomePageActive = false;
+					stopBackgroundVideo();
 					cleanup();
 				}
-			}
-			
-			// Check if parent is available and if the iframe is in an embedded environment
-			if (!showOnOtherPages && window.parent && window.parent !== window) {
-				const homeTab = window.parent.document.getElementById('homeTab');
-				const isHomeTabActive = homeTab && homeTab.classList.contains('is-active');
 
-				// Check if the user is switching tabs while on the homepage to eg. favorites or requests, if so, stop the slideshow
-				if (isHomeTabActive && !isHomePageActive) {
-					console.log("HomeTab is active, reactivating slideshow");
+				if (isHomePage(newLocation) && !isHomePageActive) {
+					console.log("Returning to homepage, reactivating slideshow");
 					isHomePageActive = true;
-					window.parent.document.querySelector('.featurediframe').style.display = 'block';
-					cleanup();
 					fetchRandomMovie();
-				} else if (!isHomeTabActive && isHomePageActive) {
-					console.log("Leaving HomeTab, cleaning up slideshow");
-					isHomePageActive = false;
-					window.parent.document.querySelector('.featurediframe').style.display = 'none';
-					cleanup();
 				}
-			} else {
-				console.error("Spotlight iframe is not in an embedded environment, has a different domain or showOnOtherPages is set to true");
 			}
 		};
+				
+		const stopBackgroundVideo = () => {
+			if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+				player.stopVideo();
+			}
+		};		
 
 		setInterval(checkNavigation, 100);
 
 		document.addEventListener('DOMContentLoaded', () => {
-			if (window.innerWidth < 4001) useTrailers = false;
+			if (window.innerWidth < 5001) useTrailers = false;
 			const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
 			if (isHomePage(window.top.location.href)) {
 				isHomePageActive = true;
