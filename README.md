@@ -1,7 +1,7 @@
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](https://github.com/BobHasNoSoul) & [MakD](https://github.com/MakD) for their talents
 
-![feat3](https://i.imgur.com/1Bfwz9w.png)
+![fcb](https://github.com/user-attachments/assets/71949af9-398c-4665-b5d1-271f4bc1e514)
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
@@ -24,31 +24,27 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 
 9. That's it.
 
-![feat17](https://github.com/user-attachments/assets/af916d90-ec7c-4af0-b6e8-0f6f94ef1f07)
+![fcb2](https://github.com/user-attachments/assets/c4a739b3-43b3-410b-a999-2f423c9d1be0)
 
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/Y0wEa81.png)
 
-# How to feature content in the bar
+# Mobile Layout, but on Desktop-sized screens
 
-By default, the bar will feature content at random as long as it is available to the current user. 
+![mobiledesktop](https://i.imgur.com/9Eswyy5.png)
 
-To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
-
-# Uninstallation
-
-Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
+Same as above but use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html)
 
 # Fullscreen Version
 
-![feat8](https://github.com/user-attachments/assets/d6855e23-8c08-4a8b-b05d-6ba9c9895672)
+![fsfcb](https://github.com/user-attachments/assets/65253a76-1bd8-4cf3-8ec3-514cd3bb6775)
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
 insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype="movie,series,book">``` 
 
 ```js
-<style>.featurediframe { width: 100vw; height: 100vh; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh; width: 95vw;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh; width: 95vw;}} @media (min-width: 2000px) { .featurediframe {height:102vh;}}</style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
+<style>.featurediframe { width: 99.5vw; height: 100vh; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh; width: 95vw;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh; width: 95vw;}} @media (min-width: 2000px) { .featurediframe {height:102vh;}}</style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
 ```
 
 and add this CSS to the very ```end``` of your Custom CSS
@@ -58,9 +54,48 @@ and add this CSS to the very ```end``` of your Custom CSS
 .layout-desktop .overflowBackdropCard, .overflowSmallBackdropCard {  width: 12.7vw !important;  padding-right: 1.85em;}
 .layout-desktop .skinHeader-withBackground {background-color: transparent; backdrop-filter: blur(0px);}
 .layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: none !important;}
-.layout-desktop #homeTab .verticalSection.section1.emby-scroller-container {  position: relative;  top: -27em;  left: 73em; width: 44vw; margin-bottom: -17em;}
+.layout-desktop #homeTab .verticalSection.section1.emby-scroller-container {  position: relative;  top: -27em;  left: 73em; width: 29vw; margin-bottom: -17em;}
 .layout-desktop #homeTab .verticalSection.section2.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1;}
 [dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
 .layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
 .layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
+.layout-desktop .sectionTitle.sectionTitle-cards.padded-left + .itemsContainer { margin-bottom: 2em;}
 ```
+
+# Linux installation
+
+1) Create the ui Directory
+
+```sudo mkdir -p /usr/share/jellyfin/web/ui```
+
+2) Copy your chosen spotlight.html file (making sure you inserted your API key) to the new "ui" folder
+
+```sudo cp /path/to/spotlight.html /usr/share/jellyfin/web/ui/```
+
+3) Add the relevant script to home-html.chunk.js
+
+```sudo nano /usr/share/jellyfin/web/home-html.chunk.js```
+
+4) Ensure the ui folder & spotlight.html are readable by Jellyfin
+
+```sudo chown -R jellyfin:jellyfin /usr/share/jellyfin/web/ui```
+
+```sudo chmod -R 755 /usr/share/jellyfin/web/ui```
+
+5) Restart Jellyfin
+
+```sudo systemctl restart jellyfin```
+
+6) Clear Browser Cache
+
+Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
+
+# How to feature content in the bar
+
+By default, the bar will feature content at random as long as it is available to the current user. 
+
+To preselect content, place a [list.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+
+# Uninstallation
+
+Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.

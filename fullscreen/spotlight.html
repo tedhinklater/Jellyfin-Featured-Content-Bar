@@ -86,7 +86,7 @@
     </div>
     <script>
 		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 350, token = 'YOURAPIKEYHERE', useTrailers = true;
-		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false;
+		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
 
@@ -136,8 +136,8 @@
 				</span> `;
 			}
 			if (movie.CriticRating) {
-				loremText += `<span style="border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				<img src="https://i.imgur.com/rMvyQMt.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.9em; padding-right: 0.1em; margin-left: -0.1em; vertical-align: middle;"> 
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.55em; margin-left: 1em; border: 1px solid #fff8; background: #101010e3; border-radius: 0.5em;">
+				<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.15em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">
 				${movie.CriticRating}%</span>`;
 			}
 			
@@ -247,12 +247,16 @@
 
 				player = new YT.Player(videoElement, {
 					height: '100%', width: '100%', videoId,
+					playerVars: {
+						mute: 0  // Change to start the video muted
+					},
 					events: {
 						'onReady': event => {
                             				if (isMuted) {
                                 				event.target.setVolume(0);  // Mute the video if the setting is MuteOn
                             				}
 							event.target.playVideo();
+							event.target.setVolume(4);
 							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
 								const element = document.querySelector(`.${cls}`);
 								if (element) element.style.width = '100%';
@@ -469,6 +473,27 @@
 					isHomePageActive = false;
 					cleanup();
 				}
+			}
+
+			// Check if parent is available and if the iframe is in an embedded environment
+			if (!showOnOtherPages && window.parent && window.parent !== window) {
+				const homeTab = window.parent.document.getElementById('homeTab');
+				const isHomeTabActive = homeTab && homeTab.classList.contains('is-active');
+				// Check if the user is switching tabs while on the homepage to eg. favorites or requests, if so, stop the slideshow
+				if (isHomeTabActive && !isHomePageActive) {
+					console.log("HomeTab is active, reactivating slideshow");
+					isHomePageActive = true;
+					window.parent.document.querySelector('.featurediframe').style.display = 'block';
+					cleanup();
+					fetchRandomMovie();
+				} else if (!isHomeTabActive && isHomePageActive) {
+					console.log("Leaving HomeTab, cleaning up slideshow");
+					isHomePageActive = false;
+					window.parent.document.querySelector('.featurediframe').style.display = 'none';
+					cleanup();
+				}
+			} else {
+				console.error("Spotlight iframe is not in an embedded environment, has a different domain or showOnOtherPages is set to true");
 			}
 		};
 

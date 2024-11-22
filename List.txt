@@ -1,6 +1,4 @@
 Spotlight MuteOff
-04e1a7e938ce814f28a6121cdf67da61 <- Movie or series ID
-af1807f353b549174e2fa8aa3f3e8d28 Scream
-d9d10a07b34f84680dc6839358e18fd2 Halloween
-3f93fcd17245099eecbc49f334723c3d You can put text here to remind yourself what's what
-710a592b54d75d238146d7d7251c4f9f All this text beside IDs is ignored
+699d9fca3a862bf7da32718aa1cbf640 <- Movie or series ID (You can put anything here to remind yourself what's what)
+af1807f353b549174e2fa8aa3f3e8d28 Scream (use MuteOn or MuteOff to change the mute option)
+80e5589b638ede3d2e1f0b99ead7b51e Paddington 2 (Delete line 2 and everything below for random spotlight selection)
