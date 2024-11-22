@@ -263,6 +263,9 @@
 					},
 					events: {
 						'onReady': event => {
+							if (isMuted) {
+                                				event.target.setVolume(0);  // Mute the video if the setting is MuteOn
+                            				}
 							event.target.playVideo();
 							event.target.setVolume(4);
 						},
@@ -420,16 +423,31 @@
 			).catch(() => fetchRandomMovie());
 		};
 
-		const readCustomList = () => 
-			fetch('list.txt?' + new Date().getTime())
-				.then(response => response.ok ? response.text() : null)
-				.then(text => {
-					if (!text) return null;
-					const lines = text.split('\n').filter(Boolean);
-					title = lines.shift() || title;
-					return lines.map(line => line.trim().substring(0, 32));
-				})
-				.catch(() => null);
+		const readCustomList = () =>
+            		fetch('list.txt?' + new Date().getTime())
+                		.then(response => response.ok ? response.text() : null)
+                		.then(text => {
+                    			if (!text) return null;
+                    			const lines = text.split('\n').filter(Boolean);
+
+                    			// First line contains the title and optional mute setting
+                    			const firstLine = lines.shift().trim();
+                    			const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
+
+                    			// Set title
+                    			title = parsedTitle || title;
+
+                    			// Check for mute setting
+                   	 		if (muteSetting === "MuteOn") {
+                        			isMuted = true;
+                    			} else {
+                        			isMuted = false; // Default to MuteOff if not specified
+                    			}
+
+                    			// Remaining lines are media IDs
+                    			return lines.map(line => line.trim().substring(0, 32));
+                		})
+                		.catch(() => null);
 
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
