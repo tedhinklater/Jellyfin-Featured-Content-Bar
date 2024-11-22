@@ -1,6 +1,0 @@
-Spotlight
-04e1a7e938ce814f28a6121cdf67da61 <- Movie or series ID
-af1807f353b549174e2fa8aa3f3e8d28 Scream
-d9d10a07b34f84680dc6839358e18fd2 Halloween
-3f93fcd17245099eecbc49f334723c3d You can put text here to remind yourself what's what
-710a592b54d75d238146d7d7251c4f9f All this text beside IDs is ignored
