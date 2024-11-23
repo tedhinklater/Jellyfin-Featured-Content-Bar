@@ -14,7 +14,9 @@
 		.logo { position: relative; transform: translateX(-50%) translateY(-50%); top: 56%; left: 14.5%; z-index: 3; text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; transition: transform 0.3s ease, max-height 0.3s ease, max-width 0.3s ease;}
 		.heading { position: absolute; top: 0; left: 0; width: 100%; height: 2.3em; background-color: transparent; font-family: "Titillium Web", sans-serif; color: #D3D3D3; font-size: 22px; display: flex; align-items: center; justify-content: flex-start; z-index: 2; padding: 10px; padding-left: 0px; box-sizing: border-box; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); }
 		.next-button { position: absolute; top: 0.4em; right: 0.25em; font-size: 1.5em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; font-size: 1.35em; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);}
-		.skip-button {font-size: 1.62em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.15em; padding-right: 0.15em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga";}
+		.skip-button {font-size: 1.62em; top: 0.5em; opacity: 0.5; transition: opacity 0.3s ease, background 0.3s ease; padding-left: 0.15em; padding-right: 0.15em; padding-top: 0.1em; border-radius: 50%; box-sizing: border-box; font-style: normal; font-weight: 400; letter-spacing: normal; line-height: 1; text-transform: none; word-wrap: normal; direction: inherit; white-space: nowrap; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: "liga"; font-feature-settings: "liga"; transition: background 0.1s;}
+		.back-button { position: absolute; left: 0.5em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); top: 50vh !important; transform: translateY(-50%); border-radius: 50%; box-sizing: border-box; padding-left: 0.15em; padding-right: 0.25em; padding-top: 0.15em; font-size: 2em; transition: background 0.1s;}	
+		.back-button:hover {background: #ffffff70; opacity: 1;}		
 		.skip-button:hover {background: #ffffff70; opacity: 1;}
 		.video-container { position: absolute; right: 0; top: 50px; width: 0; height: calc(100% - 50px); overflow: hidden; z-index: 2; transition: width 0.5s ease; z-index: 6; border-top-right-radius: 0.5em; border-bottom-right-radius: 0.5em; transform-origin: right;}
 		.video-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 7; }
@@ -90,7 +92,8 @@
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
-
+		let visitedMovies = [];
+		
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
 			if (className) elem.className = className;
@@ -121,6 +124,12 @@
 			cleanup();
 			const container = document.getElementById('slides-container');
 			const slide = createElem('div', 'slide');
+				if (movie && (!visitedMovies.length || visitedMovies[visitedMovies.length - 1].Id !== movie.Id)) {
+					visitedMovies.push(movie);
+				}
+				if (visitedMovies.length > 50) {
+					visitedMovies.shift();
+				}
 			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
 			slide.appendChild(createElem('div', 'heading', title));
 
@@ -237,14 +246,15 @@
 			const backButton = createElem('div', 'back-button');
 			const backIcon = createElem('i', 'material-icons');
 			backIcon.textContent = 'chevron_left';
+			backButton.appendChild(backIcon);
+			
 			const skipButton = createElem('div', 'skip-button');
 			const skipIcon = createElem('i', 'material-icons');
 			skipIcon.textContent = 'chevron_right';
-			
-			backButton.appendChild(backIcon);
 			skipButton.appendChild(skipIcon);
 			
 			skipIcon.onclick = (e) => { e.stopPropagation(); fetchRandomMovie(); };
+			backButton.onclick = (e) => { e.stopPropagation(); navigateBack();};
 			slide.appendChild(backButton);
 			slide.appendChild(skipButton);
 
@@ -348,6 +358,18 @@
 				distX = distY = 0;
 			});
 		}
+		
+		const navigateBack = () => {
+			if (visitedMovies.length < 2) {
+				console.log("No previous slides in history.");
+				return;
+			}
+			// Remove the current movie from history
+			visitedMovies.pop();
+			const previousMovie = visitedMovies[visitedMovies.length - 1];
+			// Create the slide for the previous movie
+			createSlideElement(previousMovie, true); // Assume trailers are available for simplicity
+		};
 		
         // Show the video overlay
         function showVideoOverlay(trailerUrl) {
