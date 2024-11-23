@@ -109,10 +109,10 @@
 		const truncateText = (text, maxLength) => text.length > maxLength ? text.substr(0, maxLength) + '...' : text;
 
 		const cleanup = () => {
-			if (player) {
+			if (player && typeof player.destroy === 'function') {
 				player.destroy();
-				player = null;
 			}
+			player = null;
 			clearTimeout(slideChangeTimeout);
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
@@ -525,9 +525,11 @@
 		};
 				
 		const stopBackgroundVideo = () => {
-			if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+			if (player && typeof player.stopVideo === 'function') {
 				player.stopVideo();
+				player.destroy();
 			}
+			player = null;
 		};		
 
 		setInterval(checkNavigation, 100);
