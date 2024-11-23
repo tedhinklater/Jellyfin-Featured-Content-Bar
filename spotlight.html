@@ -15,7 +15,7 @@
 		.heading::before { content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; height: 100vh; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9990234375) 6.25%, rgba(0, 0, 0, 0.99) 12.5%, rgba(0, 0, 0, 0.97) 18.75%, rgba(0, 0, 0, 0.94) 25%, rgba(0, 0, 0, 0.88) 31.25%, rgba(0, 0, 0, 0.79) 37.5%, rgba(0, 0, 0, 0.67) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.33) 56.25%, rgba(0, 0, 0, 0.21) 62.5%, rgba(0, 0, 0, 0.12) 68.75%, rgba(0, 0, 0, 0.06) 75%, rgba(0, 0, 0, 0.03) 81.25%, rgba(0, 0, 0, 0.01) 87.5%, rgba(0, 0, 0, 0) 93.75%, rgba(0, 0, 0, 0) 100% ); z-index: 7; opacity: 0;}
 		.heading { position: absolute; top: 0; left: 0; width: 100%; height: 2.3em; background-color: transparent; font-family: "Titillium Web", sans-serif; color: #D3D3D3; font-size: 22px; display: none; align-items: center; justify-content: flex-start; z-index: 2; padding: 10px; padding-left: 0px; box-sizing: border-box; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); }
 		.skip-button { position: absolute; right: 0.25em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);}
-		.back-button { position: absolute; right: 2em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); display: none;}
+		.back-button { position: absolute; left: 0.5em; color: #D3D3D3; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); top: 50vh !important; transform: translateY(-50%);}
 		 .details-button {display: none;}
 		.material-icons {font-size: 1em;}
 		.video-container { position: absolute; right: 0; top: 0px; width: 0; height: calc(100%); overflow: hidden; transition: width 0.5s ease; z-index: 5; border-top-right-radius: 0.5em; border-bottom-right-radius: 0.5em; }
@@ -92,6 +92,7 @@
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
+		let visitedMovies = [];
 
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
@@ -123,6 +124,12 @@
 			cleanup();
 			const container = document.getElementById('slides-container');
 			const slide = createElem('div', 'slide');
+				if (movie && (!visitedMovies.length || visitedMovies[visitedMovies.length - 1].Id !== movie.Id)) {
+					visitedMovies.push(movie);
+				}
+				if (visitedMovies.length > 50) {
+					visitedMovies.shift();
+				}
 			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
 			slide.appendChild(createElem('div', 'heading', title));
 
@@ -194,14 +201,15 @@
 			const backButton = createElem('div', 'back-button');
 			const backIcon = createElem('i', 'material-icons');
 			backIcon.textContent = 'chevron_left';
+			backButton.appendChild(backIcon);
+
 			const skipButton = createElem('div', 'skip-button');
 			const skipIcon = createElem('i', 'material-icons');
 			skipIcon.textContent = 'chevron_right';
-			
-			backButton.appendChild(backIcon);
 			skipButton.appendChild(skipIcon);
 			
 			skipIcon.onclick = (e) => { e.stopPropagation(); fetchRandomMovie(); };
+			backButton.onclick = (e) => { e.stopPropagation(); navigateBack();};
 			slide.appendChild(backButton);
 			slide.appendChild(skipButton);
 			
@@ -358,6 +366,20 @@
 				distX = distY = 0;
 			});
 		}
+
+		const navigateBack = () => {
+			if (visitedMovies.length < 2) {
+				console.log("No previous slides in history.");
+				return;
+			}
+
+			// Remove the current movie from history
+			visitedMovies.pop();
+			const previousMovie = visitedMovies[visitedMovies.length - 1];
+
+			// Create the slide for the previous movie
+			createSlideElement(previousMovie, true); // Assume trailers are available for simplicity
+		};
 		
         // Show the video overlay
         function showVideoOverlay(trailerUrl) {
