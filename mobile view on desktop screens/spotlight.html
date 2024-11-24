@@ -97,7 +97,8 @@
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
-		let visitedMovies = [];
+		let previousMovies = [];
+		let forwardMovies = [];
 
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
@@ -129,12 +130,14 @@
 			cleanup();
 			const container = document.getElementById('slides-container');
 			const slide = createElem('div', 'slide');
-				if (movie && (!visitedMovies.length || visitedMovies[visitedMovies.length - 1].Id !== movie.Id)) {
-					visitedMovies.push(movie);
-				}
-				if (visitedMovies.length > 50) {
-					visitedMovies.shift();
-				}
+
+			if (movie && (!previousMovies.length || previousMovies[previousMovies.length - 1].Id !== movie.Id)) {
+				previousMovies.push(movie);
+			}
+
+			if (previousMovies.length > 50) {
+				previousMovies.shift();
+			}
 			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
 			slide.appendChild(createElem('div', 'heading', title));
 
@@ -170,32 +173,32 @@
 			ageRatingDiv.appendChild(ageRatingSpan);
 			slide.appendChild(ageRatingDiv);
 			
-	// Genres Section
-	const genresDiv = createElem('div', 'genres');
-	if (movie.Genres && movie.Genres.length > 0) {
-		movie.Genres.forEach((genre, index) => {
-			const genreElem = createElem('span', 'genre-item');
-			genreElem.textContent = genre;
-			genreElem.style.backgroundColor = 'transparent';
-			genreElem.style.paddingLeft = '0.5em';
-			genreElem.style.paddingRight = '0.5em';
-			genreElem.style.paddingTop = '0.1em';
-			genreElem.style.paddingBottom = '0.1em';
-			genreElem.style.color = 'white';
-			genreElem.style.borderRadius = '0em';
-			genreElem.style.marginRight = '0em';
-			genresDiv.appendChild(genreElem);
+			// Genres Section
+			const genresDiv = createElem('div', 'genres');
+			if (movie.Genres && movie.Genres.length > 0) {
+				movie.Genres.forEach((genre, index) => {
+					const genreElem = createElem('span', 'genre-item');
+					genreElem.textContent = genre;
+					genreElem.style.backgroundColor = 'transparent';
+					genreElem.style.paddingLeft = '0.5em';
+					genreElem.style.paddingRight = '0.5em';
+					genreElem.style.paddingTop = '0.1em';
+					genreElem.style.paddingBottom = '0.1em';
+					genreElem.style.color = 'white';
+					genreElem.style.borderRadius = '0em';
+					genreElem.style.marginRight = '0em';
+					genresDiv.appendChild(genreElem);
 
-			if (index < movie.Genres.length - 1) {
-				const separator = createElem('span', 'material-symbols-outlined');
-				separator.textContent = 'stat_0'; // The separator symbol
-				genresDiv.appendChild(separator);
+					if (index < movie.Genres.length - 1) {
+						const separator = createElem('span', 'material-symbols-outlined');
+						separator.textContent = 'stat_0'; // The separator symbol
+						genresDiv.appendChild(separator);
+					}
+				});
+			} else {
+				genresDiv.textContent = 'Genres: N/A';
 			}
-		});
-	} else {
-		genresDiv.textContent = 'Genres: N/A';
-	}
-	slide.appendChild(genresDiv);
+			slide.appendChild(genresDiv);
 
 			const loremDiv = createElem('div', 'lorem-ipsum');
 			loremDiv.innerHTML = loremText;
@@ -207,14 +210,21 @@
 			const backIcon = createElem('i', 'material-icons');
 			backIcon.textContent = 'chevron_left';
 			backButton.appendChild(backIcon);
+			backButton.onclick = (e) => {
+				e.stopPropagation();
+				navigateBack();
+			};
 
+			// Skip button logic
 			const skipButton = createElem('div', 'skip-button');
 			const skipIcon = createElem('i', 'material-icons');
 			skipIcon.textContent = 'chevron_right';
 			skipButton.appendChild(skipIcon);
-			
-			skipIcon.onclick = (e) => { e.stopPropagation(); fetchRandomMovie(); };
-			backButton.onclick = (e) => { e.stopPropagation(); navigateBack();};
+			skipButton.onclick = (e) => {
+				e.stopPropagation();
+				navigateForward();
+			};
+
 			slide.appendChild(backButton);
 			slide.appendChild(skipButton);
 			
@@ -373,17 +383,30 @@
 		}
 
 		const navigateBack = () => {
-			if (visitedMovies.length < 2) {
+			if (previousMovies.length < 2) {
 				console.log("No previous slides in history.");
 				return;
 			}
 
-			// Remove the current movie from history
-			visitedMovies.pop();
-			const previousMovie = visitedMovies[visitedMovies.length - 1];
+			const currentMovie = previousMovies.pop();
+			forwardMovies.unshift(currentMovie);
 
-			// Create the slide for the previous movie
-			createSlideElement(previousMovie, true); // Assume trailers are available for simplicity
+			const previousMovie = previousMovies[previousMovies.length - 1];
+			createSlideElement(previousMovie, true);
+		};
+		
+		const navigateForward = () => {
+			if (forwardMovies.length === 0) {
+				console.log("No forward slides in history.");
+				fetchRandomMovie();
+				return;
+			}
+
+			const currentMovie = forwardMovies.shift();
+			previousMovies.push(currentMovie);
+
+
+			createSlideElement(currentMovie, true);
 		};
 		
         // Show the video overlay
@@ -481,6 +504,17 @@
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
 			isChangingSlide = true;
+
+			// If forwardMovies has items use them first
+			if (forwardMovies.length > 0) {
+				const nextMovie = forwardMovies.pop();
+				previousMovies.push(nextMovie);
+				createSlideElement(nextMovie, true);
+				isChangingSlide = false;
+				return;
+			}
+
+			// If no forwardMovies, fetch as usual
 			if (movieList.length === 0) {
 				readCustomList().then(list => {
 					if (list) { movieList = list; currentMovieIndex = 0; }
