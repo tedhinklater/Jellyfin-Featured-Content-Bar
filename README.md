@@ -37,7 +37,7 @@ Same as above but use [this version of spotlight.html](https://github.com/tedhin
 
 # Fullscreen Version
 
-![mobiledesktop](https://i.imgur.com/XNhLVx7.png)
+![Screenshot 2024-11-24 133953](https://github.com/user-attachments/assets/ededdd38-c16b-40f4-b5e8-86a03c6522c0)
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
