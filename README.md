@@ -37,7 +37,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 ![mobiledesktop](https://github.com/user-attachments/assets/22aec57b-89b8-48b1-871b-780eb620a2d0)
 
-Open this link and download the file [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (don't just save the link, it'll save the github page)
+Open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (don't just save the link, it'll save the github page)
 
 # Fullscreen Version
 
