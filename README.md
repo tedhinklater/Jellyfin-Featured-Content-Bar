@@ -5,7 +5,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 ![main](https://github.com/user-attachments/assets/e78353a5-aa6d-4c7d-b71a-e758746b3f84)
 
-1. Open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/eb786bc09464a45b8a1b866050dc078dded08c96/spotlight.html) (don't just save the link, it'll save the github page)
+1. Download ```spotlight.html``` and ```List.txt```. Check [the List.txt guide](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar?tab=readme-ov-file#how-to-feature-content-in-the-bar) for more info
 
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
