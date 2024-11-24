@@ -5,7 +5,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 ![main](https://github.com/user-attachments/assets/e78353a5-aa6d-4c7d-b71a-e758746b3f84)
 
-1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
+1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/eb786bc09464a45b8a1b866050dc078dded08c96/spotlight.html)
 
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` in that folder
 
