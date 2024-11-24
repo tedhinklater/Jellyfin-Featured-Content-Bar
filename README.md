@@ -30,6 +30,12 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
     
 ![banner](https://github.com/user-attachments/assets/b47e27d8-625f-4c92-9f89-6043ad2611ba)
 
+# How to feature content in the bar (List.txt)
+
+If nothing is on line 2 or below, the bar will feature content at random.
+
+To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
 
@@ -122,13 +128,6 @@ and then you can add the relevant code line to the file (see step 6 above)
 5) Clear Browser Cache; if it doesn't work instantly, restart the container
 
 ```docker restart jellyfin```
-
-
-# How to feature content in the bar (List.txt)
-
-If nothing is on line 2 or below, the bar will feature content at random.
-
-To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
 
 # Uninstallation
 
