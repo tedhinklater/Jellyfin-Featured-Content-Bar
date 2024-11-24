@@ -9,13 +9,15 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` in that folder
 
-3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight, copy the key, and insert it into ```line 90``` of spotlight.html
+3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight.
 
-4. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
+4. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` Open spotlight.html, Ctrl+F and search for ```YOURAPIKEYHERE``` and replace it with your API key
 
-5. Ctrl+F and search for ```data-backdroptype="movie,series,book">``` 
+5. In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
 
-6. Paste this after the >
+6. Ctrl+F and search for ```data-backdroptype="movie,series,book">``` 
+
+7. Paste this after the >
 
 ```js
 <style>.featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;} @media (min-width: 2000px) {.featurediframe {height: 18em; font-size: 175%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;}} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh;}} @media (max-width:400px) and (orientation:portrait) {.featurediframe {height: 52vh;}} @media (max-height: 400px) and (orientation:landscape) {.featurediframe {height: 100vh;}} @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 16/10) and (max-height: 1200px) {.featurediframe {height: 34em;}} @media screen and (aspect-ratio: 10/16) and (max-height: 1280px) {.featurediframe {height: 25em;}} </style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
