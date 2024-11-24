@@ -98,7 +98,7 @@
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
 		let visitedMovies = [];
-		
+
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
 			if (className) elem.className = className;
@@ -134,7 +134,7 @@
 				}
 				if (visitedMovies.length > 50) {
 					visitedMovies.shift();
-				}			
+				}
 			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
 			slide.appendChild(createElem('div', 'heading', title));
 
@@ -189,7 +189,6 @@
 			if (index < movie.Genres.length - 1) {
 				const separator = createElem('span', 'material-symbols-outlined');
 				separator.textContent = 'stat_0'; // The separator symbol
-				separator.style.fontSize = '0.75em';
 				genresDiv.appendChild(separator);
 			}
 		});
@@ -208,7 +207,7 @@
 			const backIcon = createElem('i', 'material-icons');
 			backIcon.textContent = 'chevron_left';
 			backButton.appendChild(backIcon);
-			
+
 			const skipButton = createElem('div', 'skip-button');
 			const skipIcon = createElem('i', 'material-icons');
 			skipIcon.textContent = 'chevron_right';
@@ -372,15 +371,17 @@
 				distX = distY = 0;
 			});
 		}
-		
+
 		const navigateBack = () => {
 			if (visitedMovies.length < 2) {
 				console.log("No previous slides in history.");
 				return;
 			}
+
 			// Remove the current movie from history
 			visitedMovies.pop();
 			const previousMovie = visitedMovies[visitedMovies.length - 1];
+
 			// Create the slide for the previous movie
 			createSlideElement(previousMovie, true); // Assume trailers are available for simplicity
 		};
