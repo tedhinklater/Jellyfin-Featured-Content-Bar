@@ -1,7 +1,7 @@
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](https://github.com/BobHasNoSoul) & [MakD](https://github.com/MakD) for their talents
 
-![fcb](https://github.com/user-attachments/assets/71949af9-398c-4665-b5d1-271f4bc1e514)
+![f11](https://github.com/user-attachments/assets/714dc4b0-2e41-4133-a0e4-49a3d39e5d47)
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
@@ -23,11 +23,11 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 8. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 
 9. That's it.
-
-![fcb2](https://github.com/user-attachments/assets/c4a739b3-43b3-410b-a999-2f423c9d1be0)
+    
+![cropped](https://github.com/user-attachments/assets/768ce91d-ce05-4501-96c7-c1f406e63301)
 
 # Mobile View (Landscape / Portrait)
-![mobile](https://i.imgur.com/Y0wEa81.png)
+![mobile](https://i.imgur.com/OrOzpBK.png)
 
 # Mobile Layout, but on Desktop-sized screens
 
@@ -37,7 +37,7 @@ Same as above but use [this version of spotlight.html](https://github.com/tedhin
 
 # Fullscreen Version
 
-![fsfcb](https://github.com/user-attachments/assets/65253a76-1bd8-4cf3-8ec3-514cd3bb6775)
+![mobiledesktop](https://i.imgur.com/XNhLVx7.png)
 
 Same as above except use [this version of spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) 
 
