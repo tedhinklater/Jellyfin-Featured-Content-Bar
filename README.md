@@ -94,6 +94,36 @@ and add this CSS to the very ```end``` of your Custom CSS
 
 Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
 
+# Docker installation
+
+1) Create the ui Directory (assuming your container is named jellyfin)
+
+```docker exec -u 0 jellyfin mkdir  /jellyfin/jellyfin-web/ui```
+
+2) Copy your downloaded spotlight.html file to the new "ui" folder (don't forget to insert your API key)
+
+```docker cp spotlight.html jellyfin:/jellyfin/jellyfin-web/ui/```
+
+3) Add the relevant code line to the home-html.<numbers>.chunk.js file
+
+Since I'm not aware of a way to edit the file directly in the container, I just created the file outside and copied it
+back in once I edited it:
+    
+```docker cp jellyfin:/jellyfin/jellyfin-web/home-html.<numbers>.chunk.js .```
+
+and then you can add the relevant code line to the file (see step 6 above)
+
+```nano home-html.<numbers>.chunk.js```
+
+4) Copy the file back to the container
+
+```docker cp home-html.<numbers>.chunk.js jellyfin:/jellyfin/jellyfin-web/```
+
+5) Clear Browser Cache; if it doesn't work instantly, restart the container
+
+```docker restart jellyfin```
+
+
 # How to feature content in the bar
 
 By default, the bar will feature content at random as long as it is available to the current user. 
