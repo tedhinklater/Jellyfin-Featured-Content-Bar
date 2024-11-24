@@ -1,7 +1,7 @@
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](https://github.com/BobHasNoSoul) & [MakD](https://github.com/MakD) for their talents
 
-![f11](https://github.com/user-attachments/assets/714dc4b0-2e41-4133-a0e4-49a3d39e5d47)
+![main](https://github.com/user-attachments/assets/e78353a5-aa6d-4c7d-b71a-e758746b3f84)
 
 1. Download [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/spotlight.html)
 
@@ -24,7 +24,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) & [BobHasNoSoul](h
 
 9. That's it.
     
-![cropped](https://github.com/user-attachments/assets/768ce91d-ce05-4501-96c7-c1f406e63301)
+![banner](https://github.com/user-attachments/assets/b47e27d8-625f-4c92-9f89-6043ad2611ba)
 
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
