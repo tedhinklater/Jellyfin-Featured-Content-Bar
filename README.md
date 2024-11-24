@@ -70,9 +70,9 @@ and add this CSS to the very ```end``` of your Custom CSS
 
 ```sudo mkdir -p /usr/share/jellyfin/web/ui```
 
-2) Copy your chosen spotlight.html file (making sure you inserted your API key) to the new "ui" folder
+2) Download your chosen spotlight.html file (making sure you inserted your API key) and then copy it to the new "ui" folder
 
-```sudo cp /path/to/spotlight.html /usr/share/jellyfin/web/ui/```
+```sudo cp /local/path/to/spotlight.html /usr/share/jellyfin/web/ui/```
 
 3) Add the relevant script to home-html.chunk.js
 
