@@ -124,11 +124,11 @@ and then you can add the relevant code line to the file (see step 6 above)
 ```docker restart jellyfin```
 
 
-# How to feature content in the bar
+# How to feature content in the bar (List.txt)
 
-By default, the bar will feature content at random as long as it is available to the current user. 
+If nothing is on line 2 or below, the bar will feature content at random.
 
-To preselect content, place a [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
+To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
 
 # Uninstallation
 
