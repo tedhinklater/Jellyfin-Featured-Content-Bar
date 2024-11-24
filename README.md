@@ -1,5 +1,7 @@
 # Featured Content Bar
-Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration) & [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect) & [MakD](https://github.com/MakD) (Mobile Styling)
+Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration)<br>
+[BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
+[MakD](https://github.com/MakD) (Mobile Styling)
 
 ![main](https://github.com/user-attachments/assets/e78353a5-aa6d-4c7d-b71a-e758746b3f84)
 
