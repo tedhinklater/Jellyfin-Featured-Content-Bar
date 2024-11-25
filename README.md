@@ -7,6 +7,8 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 1. Download ```spotlight.html``` and ```List.txt```. Check [the List.txt guide](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar?tab=readme-ov-file#how-to-feature-content-in-the-bar) below for more info on preselecting content to be featured.
 
+![download](https://i.imgur.com/k2xuWdK.jpeg)
+
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
 3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight.
