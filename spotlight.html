@@ -91,6 +91,7 @@
     </div>
     <script>
 		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let trailerMaxLength = 0; // Default; 0 means slide changes when the trailer ends. Measured in milliseconds.
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
@@ -119,6 +120,7 @@
 			}
 			player = null;
 			clearTimeout(slideChangeTimeout);
+			slideChangeTimeout = null;
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
 		};
@@ -284,6 +286,17 @@
 					},
 					events: {
 						'onReady': event => {
+					if (trailerMaxLength > 0) {
+										clearTimeout(slideChangeTimeout);
+										slideChangeTimeout = setTimeout(() => {
+											if (player) {
+												player.stopVideo();
+												player.destroy();
+												player = null;
+											}
+											fetchRandomMovie();
+										}, trailerMaxLength);
+									}					
 					if (isMuted){
 									event.target.setVolume(0);  // Mute the video if the setting is MuteOn
 								} else {
@@ -540,6 +553,49 @@
 		const fetchRandomMovieFromServer = () => {
 			const fetchCurrentUserId = () => 
 				fetch('/Sessions', {
+					headers: { 
+						'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` 
+					}
+				})
+				.then(response => response.json())
+				.then(sessions => {
+					const currentSession = sessions.find(session => session.UserId);
+					return currentSession ? currentSession.UserId : null;
+				})
+				.catch(() => null);
+
+			fetchCurrentUserId().then(currentUserId => {
+				if (!currentUserId) {
+					console.error('Could not retrieve the current user ID.');
+					return;
+				}
+
+				const headers = { 
+					'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` 
+				};
+
+				// Fetch a random movie from the server
+				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+				const previousMovieId = previousMovies.length ? previousMovies[previousMovies.length - 1].Id : null;
+
+				fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(data => {
+						if (data.Items[0] && data.Items[0].Id !== previousMovieId) {
+							checkBackdropAndLogo(data.Items[0]);
+						} else {
+							console.log('Duplicate item detected, fetching another...');
+							fetchRandomMovieFromServer(); // Retry fetching another movie
+						}
+					})
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			});
+		};
+
+		const fetchNextMovie = () => {
+			const fetchCurrentUserId = () => 
+				fetch('/Sessions', {
 					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
 				})
 				.then(response => response.json())
@@ -557,60 +613,27 @@
 
 				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
 
-				// Fetch a random movie from the server
-				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-				fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-					.then(response => response.json())
-					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
-					.catch(() => startSlideChangeTimer())
-					.finally(() => { isChangingSlide = false; });
+				if (movieList.length > 0) {
+					// If movieList is not empty, randomly select a movie from the list
+					const randomIndex = Math.floor(Math.random() * movieList.length);
+					const movieId = movieList[randomIndex];
+
+					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+						.then(response => response.json())
+						.then(checkBackdropAndLogo)
+						.catch(() => startSlideChangeTimer())
+						.finally(() => { isChangingSlide = false; });
+				} else {
+					// Fallback: If movieList is empty, fetch a random movie from the server
+					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+						.then(response => response.json())
+						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+						.catch(() => startSlideChangeTimer())
+						.finally(() => { isChangingSlide = false; });
+				}
 			});
 		};
-
-
-const fetchNextMovie = () => {
-    const fetchCurrentUserId = () => 
-        fetch('/Sessions', {
-            headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
-        })
-        .then(response => response.json())
-        .then(sessions => {
-            const currentSession = sessions.find(session => session.UserId);
-            return currentSession ? currentSession.UserId : null;
-        })
-        .catch(() => null);
-
-    fetchCurrentUserId().then(currentUserId => {
-        if (!currentUserId) {
-            console.error('Could not retrieve the current user ID.');
-            return;
-        }
-
-        const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
-
-        if (movieList.length > 0) {
-            // If movieList is not empty, randomly select a movie from the list
-            const randomIndex = Math.floor(Math.random() * movieList.length);
-            const movieId = movieList[randomIndex];
-
-            fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-                .then(response => response.json())
-                .then(checkBackdropAndLogo)
-                .catch(() => startSlideChangeTimer())
-                .finally(() => { isChangingSlide = false; });
-        } else {
-            // Fallback: If movieList is empty, fetch a random movie from the server
-            const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-            fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-                .then(response => response.json())
-                .then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
-                .catch(() => startSlideChangeTimer())
-                .finally(() => { isChangingSlide = false; });
-        }
-    });
-};
-
-
 
 		const checkNavigation = () => {
 			const newLocation = window.top.location.href;
