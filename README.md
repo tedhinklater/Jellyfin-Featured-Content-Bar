@@ -91,7 +91,7 @@ and add this CSS to the very ```end``` of your Custom CSS
 
 ```sudo mkdir -p /usr/share/jellyfin/web/ui```
 
-2) Download your chosen spotlight.html file (making sure you inserted your API key) and then copy it to the new "ui" folder
+2) Download your spotlight.html and List.txt files (make sure you edited them, as above) and then copy them to the new "ui" folder
 
 ```sudo cp /local/path/to/spotlight.html /usr/share/jellyfin/web/ui/```
 
@@ -119,7 +119,7 @@ Make sure to clear your browser cache to load the updated home-html.chunk.js & s
 
 ```docker exec -u 0 jellyfin mkdir  /jellyfin/jellyfin-web/ui```
 
-2) Copy your downloaded spotlight.html file to the new "ui" folder (don't forget to insert your API key)
+2) Copy your downloaded spotlight.html and List.txt files to the new "ui" folder (don't forget to edit them, as above)
 
 ```docker cp spotlight.html jellyfin:/jellyfin/jellyfin-web/ui/```
 
