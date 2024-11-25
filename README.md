@@ -49,6 +49,8 @@ If nothing is on line 2 or below, the bar will feature content at random.
 
 To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
 
+![list](https://github.com/user-attachments/assets/5f8f7924-7a9b-49c1-aefa-198cefce0f60)
+
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
 
