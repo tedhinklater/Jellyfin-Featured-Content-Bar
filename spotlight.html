@@ -384,13 +384,13 @@
 		}
 
 		const navigateBack = () => {
-			if (previousMovies.length < 2) {
+			if (previousMovies.length < 2) { // At least two movies to go back
 				console.log("No previous slides in history.");
 				return;
 			}
 
 			const currentMovie = previousMovies.pop();
-			forwardMovies.unshift(currentMovie);
+			forwardMovies.unshift(currentMovie); // Move to forward stack
 
 			const previousMovie = previousMovies[previousMovies.length - 1];
 			createSlideElement(previousMovie, true);
@@ -525,7 +525,7 @@
 		};
 
 		const fetchNextMovie = () => {
-			const fetchCurrentUserId = () => 
+			const fetchCurrentUserId = () =>
 				fetch('/Sessions', {
 					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
 				})
@@ -545,20 +545,24 @@
 				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
 
 				if (movieList.length > 0) {
-					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
-					const movieId = movieList[currentMovieIndex];
-					currentMovieIndex++;
+					// Randomize movie selection
+					const randomIndex = Math.floor(Math.random() * movieList.length);
+					const movieId = movieList[randomIndex];
+
+					// Prevent immediate repeat of the last movie
+					if (previousMovies.length > 0 && previousMovies[previousMovies.length - 1].Id === movieId) {
+						fetchNextMovie();
+						return;
+					}
 
 					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 						.then(response => response.json())
-						.then(checkBackdropAndLogo)
-						.catch(() => startSlideChangeTimer())
-						.finally(() => { isChangingSlide = false; });
-				} else {
-					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-						.then(response => response.json())
-						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+						.then(movie => {
+							if (!previousMovies.some(m => m.Id === movie.Id)) {
+								previousMovies.push(movie); // Track history
+								createSlideElement(movie, true);
+							}
+						})
 						.catch(() => startSlideChangeTimer())
 						.finally(() => { isChangingSlide = false; });
 				}
