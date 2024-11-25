@@ -384,13 +384,13 @@
 		}
 
 		const navigateBack = () => {
-			if (previousMovies.length < 2) { // At least two movies to go back
+			if (previousMovies.length < 2) {
 				console.log("No previous slides in history.");
 				return;
 			}
 
 			const currentMovie = previousMovies.pop();
-			forwardMovies.unshift(currentMovie); // Move to forward stack
+			forwardMovies.unshift(currentMovie);
 
 			const previousMovie = previousMovies[previousMovies.length - 1];
 			createSlideElement(previousMovie, true);
@@ -399,13 +399,15 @@
 		const navigateForward = () => {
 			if (forwardMovies.length === 0) {
 				console.log("No forward slides in history.");
-				fetchRandomMovie(); // Fallback to fetch a random movie
+				fetchRandomMovie();
 				return;
 			}
 
-			const nextMovie = forwardMovies.shift();
-			previousMovies.push(nextMovie); // Add to history stack
-			createSlideElement(nextMovie, true);
+			const currentMovie = forwardMovies.shift();
+			previousMovies.push(currentMovie);
+
+
+			createSlideElement(currentMovie, true);
 		};
 		
         // Show the video overlay
@@ -523,7 +525,7 @@
 		};
 
 		const fetchNextMovie = () => {
-			const fetchCurrentUserId = () =>
+			const fetchCurrentUserId = () => 
 				fetch('/Sessions', {
 					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
 				})
@@ -543,24 +545,20 @@
 				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
 
 				if (movieList.length > 0) {
-					// Randomize movie selection
-					const randomIndex = Math.floor(Math.random() * movieList.length);
-					const movieId = movieList[randomIndex];
-
-					// Prevent immediate repeat of the last movie
-					if (previousMovies.length > 0 && previousMovies[previousMovies.length - 1].Id === movieId) {
-						fetchNextMovie();
-						return;
-					}
+					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
+					const movieId = movieList[currentMovieIndex];
+					currentMovieIndex++;
 
 					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 						.then(response => response.json())
-						.then(movie => {
-							if (!previousMovies.some(m => m.Id === movie.Id)) {
-								previousMovies.push(movie); // Track history
-								createSlideElement(movie, true);
-							}
-						})
+						.then(checkBackdropAndLogo)
+						.catch(() => startSlideChangeTimer())
+						.finally(() => { isChangingSlide = false; });
+				} else {
+					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+						.then(response => response.json())
+						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
 						.catch(() => startSlideChangeTimer())
 						.finally(() => { isChangingSlide = false; });
 				}
