@@ -477,30 +477,31 @@
 		};
 
 		const readCustomList = () =>
-            		fetch('List.txt?' + new Date().getTime())
-                		.then(response => response.ok ? response.text() : null)
-                		.then(text => {
-                    			if (!text) return null;
-                    			const lines = text.split('\n').filter(Boolean);
+			fetch('List.txt?' + new Date().getTime())
+				.then(response => response.ok ? response.text() : null)
+				.then(text => {
+					if (!text) return null;
+					const lines = text.split('\n').filter(Boolean);
 
-                    			// First line contains the title and optional mute setting
-                    			const firstLine = lines.shift().trim();
-                    			const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
+					// First line contains the title and optional mute setting
+					const firstLine = lines.shift().trim();
+					const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
 
-                    			// Set title
-                    			title = parsedTitle || title;
+					// Set title
+					title = parsedTitle || title;
 
-                    			// Check for mute setting
-                   	 		if (muteSetting === "MuteOn") {
-                        			isMuted = true;
-                    			} else {
-                        			isMuted = false; // Default to MuteOff if not specified
-                    			}
+					// Check for mute setting
+					if (muteSetting === "MuteOn") {
+						isMuted = true;
+					} else {
+						isMuted = false; // Default to MuteOff if not specified
+					}
 
-                    			// Remaining lines are media IDs
-                    			return lines.map(line => line.trim().substring(0, 32));
-                		})
-                		.catch(() => null);
+					// Remaining lines are media IDs
+					return lines.map(line => line.trim().substring(0, 32)); // Ensure only the first 32 characters are used for IDs
+				})
+				.catch(() => null);
+
 
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
@@ -518,11 +519,54 @@
 			// If no forwardMovies, fetch as usual
 			if (movieList.length === 0) {
 				readCustomList().then(list => {
-					if (list) { movieList = list; currentMovieIndex = 0; }
-					fetchNextMovie();
+					if (list) {
+						movieList = list; // If list is populated from the file, use it
+						currentMovieIndex = 0;
+						// If there is only one item in the list, fetch a random movie
+						if (movieList.length === 1) {
+							fetchRandomMovieFromServer(); 
+						} else {
+							fetchNextMovie();
+						}
+					} else {
+						fetchRandomMovieFromServer(); // If List.txt is empty, fetch random
+					}
 				});
-			} else fetchNextMovie();
+			} else {
+				fetchNextMovie();
+			}
 		};
+
+		const fetchRandomMovieFromServer = () => {
+			const fetchCurrentUserId = () => 
+				fetch('/Sessions', {
+					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
+				})
+				.then(response => response.json())
+				.then(sessions => {
+					const currentSession = sessions.find(session => session.UserId);
+					return currentSession ? currentSession.UserId : null;
+				})
+				.catch(() => null);
+
+			fetchCurrentUserId().then(currentUserId => {
+				if (!currentUserId) {
+					console.error('Could not retrieve the current user ID.');
+					return;
+				}
+
+				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
+
+				// Fetch a random movie from the server
+				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+				fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			});
+		};
+
 
 		const fetchNextMovie = () => {
 			const fetchCurrentUserId = () => 
@@ -545,9 +589,9 @@
 				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
 
 				if (movieList.length > 0) {
-					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
-					const movieId = movieList[currentMovieIndex];
-					currentMovieIndex++;
+					// Randomly select a movie from movieList
+					const randomIndex = Math.floor(Math.random() * movieList.length);
+					const movieId = movieList[randomIndex];
 
 					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 						.then(response => response.json())
@@ -564,6 +608,7 @@
 				}
 			});
 		};
+
 
 		const checkNavigation = () => {
 			const newLocation = window.top.location.href;
