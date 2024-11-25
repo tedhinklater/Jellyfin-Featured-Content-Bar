@@ -399,15 +399,13 @@
 		const navigateForward = () => {
 			if (forwardMovies.length === 0) {
 				console.log("No forward slides in history.");
-				fetchRandomMovie();
+				fetchRandomMovie(); // Fallback to fetch a random movie
 				return;
 			}
 
-			const currentMovie = forwardMovies.shift();
-			previousMovies.push(currentMovie);
-
-
-			createSlideElement(currentMovie, true);
+			const nextMovie = forwardMovies.shift();
+			previousMovies.push(nextMovie); // Add to history stack
+			createSlideElement(nextMovie, true);
 		};
 		
         // Show the video overlay
