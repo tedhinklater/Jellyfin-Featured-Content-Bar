@@ -7,13 +7,19 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 1. Download ```spotlight.html``` and ```List.txt```. Check [the List.txt guide](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar?tab=readme-ov-file#how-to-feature-content-in-the-bar) below for more info on preselecting content to be featured.
 
-![download](https://i.imgur.com/k2xuWdK.jpeg)
+![download](https://github.com/user-attachments/assets/30cf946b-7532-46c4-9f43-ad80ed22ea3f)
 
 2. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
+![Screenshot 2024-11-25 030656](https://github.com/user-attachments/assets/a92129a7-9ace-4db8-aa9c-d229f0e809e1)
+
 3. In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight.
 
+![Screenshot 2024-11-25 030755](https://github.com/user-attachments/assets/31376edf-4c5c-4514-ab3d-a1299bf0b646)
+
 4. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` Open spotlight.html, Ctrl+F and search for ```YOURAPIKEYHERE``` and replace it with your API key
+
+![Screenshot 2024-11-25 031128](https://github.com/user-attachments/assets/1f28a583-9e36-4076-aab1-27d4e8d95363)
 
 5. In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
 
@@ -24,9 +30,14 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 ```js
 <style>.featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;} @media (min-width: 2000px) {.featurediframe {height: 18em; font-size: 175%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;}} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh;}} @media (max-width:400px) and (orientation:portrait) {.featurediframe {height: 52vh;}} @media (max-height: 400px) and (orientation:landscape) {.featurediframe {height: 100vh;}} @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 16/10) and (max-height: 1200px) {.featurediframe {height: 34em;}} @media screen and (aspect-ratio: 10/16) and (max-height: 1280px) {.featurediframe {height: 25em;}} </style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
 ```
+
+![Screenshot 2024-11-25 031050](https://github.com/user-attachments/assets/30859383-8bdf-4726-8683-d31b0418cb23)
+
 8. Save the file.
 
 9. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
+
+![Screenshot 2024-11-25 031248](https://github.com/user-attachments/assets/0fee8b46-2958-4da0-93b0-a00c43835064)
 
 10. That's it.
     
