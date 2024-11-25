@@ -144,6 +144,49 @@ and then you can add the relevant code line to the file (see step 6 above)
 
 ```docker restart jellyfin```
 
+# ⚠️ Disabling `X-Frame-Options DENY` in your Reverse Proxy
+
+When using a reverse proxy like **Nginx** or **Caddy**, the `X-Frame-Options: DENY` header can block iframes, preventing the feature
+
+## Solution
+
+### Nginx
+
+1. Open your site's configuration:
+   ```bash
+   sudo nano /etc/nginx/sites-available/your-site.conf
+    ```
+2. Modify or add the following directive:
+   - To disable:
+        ```bash
+         # add_header X-Frame-Options "DENY";
+        ```
+   - To allow iframes from the same origin:
+        ```bash
+        add_header X-Frame-Options "SAMEORIGIN";
+        ```
+3. Restart Nginx:
+    ```bash
+    sudo systemctl restart nginx
+    ```
+### Caddy
+
+1. Modify the /etc/caddy/Caddyfile:
+    - To disable:
+      
+        ```bash
+        header -X-Frame-Options
+        ```
+    - To allow:
+      
+        ```bash
+        header X-Frame-Options "SAMEORIGIN"
+        ```
+            
+2. Restart Caddy:
+    ```bash
+    sudo systemctl restart caddy
+    ```
 # Uninstallation
 
 Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
