@@ -94,6 +94,7 @@
     </div>
     <script>
 		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let trailerMaxLength = 0; // Default value 0; length measured in ms
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
@@ -122,6 +123,7 @@
 			}
 			player = null;
 			clearTimeout(slideChangeTimeout);
+			slideChangeTimeout = null;
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
 		};
@@ -148,8 +150,8 @@
 				(movie.RunTimeTicks ? `${Math.round(movie.RunTimeTicks / 600000000)} min` : 'Unknown Runtime');
 
 			let loremText = `
-				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.15em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
-				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.15em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
 
 			if (movie.CommunityRating) {
 				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
@@ -287,6 +289,17 @@
 					},
 					events: {
 						'onReady': event => {
+					if (trailerMaxLength > 0) {
+						clearTimeout(slideChangeTimeout);
+						slideChangeTimeout = setTimeout(() => {
+							if (player) {
+								player.stopVideo();
+								player.destroy();
+								player = null;
+							}
+							fetchRandomMovie();
+						}, trailerMaxLength);
+					}
 					if (isMuted){
 									event.target.setVolume(0);  // Mute the video if the setting is MuteOn
 								} else {
@@ -304,7 +317,11 @@
 								}
 
 								const plot = document.querySelector('.plot');
-								if (plot) plot.style.width = 'calc(100% - 36.4vw)';
+								if (plot) {
+									plot.style.width = 'calc(100% - 36vw)';
+									plot.style.left = '1em';
+									plot.style.transform = 'unset';
+								}
 
 								const loremIpsum = document.querySelector('.lorem-ipsum');
 								if (loremIpsum) loremIpsum.style.paddingRight = '32.4vw';
@@ -350,7 +367,7 @@
 
 			container.innerHTML = '';
 			container.appendChild(slide);
-		};
+			};
 		
 				function addSwipeListeners(slide) {
 			let startX, startY, distX, distY;
@@ -476,55 +493,62 @@
 		};
 
 		const readCustomList = () =>
-            		fetch('List.txt?' + new Date().getTime())
-                		.then(response => response.ok ? response.text() : null)
-                		.then(text => {
-                    			if (!text) return null;
-                    			const lines = text.split('\n').filter(Boolean);
+			fetch('List.txt?' + new Date().getTime())
+				.then(response => response.ok ? response.text() : null)
+				.then(text => {
+					if (!text || !text.trim()) {
+						console.warn('List.txt is empty or could not be loaded.');
+						return null; // Fallback to random selection
+					}
+					const lines = text.split('\n').filter(Boolean);
 
-                    			// First line contains the title and optional mute setting
-                    			const firstLine = lines.shift().trim();
-                    			const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
+					const firstLine = lines.shift().trim();
+					const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
 
-                    			// Set title
-                    			title = parsedTitle || title;
+					title = parsedTitle || title;
 
-                    			// Check for mute setting
-                   	 		if (muteSetting === "MuteOn") {
-                        			isMuted = true;
-                    			} else {
-                        			isMuted = false; // Default to MuteOff if not specified
-                    			}
+					// Check for mute
+					isMuted = muteSetting === "MuteOn";
 
-                    			// Remaining lines are media IDs
-                    			return lines.map(line => line.trim().substring(0, 32));
-                		})
-                		.catch(() => null);
+					// Remaining lines are media IDs
+					const mediaList = lines.map(line => line.trim().substring(0, 32));
+					return shuffleArray(mediaList); // Shuffle the list before returning it
+				})
+				.catch(() => {
+					console.error('Error reading List.txt. Falling back to random selection.');
+					return null;
+				});
 
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
 			isChangingSlide = true;
 
-			// If forwardMovies has items use them first
-			if (forwardMovies.length > 0) {
-				const nextMovie = forwardMovies.pop();
-				previousMovies.push(nextMovie);
-				createSlideElement(nextMovie, true);
-				isChangingSlide = false;
-				return;
-			}
-
-			// If no forwardMovies, fetch as usual
 			if (movieList.length === 0) {
 				readCustomList().then(list => {
-					if (list) { movieList = list; currentMovieIndex = 0; }
-					fetchNextMovie();
+					if (list && list.length > 0) {
+						movieList = list;
+						currentMovieIndex = 0;
+						fetchNextMovie();
+					} else {
+						console.warn("Fallback to random selection.");
+						fetchNextMovie(true);
+					}
 				});
-			} else fetchNextMovie();
+			} else {
+				fetchNextMovie();
+			}
 		};
 
-		const fetchNextMovie = () => {
-			const fetchCurrentUserId = () => 
+		const shuffleArray = (array) => {
+			for (let i = array.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[array[i], array[j]] = [array[j], array[i]];
+			}
+			return array;
+		};
+
+		const fetchNextMovie = (useRandom = false) => {
+			const fetchCurrentUserId = () =>
 				fetch('/Sessions', {
 					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
 				})
@@ -538,12 +562,13 @@
 			fetchCurrentUserId().then(currentUserId => {
 				if (!currentUserId) {
 					console.error('Could not retrieve the current user ID.');
+					isChangingSlide = false;
 					return;
 				}
 
 				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
 
-				if (movieList.length > 0) {
+				if (!useRandom && movieList.length > 0) {
 					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
 					const movieId = movieList[currentMovieIndex];
 					currentMovieIndex++;
