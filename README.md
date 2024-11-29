@@ -113,6 +113,8 @@ and add this CSS to the very ```end``` of your Custom CSS
 .layout-desktop .sectionTitle.sectionTitle-cards.padded-left + .itemsContainer { margin-bottom: 2em;}
 ```
 
+Finally, empty your browser cache
+
 # Linux installation
 
 1) Create the ui Directory
