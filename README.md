@@ -23,23 +23,47 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 5. In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```
 
-6. Ctrl+F and search for ```data-backdroptype="movie,series,book">``` 
-
-7. Paste this after the >
+6. Select All and replace with this code
 
 ```js
-<style>.featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;} @media (min-width: 2000px) {.featurediframe {height: 18em; font-size: 175%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;}} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh;}} @media (max-width:400px) and (orientation:portrait) {.featurediframe {height: 52vh;}} @media (max-height: 400px) and (orientation:landscape) {.featurediframe {height: 100vh;}} @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 27em;}} @media screen and (aspect-ratio: 16/10) and (max-height: 1200px) {.featurediframe {height: 34em;}} @media screen and (aspect-ratio: 10/16) and (max-height: 1280px) {.featurediframe {height: 25em;}} </style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8372], {
+  5939: function(a, e, t) {
+    t.r(e),
+    e.default = `
+    <div id="indexPage" style="outline:0" data-role="page" data-dom-cache="true" class="page homePage libraryPage allLibraryPage backdropPage pageWithAbsoluteTabs withTabs" data-backdroptype="movie,series,book">
+      <style>
+        .featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;}
+		@media (min-width: 2601px) {.featurediframe {height: 50em;} }
+        @media (min-width: 2000px) and (max-width: 2600px) {.featurediframe {height: 20em; font-size: 175%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;} }
+        @media (max-width: 1000px) and (orientation: portrait) {.featurediframe {height: 46vh;} }
+        @media (max-width: 1000px) and (orientation: landscape) {.featurediframe {height: 98vh;} }
+        @media (max-width: 400px) and (orientation: portrait) {.featurediframe {height: 52vh;} }
+        @media (max-height: 400px) and (orientation: landscape) {.featurediframe {height: 100vh;} }
+        @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 27em;} }
+        @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 27em;} }
+        @media screen and (aspect-ratio: 16/10) and (max-height: 1200px) {.featurediframe {height: 34em;} }
+        @media screen and (aspect-ratio: 10/16) and (max-height: 1280px) {.featurediframe {height: 25em;} }
+      </style>
+      <div class="tabContent pageTabContent" id="homeTab" data-index="0"><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe><div class="sections"></div></div><div class="tabContent pageTabContent" id="favoritesTab" data-index="1"> <div class="sections"></div></div></div>`;}}]);
+document.addEventListener("DOMContentLoaded", () => {
+  const homeTab = document.getElementById("homeTab");
+  const spotlightIframe = homeTab.querySelector(".featurediframe");
+
+  const observer = new MutationObserver(() => {
+  const isHomeTabActive = homeTab.classList.contains("is-active");
+    spotlightIframe.style.display = isHomeTabActive ? "block" : "none";
+  });
+  observer.observe(homeTab, { attributes: true, attributeFilter: ["class"] });
+});
 ```
 
-![Screenshot 2024-11-25 031050](https://github.com/user-attachments/assets/30859383-8bdf-4726-8683-d31b0418cb23)
+7. Save the file.
 
-8. Save the file.
-
-9. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
+8. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 
 ![Screenshot 2024-11-25 031248](https://github.com/user-attachments/assets/0fee8b46-2958-4da0-93b0-a00c43835064)
 
-10. That's it.
+9. That's it.
     
 ![banner](https://github.com/user-attachments/assets/b47e27d8-625f-4c92-9f89-6043ad2611ba)
 
