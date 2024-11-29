@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 9. That's it.
     
-![fcb](https://github.com/user-attachments/assets/2d7ad048-5369-41be-bf1a-8fe9acf442cc)
+![fcb](https://github.com/user-attachments/assets/3b75ba35-6a0a-4a55-be3d-2bb2df380202)
 
 # How to feature content in the bar (List.txt)
 
