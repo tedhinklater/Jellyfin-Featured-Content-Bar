@@ -215,4 +215,8 @@ When using a reverse proxy like **Nginx** or **Caddy**, the `X-Frame-Options: DE
     ```
 # Uninstallation
 
-Simply delete Step 5's snippet added to ```home-html.chunk.js``` then refresh your browser's cache.
+Open ```home-html.RANDOMSTRINGHERE.chunk.js``` and replace everything with this 
+
+```js
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[8372],{5939:function(a,e,t){t.r(e),e.default='<div id="indexPage" style="outline:0" data-role="page" data-dom-cache="true" class="page homePage libraryPage allLibraryPage backdropPage pageWithAbsoluteTabs withTabs" data-backdroptype="movie,series,book"> <div class="tabContent pageTabContent" id="homeTab" data-index="0"> <div class="sections"></div> </div> <div class="tabContent pageTabContent" id="favoritesTab" data-index="1"> <div class="sections"></div> </div> </div> '}}]);
+```
