@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Mobile Styling)
 
-![main](https://github.com/user-attachments/assets/e78353a5-aa6d-4c7d-b71a-e758746b3f84)
+![Screenshot 2024-11-29 034126](https://github.com/user-attachments/assets/0df016c0-8e27-4bf7-9384-3f628f31d8f7)
 
 1. Download ```spotlight.html``` and ```List.txt```. Check [the List.txt guide](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar#how-to-feature-content-in-the-bar-listtxt) below for more info on preselecting content to be featured.
 
