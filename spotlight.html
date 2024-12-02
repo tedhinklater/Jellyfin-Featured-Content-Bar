@@ -362,21 +362,20 @@
 
 								const plot = document.querySelector('.plot');
 								if (plot) {
-									plot.style.width = 'calc(100% - 41vw)';
-									plot.style.left = '7.7em';
-									plot.style.transform = 'unset';
+									plot.style.left = '33vw';
+									plot.style.maxWidth = '63vw';
 								}
 								
 								const genres = document.querySelector('.genres');
 								if (genres) {
-									genres.style.left = 'calc(50% - 14.2vw)';
+									genres.style.left = 'calc(50% - 17vw)';
 								}								
 
 								const loremIpsum = document.querySelector('.lorem-ipsum');
-								if (loremIpsum) loremIpsum.style.left = 'calc(50% - 14.2vw)';
+								if (loremIpsum) loremIpsum.style.left = 'calc(50% - 17vw)';
 
 								const logo = document.querySelector('.logo');
-								if (logo) logo.style.left = 'calc(50% - 14.2vw)';
+								if (logo) logo.style.left = 'calc(50% - 17vw)';
 
 								videoContainer.style.width = '34.4vw';
 							} else if (event.data === YT.PlayerState.ENDED) {
