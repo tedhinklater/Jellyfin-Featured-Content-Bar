@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 # How to feature content in the bar (List.txt)
 <details> <summary>Show guide</summary>
+
 If nothing is on line 2 or below, the bar will feature content at random.
 
 To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar). 
@@ -86,6 +87,7 @@ To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-F
 
 # Mobile Layout, but on Desktop-sized screens
 <details> <summary>Show guide</summary>
+
 ![mobiledesktop](https://github.com/user-attachments/assets/22aec57b-89b8-48b1-871b-780eb620a2d0)
 
 Same as above, except open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (don't just save the link, it'll save the github page)
