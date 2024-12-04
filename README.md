@@ -43,7 +43,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
       </style>
       <div class="tabContent pageTabContent" id="homeTab" data-index="0"><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
 ```
-Then paste this after ```;}}]);``` at the end
+Then paste this after ```'}}]);``` at the end
 
 ```js
 document.addEventListener("DOMContentLoaded", () => {
