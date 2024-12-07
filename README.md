@@ -68,10 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
 ![Screenshot 2024-11-25 031248](https://github.com/user-attachments/assets/0fee8b46-2958-4da0-93b0-a00c43835064)
 </details>
 
-5. That's it.
-
-![fcb](https://github.com/user-attachments/assets/eb0c9ce0-b96e-4a7e-bf71-ba9a637c25a3)
-
 # How to feature content in the bar (List.txt)
 <details> <summary>Show guide</summary>
 
@@ -84,10 +80,14 @@ To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-F
 ![list](https://github.com/user-attachments/assets/5f8f7924-7a9b-49c1-aefa-198cefce0f60)
 </details>
 
+# Desktop View
+
+![fcb](https://github.com/user-attachments/assets/eb0c9ce0-b96e-4a7e-bf71-ba9a637c25a3)
+
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
 
-# Mobile Layout, but on Desktop-sized screens
+# Mobile View, but on Desktop-sized screens
 <details> <summary>Show guide</summary>
 
 ![mobiledesktop](https://github.com/user-attachments/assets/22aec57b-89b8-48b1-871b-780eb620a2d0)
