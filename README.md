@@ -130,25 +130,37 @@ Finally, empty your browser cache
 
 1) Create the ui Directory
 
-```sudo mkdir -p /usr/share/jellyfin/web/ui```
+```shell
+sudo mkdir -p /usr/share/jellyfin/web/ui
+```
 
 2) Download your spotlight.html and List.txt files (make sure you edited them, as above) and then copy them to the new "ui" folder
 
-```sudo cp /local/path/to/spotlight.html /usr/share/jellyfin/web/ui/```
+```shell
+sudo cp /local/path/to/spotlight.html /usr/share/jellyfin/web/ui/
+```
 
 3) Add the relevant script to home-html.chunk.js
 
-```sudo nano /usr/share/jellyfin/web/home-html.chunk.js```
+```shell
+sudo nano /usr/share/jellyfin/web/home-html.chunk.js
+```
 
 4) Ensure the ui folder & spotlight.html are readable by Jellyfin
 
-```sudo chown -R jellyfin:jellyfin /usr/share/jellyfin/web/ui```
+```shell
+sudo chown -R jellyfin:jellyfin /usr/share/jellyfin/web/ui
+```
 
-```sudo chmod -R 755 /usr/share/jellyfin/web/ui```
+```shell
+sudo chmod -R 755 /usr/share/jellyfin/web/ui
+```
 
 5) Restart Jellyfin
 
-```sudo systemctl restart jellyfin```
+```shell
+sudo systemctl restart jellyfin
+```
 
 6) Clear Browser Cache
 
@@ -160,30 +172,42 @@ Make sure to clear your browser cache to load the updated home-html.chunk.js & s
 
 1) Create the ui Directory (assuming your container is named jellyfin)
 
-```docker exec -u 0 jellyfin mkdir  /jellyfin/jellyfin-web/ui```
+```shell
+docker exec -u 0 jellyfin mkdir  /jellyfin/jellyfin-web/ui
+```
 
 2) Copy your downloaded spotlight.html and List.txt files to the new "ui" folder (don't forget to edit them, as above)
 
-```docker cp spotlight.html jellyfin:/jellyfin/jellyfin-web/ui/```
+```shell
+docker cp spotlight.html jellyfin:/jellyfin/jellyfin-web/ui/
+```
 
 3) Add the relevant code line to the home-html.<numbers>.chunk.js file
 
 Since I'm not aware of a way to edit the file directly in the container, I just created the file outside and copied it
 back in once I edited it:
     
-```docker cp jellyfin:/jellyfin/jellyfin-web/home-html.<numbers>.chunk.js .```
+```shell
+docker cp jellyfin:/jellyfin/jellyfin-web/home-html.<numbers>.chunk.js .
+```
 
 and then you can add the relevant code line to the file (see step 6 above)
 
-```nano home-html.<numbers>.chunk.js```
+```shell
+nano home-html.<numbers>.chunk.js
+```
 
 4) Copy the file back to the container
 
-```docker cp home-html.<numbers>.chunk.js jellyfin:/jellyfin/jellyfin-web/```
+```shell
+docker cp home-html.<numbers>.chunk.js jellyfin:/jellyfin/jellyfin-web/
+```
 
 5) Clear Browser Cache; if it doesn't work instantly, restart the container
 
-```docker restart jellyfin```
+```shell
+docker restart jellyfin
+```
 </details>
 
 # ⚠️ Disabling `X-Frame-Options DENY` in your Reverse Proxy
