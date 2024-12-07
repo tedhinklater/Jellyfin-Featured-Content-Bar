@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </details>
 
 # How to feature content in the bar (List.txt)
-<details> <summary>Show guide</summary>
 
 If nothing is on line 2 or below, the bar will feature content at random.
 
@@ -78,7 +77,6 @@ To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-F
 ```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them)
 
 ![list](https://github.com/user-attachments/assets/5f8f7924-7a9b-49c1-aefa-198cefce0f60)
-</details>
 
 # Desktop View
 
