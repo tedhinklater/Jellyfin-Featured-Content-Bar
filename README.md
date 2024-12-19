@@ -74,7 +74,7 @@ To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-F
 
 ```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them)
 
-If it is empty '''below''' line 1, the bar will feature content at random.
+If it is empty ```below``` line 1, the bar will feature content at random.
 
 ![list](https://github.com/user-attachments/assets/5f8f7924-7a9b-49c1-aefa-198cefce0f60)
 
