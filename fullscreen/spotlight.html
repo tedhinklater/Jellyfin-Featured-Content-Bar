@@ -137,9 +137,21 @@
 
 		const textContainer = createElem('div', 'text-container');
 		const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : 'Unknown';
-		const additionalInfo = movie.Type === 'Series' ? 
-			(movie.ChildCount ? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` : 'Unknown Seasons') : 
-			(movie.RunTimeTicks ? `${Math.round(movie.RunTimeTicks / 600000000)} min` : 'Unknown Runtime');
+		let additionalInfo;
+
+		if (movie.Type === 'Series') {
+			additionalInfo = movie.ChildCount 
+				? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` 
+				: 'Unknown Seasons';
+		} else if (movie.Type === 'BoxSet') {
+			additionalInfo = movie.ChildCount 
+				? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
+				: 'Unknown Movies';
+		} else {
+			additionalInfo = movie.RunTimeTicks 
+				? `${Math.round(movie.RunTimeTicks / 600000000)} min` 
+				: 'Unknown Runtime';
+		}
 
 		let loremText = `
 			<span style="border: ${isMobile() ? 'none' : '1px solid #fff8'}; background: ${isMobile() ? 'transparent' : '#101010e3'}; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
