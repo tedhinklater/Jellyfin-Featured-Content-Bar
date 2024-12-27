@@ -364,6 +364,18 @@
 					},
 					events: {
 						'onReady': event => {
+					if (useSponsorBlock) {
+                        fetchSponsorBlockOutro(videoId).then(outroSegment => {
+                            if (outroSegment) {
+                                console.log(`SponsorBlock outro segment: Start - ${outroSegment[0]}s, End - ${outroSegment[1]}s`);
+                                monitorOutro(player, outroSegment);
+                            } else {
+                                console.log('No outro segment found/provided');
+                            }
+                        }).catch(error => {
+                            console.error('Error reading SponsorBlock outro segment:', error);
+                        });
+                    }
 					if (trailerMaxLength > 0) {
 						clearTimeout(slideChangeTimeout);
 						slideChangeTimeout = setTimeout(() => {
@@ -416,6 +428,7 @@
 						'onError': () => {
 							console.error(`YouTube prevented playback of '${movie.Name}'`);
 							if (player) {
+								clearInterval(monitorOutroInterval);
 								player.destroy();
 								player = null;
 							}
