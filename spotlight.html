@@ -96,7 +96,7 @@
         </div>
     </div>
     <script>
-		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true, isMuted = true;
 		let trailerMaxLength = 0; // Default value 0; length measured in ms
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let useSponsorBlock = true; // Set to true to use SponsorBlock data to skip intro/outro segments of trailers
@@ -357,7 +357,10 @@
 					width: '100%',
 					videoId,
 					playerVars: {
-						mute: 0  // Change to start the video muted
+						mute: isMuted ? 1 : 0,  // CHeck if the video should start muted
+						disablekb: 1,   // Disable keyboard controls
+                		fs: 1,         // Enable fullscreen
+                		iv_load_policy: 3, // Disable annotations
 					},
 					events: {
 						'onReady': event => {
