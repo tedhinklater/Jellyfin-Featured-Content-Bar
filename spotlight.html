@@ -99,52 +99,65 @@
 		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
 		let trailerMaxLength = 0; // Default value 0; length measured in ms
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
+		let useSponsorBlock = true; // Set to true to use SponsorBlock data to skip intro/outro segments of trailers
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
 		let previousMovies = [];
 		let forwardMovies = [];
+		let monitorOutroInterval = null; // Global interval variable to monitor the outro segment of the trailer
 
-		// Ensure that the video player is muted initially and can be unmuted on hover
-		const initPlayer = () => {
-		  player = new YT.Player(videoElement, {
-			height: '100%',
-			width: '100%',
-			videoId,
-			playerVars: {
-			  mute: isMuted ? 1 : 0,
-			},
-			events: {
-			  'onReady': (event) => {
-				event.target.playVideo();
-				event.target.setVolume(isMuted ? 0 : 100);
-			  },
-			  'onStateChange': (event) => {
-				if (event.data === YT.PlayerState.ENDED) {
-				  setTimeout(fetchRandomMovie, 100);
-				}
-			  },
-			  'onError': () => {
-				console.error(`Error with YouTube video`);
-				cleanup();
-			  }
-			}
-		  });
+		
+    	const slidesContainer = document.getElementById('slides-container');
+    	slidesContainer.addEventListener('mouseenter', () => {
+    	    if (player) {
+    	        player.unMute();
+    	        isMuted = false;
+    	    }
+    	});
+	
+    	slidesContainer.addEventListener('mouseleave', () => {
+    	    if (player) {
+    	        player.mute();
+    	        isMuted = true;
+    	    }
+    	});
+
+
+		// Get SponsorBlock-Data for the outro segment of the trailer
+		const fetchSponsorBlockOutro = (videoId) => {
+		    return fetch(`https://sponsor.ajay.app/api/skipSegments?videoID=${videoId}&category=outro`)
+		        .then(response => response.json())
+		        .then(segments => {
+		            return segments.length > 0 ? segments[0].segment : null;
+		        })
+		        .catch(error => {
+		            console.error('Error fetching SponsorBlock data:', error);
+		            return null;
+		        });
 		};
 
-		const slidesContainer = document.getElementById('slides-container');
-		slidesContainer.addEventListener('mouseenter', () => {
-		  if (player) {
-			player.unMute();
-			isMuted = false;
-		  }
-		});
+		// Monitor the video player for the outro segment
+		function monitorOutro(player, outroSegment) {
+		    if (monitorOutroInterval) { // Clear the interval if it's already running
+		        clearInterval(monitorOutroInterval);
+		    }
+		
+		    monitorOutroInterval = setInterval(() => {
+		        if (!outroSegment || !player) {
+		            console.log('Invalid outro segment or player not initialized');
+		            clearInterval(monitorOutroInterval);
+		            return;
+		        }
+			
+		        const currentTime = player.getCurrentTime();
+		        if (currentTime >= outroSegment[0] && currentTime < outroSegment[1]) {
+		            clearInterval(monitorOutroInterval);
+		            player.stopVideo(); // stop video
+		            setTimeout(fetchRandomMovie, 100); // fetch next movie
+		        }
+		    }, 500); // check every 500ms
+		}
 
-		slidesContainer.addEventListener('mouseleave', () => {
-		  if (player) {
-			player.mute();
-			isMuted = true;
-		  }
-		});
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
 			if (className) elem.className = className;
