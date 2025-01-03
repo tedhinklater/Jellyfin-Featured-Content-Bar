@@ -93,7 +93,7 @@
         </div>
     </div>
     <script>
-		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, useTrailers = true;
 		let trailerMaxLength = 0; // Default value 0; length measured in ms
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
@@ -561,45 +561,27 @@
 		};
 
 		const fetchNextMovie = (useRandom = false) => {
-			const fetchCurrentUserId = () =>
-				fetch('/Sessions', {
-					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
-				})
-				.then(response => response.json())
-				.then(sessions => {
-					const currentSession = sessions.find(session => session.UserId);
-					return currentSession ? currentSession.UserId : null;
-				})
-				.catch(() => null);
+			const token = JSON.parse(localStorage.getItem('jellyfin_credentials')).Servers[0].AccessToken;
+			const headers = {'Authorization': `MediaBrowser Client="Jellyfin Web", Token="${token}"` };
 
-			fetchCurrentUserId().then(currentUserId => {
-				if (!currentUserId) {
-					console.error('Could not retrieve the current user ID.');
-					isChangingSlide = false;
-					return;
-				}
+			if (!useRandom && movieList.length > 0) {
+				if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
+				const movieId = movieList[currentMovieIndex];
+				currentMovieIndex++;
 
-				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
-
-				if (!useRandom && movieList.length > 0) {
-					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
-					const movieId = movieList[currentMovieIndex];
-					currentMovieIndex++;
-
-					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-						.then(response => response.json())
-						.then(checkBackdropAndLogo)
-						.catch(() => startSlideChangeTimer())
-						.finally(() => { isChangingSlide = false; });
-				} else {
-					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-						.then(response => response.json())
-						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
-						.catch(() => startSlideChangeTimer())
-						.finally(() => { isChangingSlide = false; });
-				}
-			});
+				fetch(`/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(checkBackdropAndLogo)
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			} else {
+				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+				fetch(`/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			}
 		};
 
 		const checkNavigation = () => {
