@@ -85,6 +85,24 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 Same as above, except open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (don't just save the link, it'll save the github page)
 </details>
 
+# Fullscreen Version
+
+<details><summary>Show guide</summary>
+
+![Screenshot 2025-01-03 193847](https://github.com/user-attachments/assets/4cb9cdaf-1a98-4e0c-8fa5-59d08b192932)
+
+Open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) (don't just save the link, it'll save the github page)
+
+And use [this version of home-html.chunk.js](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/home-html.chunk.js)
+
+And add this to your Custom CSS Box in the Jellyfin Dashboard
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/tedhinklater/Jellyfin-Featured-Content-Bar@main/fullscreen/fullscreenspotlight.css");
+```
+
+</details>
+
 # Linux installation
 <details> <summary>Show guide</summary>
 
