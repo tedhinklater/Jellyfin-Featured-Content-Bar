@@ -15,16 +15,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 </details>
 
-2. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight. Open spotlight.html, Ctrl+F and search for ```YOURAPIKEYHERE``` and replace it with your API key.
-
-<details> <summary>Show screenshots</summary>
-
-![Screenshot 2024-11-25 030755](https://github.com/user-attachments/assets/31376edf-4c5c-4514-ab3d-a1299bf0b646)
-
-![Screenshot 2024-11-25 031128](https://github.com/user-attachments/assets/1f28a583-9e36-4076-aab1-27d4e8d95363)
-</details>
-
-3. In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```. Replace everything with this code
+2. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```. Replace everything with this code
 <details> <summary>Show code</summary>
 
 ```js
@@ -63,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 ```
 </details>
 
-
-4. Save the file. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
+3. Save the file. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 <details> <summary>Show screenshot</summary>
 
 ![Screenshot 2024-11-25 031248](https://github.com/user-attachments/assets/0fee8b46-2958-4da0-93b0-a00c43835064)
