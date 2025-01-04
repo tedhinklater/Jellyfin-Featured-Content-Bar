@@ -9,7 +9,7 @@
             @media (min-width: 3158px) {.featurediframe {height: 50em;} }
             @media (min-width: 2601px) and (max-width: 3157px) {.featurediframe {height: 33em;} }
             @media (min-width: 2000px) and (max-width: 2600px) {.featurediframe {height: 27em; font-size: 133%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;} }
-            @media (max-width: 1000px) and (orientation: portrait) {.featurediframe {height: 25em; margin-bottom: -3em;} }
+            @media (max-width: 1000px) and (orientation: portrait) {.featurediframe {height: 25em; margin-bottom: 0em;} }
             @media (max-width: 1000px) and (orientation: landscape) {.featurediframe {height: 26em; margin-bottom: -7em;} }
             @media (max-width: 400px) and (orientation: portrait) {.featurediframe {height: 45vh; margin-bottom: 0em;} }
             @media (max-height: 400px) and (orientation: landscape) {.featurediframe {height: 100vh;} }
