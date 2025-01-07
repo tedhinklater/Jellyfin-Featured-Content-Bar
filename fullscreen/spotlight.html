@@ -190,9 +190,6 @@
 					? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
 					: '';
 			} else {
-				additionalInfo = movie.RunTimeTicks 
-					? `${Math.round(movie.RunTimeTicks / 600000000)} min` 
-					: '';
 				const runtimeMinutes = movie.RunTimeTicks ? Math.floor(movie.RunTimeTicks / 600000000) : 0;
 				additionalInfo = runtimeMinutes > 0 ? `${runtimeMinutes} min` : ''; // Ensure empty string if 0 runtime
 			}
