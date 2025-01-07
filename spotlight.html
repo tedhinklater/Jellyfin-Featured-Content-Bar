@@ -190,22 +190,20 @@
 			slide.appendChild(createElem('div', 'heading', title));
 
 			const textContainer = createElem('div', 'text-container');
-			const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : 'Unknown';
-
-			let additionalInfo;
+			const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : '';
+			let additionalInfo = '';
 
 			if (movie.Type === 'Series') {
 				additionalInfo = movie.ChildCount 
 					? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` 
-					: 'Unknown Seasons';
+					: '';
 			} else if (movie.Type === 'BoxSet') {
 				additionalInfo = movie.ChildCount 
 					? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
-					: 'Unknown Movies';
+					: '';
 			} else {
-				additionalInfo = movie.RunTimeTicks 
-					? `${Math.round(movie.RunTimeTicks / 600000000)} min` 
-					: 'Unknown Runtime';
+				const runtimeMinutes = movie.RunTimeTicks ? Math.floor(movie.RunTimeTicks / 600000000) : 0;
+				additionalInfo = runtimeMinutes > 0 ? `${runtimeMinutes} min` : ''; // Ensure empty string if 0 runtime
 			}
 
 			let loremText = `
@@ -225,7 +223,7 @@
 			
 			// Age Rating
 			
-			const ageRating = movie.OfficialRating ? movie.OfficialRating : 'NR';
+			const ageRating = movie.OfficialRating ? movie.OfficialRating : '';
 			const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
 	
 			const ageRatingDiv = createElem('div', 'age-rating');
@@ -256,8 +254,6 @@
 						genresDiv.appendChild(separator);
 					}
 				});
-			} else {
-				genresDiv.textContent = 'Genres: N/A';
 			}
 			slide.appendChild(genresDiv);
 
