@@ -5,13 +5,13 @@
     <div id="indexPage" style="outline:0" data-role="page" data-dom-cache="true" class="page homePage libraryPage allLibraryPage backdropPage pageWithAbsoluteTabs withTabs" data-backdroptype="movie,series,book">
       <style>
         .featurediframe {width: 95vw; height: 23.5em; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 0em; margin-top: 1em;}
-            @media (min-width: 1000px) {.featurediframe {width: 100vw; height: 100vh; margin-top: -2em;}}
+            @media (min-width: 1301px) {.featurediframe {width: 100vw; height: 100vh; margin-top: -2em;}}
             @media (min-width: 3158px) {.featurediframe {height: 50em;} }
             @media (min-width: 2601px) and (max-width: 3157px) {.featurediframe {height: 33em;} }
             @media (min-width: 2000px) and (max-width: 2600px) {.featurediframe {height: 27em; font-size: 133%;} .layout-desktop #homeTab .sections.homeSectionsContainer {margin-top: -3em !important;} }
-            @media (max-width: 1000px) and (orientation: portrait) {.featurediframe {height: 25em; margin-bottom: 0em;} }
-            @media (max-width: 1000px) and (orientation: landscape) {.featurediframe {height: 26em; margin-bottom: -7em;} }
-            @media (max-width: 400px) and (orientation: portrait) {.featurediframe {height: 45vh; margin-bottom: 0em;} }
+            @media (max-width: 1300px) and (orientation: portrait) {.featurediframe {height: 25em; margin-bottom: -5em;} }
+            @media (max-width: 1300px) and (orientation: landscape) {.featurediframe {height: 26em; margin-bottom: -7em;} }
+            @media (max-width: 400px) and (orientation: portrait) {.featurediframe {height: 42vh; margin-bottom: -5em;} }
             @media (max-height: 400px) and (orientation: landscape) {.featurediframe {height: 100vh;} }
             @media screen and (aspect-ratio: 4/3) {.featurediframe {height: 25em;} }
             @media screen and (aspect-ratio: 3/4) {.featurediframe {height: 25em; margin-bottom: -5em;} }
