@@ -145,7 +145,40 @@ sudo systemctl restart jellyfin
 Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
 </details>
 
-# Docker installation
+# Docker installation (Mount)
+<details> <summary>Show guide</summary>
+
+1. **Prepare the Files**:
+   - Identify where your Docker configuration files for Jellyfin are stored on the host system. For example, they might be under `/docker/persistentfiles/jellyfin`.
+   - In this folder (on the host system), create a subdirectory called `ui` if it does not already exist.
+   - Copy the following files into this `ui` folder: (don't forget to edit them, as above)
+     - `home-html*.chunk.js`  
+     - `spotlight.html`  
+     - `List.txt`  
+
+   **Example Host Path**:  
+   ```
+   /docker/persistentfiles/jellyfin/ui
+   ```
+
+2. **Mount the Folder in the Container**:
+   - In your `docker-compose.yaml` or `docker run` include this `volume` mapping:
+     ```sh
+     /docker/persistentfiles/jellyfin/ui:/usr/share/jellyfin/web/ui:ro
+     ```
+
+3. **Replace the Chunk**:
+   - Once Jellyfin is started and the files are mounted, run the following command on your Docker host to replace the `home-html*.chunk.js` file inside the container:
+     ```sh
+     docker exec jellyfin bash -c "find /usr/share/jellyfin/web -name 'home-html*.chunk.js' -exec cp /config/ui/home-html.chunk.js {} \\;"
+     ```
+- Tip: If you have code hooks on your docker stack, place this line after `docker-compose up -d`, so even if the image or container cache is wiped out, it will always rebuild.
+
+4) Clear Browser Cache; if it doesn't work instantly, restart the container
+
+</details>
+
+# Docker installation (Manual)
 <details> <summary>Show guide</summary>
 
 1) Create the ui Directory (assuming your container is named jellyfin)
