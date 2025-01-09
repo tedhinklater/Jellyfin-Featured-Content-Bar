@@ -152,7 +152,7 @@ Make sure to clear your browser cache to load the updated home-html.chunk.js & s
    - Identify where your Docker configuration files for Jellyfin are stored on the host system. For example, they might be under `/docker/persistentfiles/jellyfin`.
    - In this folder (on the host system), create a subdirectory called `ui` if it does not already exist.
    - Copy the following files into this `ui` folder: (don't forget to edit them, as above)
-     - `home-html*.chunk.js`  
+     - `home-html.chunk.js`  
      - `spotlight.html`  
      - `List.txt`  
 
