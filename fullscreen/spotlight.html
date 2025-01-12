@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <title>Jellyfin Spotlight v2.3.2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Jellyfin Spotlight v2.6.0</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 		body { margin: 0; padding: 0; overflow: hidden; }
-		.slide { position: relative; width: 100vw; height: 100vh; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);}
+		.slide { position: relative; width: 100vw; height: 100vh; cursor: pointer; border-radius: 0em; }
 		.slide:focus { outline: 2px solid #fff; }
-		.backdrop { position: absolute; top: 3.15em; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 1; transition: width 0.5s ease, filter 0.8s ease, scale 2s ease; transform-origin: top; animation: none;}
+		.backdrop { position: absolute; top: 0em; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 1; transition: width 0.5s ease, filter 0.8s ease, scale 2s ease; transform-origin: top; animation: objectPositionAnimation 45s ease-in-out infinite; border-radius: 0em;}
 		.logo { position: relative; transform: translateX(-50%) translateY(-50%); top: 56%; left: 14.5%; z-index: 3; text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; transition: transform 0.3s ease, max-height 0.3s ease, max-width 0.3s ease;}
 		.heading { position: absolute; top: 0; left: 0; width: 100%; height: 2.3em; background-color: transparent; font-family: "Titillium Web", sans-serif; color: #D3D3D3; font-size: 22px; display: flex; align-items: center; justify-content: flex-start; z-index: 2; padding: 10px; padding-left: 0px; box-sizing: border-box; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); }
 		.back-button, .skip-button { position: absolute; color: #fff; cursor: pointer; z-index: 10; font-family: "Titillium Web", sans-serif; text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); font-size: 2em;}
 		.video-container { position: absolute; right: 0; top: 50px; width: 0; height: calc(100% - 50px); overflow: hidden; z-index: 2; transition: width 0.5s ease; z-index: 6; border-top-right-radius: 0.5em; border-bottom-right-radius: 0.5em; transform-origin: right;}
 		.video-player { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 7; }
-		.clickable-overlay { position: absolute; top: 50px; left: 0; width: 100%; height: calc(100%); z-index: 2; pointer-events: none; background: transparent; transition: background 0.8s ease, backdrop-filter 0.8s ease;}
+		.clickable-overlay { position: absolute; top: 50px; left: 0; width: 100%; height: calc(100%); z-index: 2; pointer-events: all; background: transparent; transition: background 0.8s ease, backdrop-filter 0.8s ease;}
 		.clickable-overlay::before { content: ''; position: absolute; top: 25%; left: 0; width: 100%; height: 75%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgba(0, 0, 0, 0.99) 6.25%, rgba(0, 0, 0, 0.96) 12.5%, rgba(0, 0, 0, 0.92) 18.75%, rgba(0, 0, 0, 0.86) 25%, rgba(0, 0, 0, 0.78) 31.25%, rgba(0, 0, 0, 0.69) 37.5%, rgba(0, 0, 0, 0.6) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.4) 56.25%, rgba(0, 0, 0, 0.31) 62.5%, rgba(0, 0, 0, 0.22) 68.75%, rgba(0, 0, 0, 0.14) 75%, rgba(0, 0, 0, 0.08) 81.25%, rgba(0, 0, 0, 0.04) 87.5%, rgba(0, 0, 0, 0.01) 93.75%, rgba(0, 0, 0, 0) 100% ); opacity: 0.15; transition: opacity 0.3s ease; z-index: 1;}
 		.clickable-overlay::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgb(0% 0% 0% / 0.9) 0%, rgb(0% 0% 0% / 0.6952285766601562) 6.25%, rgb(0% 0% 0% / 0.5275634765625) 12.5%, rgb(0% 0% 0% / 0.39222564697265627) 18.75%, rgb(0% 0% 0% / 0.284765625) 25%, rgb(0% 0% 0% / 0.20106353759765627) 31.25%, rgb(0% 0% 0% / 0.1373291015625) 37.5%, rgb(0% 0% 0% / 0.09010162353515627) 43.75%, rgb(0% 0% 0% / 0.05625000000000002) 50%, rgb(0% 0% 0% / 0.03297271728515627) 56.25%, rgb(0% 0% 0% / 0.017797851562500022) 62.5%, rgb(0% 0% 0% / 0.00858306884765625) 68.75%, rgb(0% 0% 0% / 0.003515625000000022) 75%, rgb(0% 0% 0% / 0.0011123657226562722) 81.25%, rgb(0% 0% 0% / 0.0002197265625000222) 87.5%, rgb(0% 0% 0% / 0.000013732910156272204) 93.75%, rgb(0% 0% 0% / 0) 100% ); opacity: 0.25; transition: opacity 0.3s ease, visibility 0.8s ease; z-index: 3; border-radius: 0.25em; }
 		.lorem-ipsum {position: relative; bottom: -44em; left: 59em; text-align: left; font-family: "Titillium Web", sans-serif; font-size: 92%; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 4; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
@@ -30,10 +30,10 @@
 		.critic-rating {position: absolute; top: 5.75em; right: 73%; font-size: 0.9em; font-family: "Titillium Web", sans-serif; color: #fff; z-index: 3; opacity: 1; transition: opacity 0.3s; text-align: center; width: 3.9em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
 		@keyframes objectPositionAnimation { 0% { object-position: center 30%; } 40% { object-position: center 80%; } 80% { object-position: center 20%; } 100% { object-position: center 30%; }}
 		.star-icon { color: gold; font-size: 0.9em; padding-right: 0.2em; margin-left: -0.1em;}
-		@media (max-width: 1000px) { .age-rating {position: absolute; top: 1em; left: 1em; font-size: 0.85em;} .lorem-ipsum {font-size: 0.7em; transform: translateX(50%); right: 50vw !important; padding-left: 0; padding-right: 1em;} .logo { transform: translateX(-50%) translateY(-50%); top: 6.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {display: none; opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 98vw !important; max-width: 98vw; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { pointer-events: inherit; border-radius: 1em !important; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9990234375) 6.25%, rgba(0, 0, 0, 0.99) 12.5%, rgba(0, 0, 0, 0.97) 18.75%, rgba(0, 0, 0, 0.94) 25%, rgba(0, 0, 0, 0.88) 31.25%, rgba(0, 0, 0, 0.79) 37.5%, rgba(0, 0, 0, 0.67) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.33) 56.25%, rgba(0, 0, 0, 0.21) 62.5%, rgba(0, 0, 0, 0.12) 68.75%, rgba(0, 0, 0, 0.06) 75%, rgba(0, 0, 0, 0.03) 81.25%, rgba(0, 0, 0, 0.01) 87.5%, rgba(0, 0, 0, 0) 93.75%, rgba(0, 0, 0, 0) 100% ); opacity: 0.8; top: 0px;} .backdrop {border-radius: 1em !important; left: 0% !important; width: 100% !important; top: 0em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px); border-radius: 1em !important;} .slide:hover .clickable-overlay::before { opacity: 0.98;} .skip-button {} .genres {bottom: 4em; left: unset !important; overflow: hidden; max-width: 100vw !important; white-space: nowrap; left: 0; z-index: 8; color: #fff; font-size: 0.7em;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important; top: unset !important; bottom: 0.4em; font-size: 0.7em !important; background: #fff9 !important; color: #000e !important; font-weight: 600; transform: translateX(-100%) !important; left: 47% !important;} .slide { box-shadow: none;} .text-container::before { display: none !important;} .buttons-container {display: flex; position: absolute; bottom: 0.6em; left: 0em; width: 100vw; z-index: 10;} .details-button { position: absolute; border: none; border-radius: 5px; padding: 0.5em 1.5em; font-family: "Titillium Web", sans-serif; cursor: pointer; z-index: 10; transition: background-color 0.3s ease; align-items: center; justify-content: center; bottom: 0.4em; font-size: 0.7em !important; background: #fff9; color: #000e; font-weight: 600; transform: translateX(100%) !important; right: 47%; display: flex; padding-right: 2em;} .details-button:hover { background-color: #fffc;} .watch-trailer-button:hover { background-color: #fffc !important;} .fas {padding: 0.5em;}}
-		@media (max-width:1000px) and (orientation:portrait) {.back-button {top: 5em !important; left: 0.5em;} .skip-button {top: 5em !important; right: 0.5em;} .genres {right: 50vw; position: absolute; max-width: 80vw !important; overflow:hidden; top: unset; transform: translateX(50%); bottom: 6.5em;} .logo {top: 11.5em;} .lorem-ipsum {position: absolute; left: unset; bottom: 3.5em;}}
-		@media (max-width:1000px) and (orientation:landscape) { .slide {height: 70vh;} .community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .back-button {top: 4em !important; left: 0.5em;} .skip-button {top: 4em !important; right: 0.5em;} .genres {position: absolute; bottom: 6.5em; top: unset; transform: translateX(50%); right: 50vw;} .lorem-ipsum {position: absolute; left: unset; bottom: 3.5em;}}
-		@media (min-width: 1001px) { .material-icons {font-size: 2em;}.details-button { color: white; background: #101010e3; font-size: 1.75em; padding: 0.25em; padding-left: 0.5em; padding-right: 0.75em; transition: background-color 0.3s ease; cursor: pointer; border-radius: 0.5em;} .lorem-ipsum { bottom: -47em; left: 59em; font-size: 1.1em; transform: translateX(-100%); transition: left 0.5s;} clickable-overlay {pointer-events: none;} .logo {max-height: 23em; position: absolute; top: 29em; transition: transform 0.1s ease, max-height 0.3s ease; max-width: 47em; left: 34em; transform: translateX(-50%) translateY(-50%); transition: left 0.5s, max-width 0.5s;} @media screen and (max-width:1400px){ .logo {max-width: 37em; left: 30em;} .lorem-ipsum {left: 55em;}} .watch-trailer-button {display: none;} .backdrop {filter: brightness(95%) contrast(105%) saturate(105%); left: 0%; width: 100%; transition: width 0.5s ease, filter 0.8s ease, transform 2s ease; filter: brightness(95%) contrast(105%) saturate(105%);} .slide {margin-top: -3.15em; height: 100vh;} .skip-button {} .video-container {top: 9em; height: 18.62em; right: 4em; border-radius: 0em; transform-origin: 100% 0; transition: transform 0.5s ease; transition-delay: 1s;} .plot {position: relative; bottom: -33.5em; left: 4em; font-size: 1.25em; max-width: 49em !important; width: 49em !important; -webkit-line-clamp: 3;} .genres {z-index: 3; bottom: unset; top: 10.5em; left: 5.1em; font-size: 1.1em; max-width: 74em;} .age-rating {font-size: 1.3em !important; position: absolute; left: 4em; top: 6.2em; white-space: nowrap;} .community-rating {top: 44em; left: 50em; font-size: 1.2em;} .critic-rating {top: 44em; left: 43em; font-size: 1.2em;} .heading::before {content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9903926402016152) 6.25%, rgb(0% 0% 0% / 0.9619397662556434) 12.5%, rgb(0% 0% 0% / 0.9157348061512727) 18.75%, rgb(0% 0% 0% / 0.8535533905932737) 25%, rgb(0% 0% 0% / 0.7777851165098011) 31.25%, rgb(0% 0% 0% / 0.6913417161825449) 37.5%, rgb(0% 0% 0% / 0.5975451610080642) 43.75%, rgb(0% 0% 0% / 0.5) 50%, rgb(0% 0% 0% / 0.4024548389919359) 56.25%, rgb(0% 0% 0% / 0.3086582838174552) 62.5%, rgb(0% 0% 0% / 0.22221488349019902) 68.75%, rgb(0% 0% 0% / 0.14644660940672627) 75%, rgb(0% 0% 0% / 0.08426519384872733) 81.25%, rgb(0% 0% 0% / 0.03806023374435663) 87.5%, rgb(0% 0% 0% / 0.009607359798384785) 93.75%, rgb(0% 0% 0% / 0) 100% ); height: 100vh; z-index:6; opacity: 1; bottom: 0;} .back-button {left: 0.5em; top: 16em;} .skip-button {right: 0.5em; top: 16em;}}
+		@media (max-width: 1300px) { .age-rating {position: absolute; top: 1em; left: 1em; font-size: 0.85em;} .lorem-ipsum {font-size: 0.7em; transform: translateX(50%); right: 50vw !important; padding-left: 0; padding-right: 1em;} .logo { transform: translateX(-50%) translateY(-50%); top: 6.5em; left: 50% !important; max-width: 70%; max-height: 45%; transform-origin: 50% 50%;} .plot {display: none; opacity: 1 !important; font-size: 90%; bottom: 0.5em; -webkit-line-clamp: 2; max-height: 3.3em; overflow: hidden; width: 98vw !important; max-width: 98vw; line-height: 1.45em;} .lorem-ipsum::before { opacity:0; padding-bottom: 0.25em; } .clickable-overlay { pointer-events: inherit; border-radius: 1em !important; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9990234375) 6.25%, rgba(0, 0, 0, 0.99) 12.5%, rgba(0, 0, 0, 0.97) 18.75%, rgba(0, 0, 0, 0.94) 25%, rgba(0, 0, 0, 0.88) 31.25%, rgba(0, 0, 0, 0.79) 37.5%, rgba(0, 0, 0, 0.67) 43.75%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.33) 56.25%, rgba(0, 0, 0, 0.21) 62.5%, rgba(0, 0, 0, 0.12) 68.75%, rgba(0, 0, 0, 0.06) 75%, rgba(0, 0, 0, 0.03) 81.25%, rgba(0, 0, 0, 0.01) 87.5%, rgba(0, 0, 0, 0) 93.75%, rgba(0, 0, 0, 0) 100% ); opacity: 0.8; top: 0px;} .backdrop {border-radius: 1em !important; left: 0% !important; width: 100% !important; top: 0em;} .lorem-ipsum .full-content { opacity: 1; max-width: 100%;} .lorem-ipsum::before { opacity:1; backdrop-filter: blur(2px); transform: translateX(0);} .clickable-overlay::before { opacity: 0.98; backdrop-filter: blur(0px); border-radius: 1em !important;} .slide:hover .clickable-overlay::before { opacity: 0.98;} .skip-button {} .genres {bottom: 4em; left: unset !important; overflow: hidden; max-width: 100vw !important; white-space: nowrap; left: 0; z-index: 8; color: #fff; font-size: 0.7em;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .community-rating {left: 86vw !important; top: 19.45em !important; text-align: left; z-index: 8;   font-size: 0.85em !important;} .critic-rating {font-size: 0.85em !important; left: 70vw !important; top: 19.45em !important; z-index: 8;} .additional-info {left: 18.5%; top: 5em; text-align: left;} .heading {z-index: 0;} .heading::before {display: none;} .video-container {max-width: 0 !important;} .watch-trailer-button {display: flex !important; top: unset !important; bottom: 0.4em; font-size: 0.7em !important; background: #fff9 !important; color: #000e !important; font-weight: 600; transform: translateX(-100%) !important; left: 47% !important;} .slide { box-shadow: none;} .text-container::before { display: none !important;} .buttons-container {display: flex; position: absolute; bottom: 0.6em; left: 0em; width: 100vw; z-index: 10;} .details-button { position: absolute; border: none; border-radius: 5px; padding: 0.5em 1.5em; font-family: "Titillium Web", sans-serif; cursor: pointer; z-index: 10; transition: background-color 0.3s ease; align-items: center; justify-content: center; bottom: 0.4em; font-size: 0.7em !important; background: #fff9; color: #000e; font-weight: 600; transform: translateX(100%) !important; right: 47%; display: flex; padding-right: 2em;} .details-button:hover { background-color: #fffc;} .watch-trailer-button:hover { background-color: #fffc !important;} .fas {padding: 0.5em;}}
+		@media (max-width:1300px) and (orientation:portrait) {.back-button {top: 5em !important; left: 0.5em;} .skip-button {top: 5em !important; right: 0.5em;} .genres {right: 50vw; position: absolute; max-width: 80vw !important; overflow:hidden; top: unset; transform: translateX(50%); bottom: 6.5em;} .logo {top: 11.5em;} .lorem-ipsum {position: absolute; left: unset; bottom: 3.5em;}}
+		@media (max-width:1300px) and (orientation:landscape) { .slide {height: 70vh;} .community-rating {left:89vw !important;} .critic-rating {left:76vw !important;} .back-button {top: 30vh; left: 0.5em;} .skip-button {top: 30vh; right: 0.5em;} .genres {position: absolute; bottom: 3.5em; top: unset; transform: translateX(50%); right: 50vw;} .lorem-ipsum {position: absolute; left: unset; bottom: 1.5em;}}
+		@media (min-width: 1301px) { .material-icons {font-size: 2em;}.details-button { color: white; background: #101010e3; font-size: 1.75em; padding: 0.25em; padding-left: 0.5em; padding-right: 0.75em; transition: background-color 0.3s ease; cursor: pointer; border-radius: 0.5em;} .lorem-ipsum { bottom: -47em; left: 59em; font-size: 1.1em; transform: translateX(-100%); transition: left 0.5s;} clickable-overlay {pointer-events: none;} .logo {max-height: 23em; position: absolute; top: 29em; transition: transform 0.1s ease, max-height 0.3s ease; max-width: 47em; left: 34em; transform: translateX(-50%) translateY(-50%); transition: left 0.5s, max-width 0.5s;} @media screen and (max-width:1400px){ .logo {max-width: 37em; left: 30em;} .lorem-ipsum {left: 55em;}} .watch-trailer-button {display: none;} .backdrop {filter: brightness(95%) contrast(105%) saturate(105%); left: 0%; width: 100%; transition: width 0.5s ease, filter 0.8s ease, transform 2s ease; filter: brightness(95%) contrast(105%) saturate(105%);} .slide {margin-top: -3.15em; height: 100vh;} .skip-button {} .video-container {top: 9em; height: 21.82em; right: 4em; border-radius: 0em; transform-origin: 100% 0; transition: transform 0.5s ease; transition-delay: 1s;} .plot {position: relative; bottom: -33.5em; left: 4em; font-size: 1.25em; max-width: 49em !important; width: 49em !important; -webkit-line-clamp: 3;} .genres {text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); z-index: 3; bottom: unset; top: 9em; left: 4.35em; font-size: 1.25em; max-width: 74em;} .age-rating {font-size: 1em !important; position: absolute; left: 5.7em; top: 9.5em; white-space: nowrap;} .community-rating {top: 44em; left: 50em; font-size: 1.25em;} .critic-rating {top: 44em; left: 43em; font-size: 1.2em;} .heading::before {content: ''; position: absolute; top: 2.27em; left: 0; width: 100%; background: linear-gradient(0deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.9903926402016152) 6.25%, rgb(0% 0% 0% / 0.9619397662556434) 12.5%, rgb(0% 0% 0% / 0.9157348061512727) 18.75%, rgb(0% 0% 0% / 0.8535533905932737) 25%, rgb(0% 0% 0% / 0.7777851165098011) 31.25%, rgb(0% 0% 0% / 0.6913417161825449) 37.5%, rgb(0% 0% 0% / 0.5975451610080642) 43.75%, rgb(0% 0% 0% / 0.5) 50%, rgb(0% 0% 0% / 0.4024548389919359) 56.25%, rgb(0% 0% 0% / 0.3086582838174552) 62.5%, rgb(0% 0% 0% / 0.22221488349019902) 68.75%, rgb(0% 0% 0% / 0.14644660940672627) 75%, rgb(0% 0% 0% / 0.08426519384872733) 81.25%, rgb(0% 0% 0% / 0.03806023374435663) 87.5%, rgb(0% 0% 0% / 0.009607359798384785) 93.75%, rgb(0% 0% 0% / 0) 100% ); height: 100vh; z-index:6; opacity: 1; bottom: 0;} .back-button {left: 0.5em; top: 16em;} .skip-button {right: 0.5em; top: 16em;}}
 		@media (max-width: 500px) { .community-rating {left: 0em; top: 5.6em;} .critic-rating {left: 0em; top: 7.6em;} .additional-info {left: 18.5%; top: 5em; text-align: right;} .heading::before {display: none;} .logo {max-width: 60%; max-height: 35%; left: 50% !important;}}
 		.age-rating { font-weight: 600; font-size: 1.1em;} .additional-info {display: none;}
 		.age-rating span.gb-u, .age-rating span.u { background-color: #078c6d; color: white; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);}
@@ -74,7 +74,7 @@
 		.watch-trailer-button { position: absolute; border: none; border-radius: 5px; padding: 0.5em 1.5em; font-size: 0.9em; font-family: "Titillium Web", sans-serif; cursor: pointer; z-index: 10; transition: background-color 0.3s ease; align-items: center; justify-content: center; padding-right: 2em;}
 		.material-symbols-outlined { vertical-align: middle; font-size: 0.5em !important; opacity: 0.75; }
 		.logo { opacity: 0; animation: fadeIn 2s ease-in forwards; animation-delay: 1s;}
-		@keyframes fadeIn { to { opacity: 1;} }
+		@keyframes fadeIn { to { opacity: 1;} }	
     </style>
 </head>
 <body>
@@ -86,14 +86,55 @@
         </div>
     </div>
     <script>
-		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 350, token = 'YOURAPIKEYHERE', useTrailers = true;
+		let title = 'Spotlight', moviesSeriesBoth = 3, shuffleInterval = 15000, plotMaxLength = 550, useTrailers = true;
 		let trailerMaxLength = 0; // Default value 0; length measured in ms
 		let isChangingSlide = false, player = null, slideChangeTimeout = null, isHomePageActive = false, showOnOtherPages = false;
 		let currentLocation = window.top.location.href;
 		let movieList = [], currentMovieIndex = 0;
 		let previousMovies = [];
 		let forwardMovies = [];
-		
+
+		// Ensure that the video player is muted initially and can be unmuted on hover
+		const initPlayer = () => {
+		  player = new YT.Player(videoElement, {
+			height: '100%',
+			width: '100%',
+			videoId,
+			playerVars: {
+			  mute: isMuted ? 1 : 0,
+			},
+			events: {
+			  'onReady': (event) => {
+				event.target.playVideo();
+				event.target.setVolume(isMuted ? 0 : 100);
+			  },
+			  'onStateChange': (event) => {
+				if (event.data === YT.PlayerState.ENDED) {
+				  setTimeout(fetchRandomMovie, 100);
+				}
+			  },
+			  'onError': () => {
+				console.error(`Error with YouTube video`);
+				cleanup();
+			  }
+			}
+		  });
+		};
+
+		const slidesContainer = document.getElementById('slides-container');
+		slidesContainer.addEventListener('mouseenter', () => {
+		  if (player) {
+			player.unMute();
+			isMuted = false;
+		  }
+		});
+
+		slidesContainer.addEventListener('mouseleave', () => {
+		  if (player) {
+			player.mute();
+			isMuted = true;
+		  }
+		});
 		const createElem = (tag, className, textContent, src, alt) => {
 			const elem = document.createElement(tag);
 			if (className) elem.className = className;
@@ -125,6 +166,7 @@
 			cleanup();
 			const container = document.getElementById('slides-container');
 			const slide = createElem('div', 'slide');
+
 			if (movie && (!previousMovies.length || previousMovies[previousMovies.length - 1].Id !== movie.Id)) {
 				previousMovies.push(movie);
 			}
@@ -135,106 +177,73 @@
 			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
 			slide.appendChild(createElem('div', 'heading', title));
 
-		const textContainer = createElem('div', 'text-container');
-		const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : 'Unknown';
-		let additionalInfo;
+			const textContainer = createElem('div', 'text-container');
+			const premiereYear = movie.PremiereDate ? new Date(movie.PremiereDate).getFullYear() : '';
+			let additionalInfo = '';
 
-		if (movie.Type === 'Series') {
-			additionalInfo = movie.ChildCount 
-				? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` 
-				: 'Unknown Seasons';
-		} else if (movie.Type === 'BoxSet') {
-			additionalInfo = movie.ChildCount 
-				? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
-				: 'Unknown Movies';
-		} else {
-			additionalInfo = movie.RunTimeTicks 
-				? `${Math.round(movie.RunTimeTicks / 600000000)} min` 
-				: 'Unknown Runtime';
-		}
+			if (movie.Type === 'Series') {
+				additionalInfo = movie.ChildCount 
+					? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` 
+					: '';
+			} else if (movie.Type === 'BoxSet') {
+				additionalInfo = movie.ChildCount 
+					? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
+					: '';
+			} else {
+				const runtimeMinutes = movie.RunTimeTicks ? Math.floor(movie.RunTimeTicks / 600000000) : 0;
+				additionalInfo = runtimeMinutes > 0 ? `${runtimeMinutes} min` : ''; // Ensure empty string if 0 runtime
+			}
 
-		let loremText = `
-			<span style="border: ${isMobile() ? 'none' : '1px solid #fff8'}; background: ${isMobile() ? 'transparent' : '#101010e3'}; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				${additionalInfo}
-			</span>
-			<span style="border: ${isMobile() ? 'none' : '1px solid #fff8'}; background: ${isMobile() ? 'transparent' : '#101010e3'}; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				${premiereYear}
-			</span>`;
+			let loremText = `
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
+				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
 
-		if (movie.CommunityRating) {
-			loremText += `
-				<span style="border: ${isMobile() ? 'none' : '1px solid #fff8'}; background: ${isMobile() ? 'transparent' : '#101010e3'}; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-					<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
-				</span>`;
-		}
-
-		if (movie.CriticRating) {
-			loremText += `
-				<span style="border: ${isMobile() ? 'none' : '1px solid #fff8'}; background: ${isMobile() ? 'transparent' : '#101010e3'}; border-radius: 0.5em; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-					<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.15em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">
-					${movie.CriticRating}%
-				</span>`;
-		}
-
-		textContainer.innerHTML = loremText;
-
-		if (isMobile()) {
-			textContainer.style.background = 'transparent';
-			textContainer.style.border = 'none';
-		} else {
-			textContainer.style.background = '#101010e3';
-			textContainer.style.border = '1px solid #fff8';
-		}
-
-		slide.appendChild(textContainer);
+			if (movie.CommunityRating) {
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
+				</span> `;
+			}
+			if (movie.CriticRating) {
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
+				<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">  
+				${movie.CriticRating}%</span>`;
+			}
 			
+			// Age Rating
 			
-		const ageRating = movie.OfficialRating ? movie.OfficialRating : 'NR';
-		const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
+			const ageRating = movie.OfficialRating ? movie.OfficialRating : '';
+			const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
+	
+			const ageRatingDiv = createElem('div', 'age-rating');
+			const ageRatingSpan = createElem('span', ratingClass, ageRating);
+			ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
+			ageRatingDiv.appendChild(ageRatingSpan);
+			slide.appendChild(ageRatingDiv);
+			
+			// Genres Section
+			const genresDiv = createElem('div', 'genres');
+			if (movie.Genres && movie.Genres.length > 0) {
+				movie.Genres.forEach((genre, index) => {
+					const genreElem = createElem('span', 'genre-item');
+					genreElem.textContent = genre;
+					genreElem.style.backgroundColor = 'transparent';
+					genreElem.style.paddingLeft = '0.5em';
+					genreElem.style.paddingRight = '0.5em';
+					genreElem.style.paddingTop = '0.1em';
+					genreElem.style.paddingBottom = '0.1em';
+					genreElem.style.color = 'white';
+					genreElem.style.borderRadius = '0em';
+					genreElem.style.marginRight = '0em';
+					genresDiv.appendChild(genreElem);
 
-		const ageRatingDiv = createElem('div', 'age-rating');
-		const ageRatingSpan = createElem('span', ratingClass, ageRating);
-		ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; display: inline-block; text-align: center; line-height: 0.8em;';
-		ageRatingDiv.appendChild(ageRatingSpan);
-		slide.appendChild(ageRatingDiv);
-		
-		// Genres Section
-		const genresDiv = createElem('div', 'genres');
-		if (movie.Genres && movie.Genres.length > 0) {
-			movie.Genres.forEach((genre, index) => {
-				const genreElem = createElem('span', 'genre-item');
-				genreElem.textContent = genre;
-				genreElem.style.backgroundColor = '#101010e3';
-				genreElem.style.paddingLeft = '0.5em';
-				genreElem.style.paddingRight = '0.5em';
-				genreElem.style.paddingTop = '0.1em';
-				genreElem.style.paddingBottom = '0.1em';
-				genreElem.style.color = 'white';
-				genreElem.style.borderRadius = '0em';
-				genreElem.style.marginRight = '1em';
-
-				if (isMobile()) {
-					genreElem.style.border = 'none';
-					genreElem.style.background = 'transparent';
-				} else {
-					genreElem.style.border = '1px solid #fff8';
-					genreElem.style.borderRadius = '0.5em';
-				}
-
-			genresDiv.appendChild(genreElem);
-
-			if (isMobile() && index < movie.Genres.length - 1) {
-				const separator = createElem('span', 'material-symbols-outlined');
-				separator.textContent = 'stat_0';
-				separator.style.fontSize = '1em';
-				separator.style.verticalAlign = 'middle';
-				separator.style.marginRight = '1em';
-				genresDiv.appendChild(separator);
-				}
+					if (index < movie.Genres.length - 1) {
+						const separator = createElem('span', 'material-symbols-outlined');
+						separator.textContent = 'stat_0'; // The separator symbol
+						separator.style.fontSize = '0.6em';
+						genresDiv.appendChild(separator);
+					}
 				});
-				} else {
-					genresDiv.textContent = 'Genres: N/A';
-				}
+			}
 			slide.appendChild(genresDiv);
 
 			const loremDiv = createElem('div', 'lorem-ipsum');
@@ -242,20 +251,6 @@
 			textContainer.appendChild(loremDiv);
 			textContainer.appendChild(createElem('div', 'plot', truncateText(movie.Overview, plotMaxLength)));
 			slide.appendChild(textContainer);
-			
-			const buttonsContainer = createElem('div', 'buttons-container');
-
-			const detailsButton = createElem('button', 'details-button');
-			const playIcon = createElem('i', 'fas fa-play');
-			detailsButton.appendChild(playIcon);
-			detailsButton.appendChild(document.createTextNode(' Play'));
-			detailsButton.onclick = (e) => {
-				e.stopPropagation();
-				window.top.location.href = `/#!/details?id=${movie.Id}`;
-			};
-
-			buttonsContainer.appendChild(detailsButton);
-			slide.appendChild(buttonsContainer);
 
 			const backButton = createElem('div', 'back-button');
 			const backIcon = createElem('i', 'material-icons');
@@ -278,6 +273,23 @@
 
 			slide.appendChild(backButton);
 			slide.appendChild(skipButton);
+			
+			// Create Details buttons
+			const buttonsContainer = createElem('div', 'buttons-container');
+
+			// Details Button
+			const detailsButton = createElem('button', 'details-button');
+			const playIcon = createElem('i', 'fas fa-play');
+			detailsButton.appendChild(playIcon);
+			detailsButton.appendChild(document.createTextNode(' Play'));
+			detailsButton.onclick = (e) => {
+				e.stopPropagation();
+				window.top.location.href = `/#!/details?id=${movie.Id}`; // Navigate to details page
+			};
+
+			// Append buttons to the container
+			buttonsContainer.appendChild(detailsButton);
+			slide.appendChild(buttonsContainer);			
 
 			const overlay = createElem('div', 'clickable-overlay');
 			overlay.onclick = () => window.top.location.href = `/#!/details?id=${movie.Id}`;
@@ -286,10 +298,10 @@
             if (hasVideo && movie.RemoteTrailers && movie.RemoteTrailers.length > 0) {
                 const trailerUrl = movie.RemoteTrailers[0].Url;
                 const watchTrailerButton = createElem('button', 'watch-trailer-button');
-                const playIcon = document.createElement('i');
-                playIcon.className = 'fas fa-film';
-                watchTrailerButton.appendChild(playIcon);
-                watchTrailerButton.appendChild(document.createTextNode(' Trailer'));
+                const trailerIcon = document.createElement('i');
+                trailerIcon.className = 'fas fa-film';
+                watchTrailerButton.appendChild(trailerIcon);
+                watchTrailerButton.appendChild(document.createTextNode('Trailer'));
 
                 watchTrailerButton.onclick = (e) => {
                     e.stopPropagation();
@@ -302,7 +314,7 @@
                     }
                 };
 
-                slide.appendChild(watchTrailerButton);
+                buttonsContainer.appendChild(watchTrailerButton);
             }
 
 			if (useTrailers && hasVideo && movie.RemoteTrailers?.length > 0) {
@@ -313,42 +325,97 @@
 				slide.appendChild(videoContainer);
 
 				player = new YT.Player(videoElement, {
-					height: '100%', width: '100%', videoId,
+					height: '100%',
+					width: '100%',
+					videoId,
 					playerVars: {
-						mute: 0
+						mute: 0  // Change to start the video muted
 					},
 					events: {
 						'onReady': event => {
+					if (trailerMaxLength > 0) {
+						clearTimeout(slideChangeTimeout);
+						slideChangeTimeout = setTimeout(() => {
+							if (player) {
+								player.stopVideo();
+								player.destroy();
+								player = null;
+							}
+							fetchRandomMovie();
+						}, trailerMaxLength);
+					}
 					if (isMuted){
 									event.target.setVolume(0);  // Mute the video if the setting is MuteOn
 								} else {
 									event.target.setVolume(4);
 								}
 							event.target.playVideo();
-							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
-								const element = document.querySelector(`.${cls}`);
-								if (element) element.style.width = '100%';
-							});
-							videoContainer.style.width = '27.6vw';
 						},
-						'onStateChange': event => { if (event.data === YT.PlayerState.ENDED) setTimeout(fetchRandomMovie, 100); },
+						'onStateChange': event => {
+							if (event.data === YT.PlayerState.PLAYING) {
+								// Only show when YT video is successfully playing
+								const backdrop = document.querySelector('.backdrop');
+								if (backdrop) {
+									backdrop.style.width = '';
+									backdrop.style.left = '';
+								}
+
+								const plot = document.querySelector('.plot');
+								if (plot) {
+									plot.style.left = '';
+									plot.style.maxWidth = '';
+								}
+								
+								const genres = document.querySelector('.genres');
+								if (genres) {
+									genres.style.left = '';
+								}								
+
+								const loremIpsum = document.querySelector('.lorem-ipsum');
+								if (loremIpsum) loremIpsum.style.left = '';
+
+								const logo = document.querySelector('.logo');
+								if (logo) logo.style.left = '';
+
+								videoContainer.style.width = '31.4vw';
+							} else if (event.data === YT.PlayerState.ENDED) {
+								setTimeout(fetchRandomMovie, 100);
+							}
+						},
 						'onError': () => {
 							console.error(`YouTube prevented playback of '${movie.Name}'`);
-							if (player) { player.destroy(); player = null; }
-							['backdrop', 'plot', 'lorem-ipsum'].forEach(cls => {
-								const element = document.querySelector(`.${cls}`);
-								if (element) element.style.width = '100%';
-							});
+							if (player) {
+								player.destroy();
+								player = null;
+							}
+
+							// Reset style when a YT error occurs
+							const backdrop = document.querySelector('.backdrop');
+							if (backdrop) backdrop.style.width = '';
+
+							const plot = document.querySelector('.plot');
+							if (plot) plot.style.width = '';
+
+							const loremIpsum = document.querySelector('.lorem-ipsum');
+							if (loremIpsum) loremIpsum.style.paddingRight = '0';
+
+							const logo = document.querySelector('.logo');
+							if (logo) logo.style.left = '';
+
 							videoContainer.style.width = '0';
+
 							startSlideChangeTimer();
 						}
 					}
 				});
-			} else startSlideChangeTimer();
+			} else {
+				startSlideChangeTimer();
+			}
+
 
 			container.innerHTML = '';
 			container.appendChild(slide);
-		};
+			};
 		
 				function addSwipeListeners(slide) {
 			let startX, startY, distX, distY;
@@ -379,7 +446,7 @@
 				distX = distY = 0;
 			});
 		}
-		
+
 		const navigateBack = () => {
 			if (previousMovies.length < 2) {
 				console.log("No previous slides in history.");
@@ -529,45 +596,27 @@
 		};
 
 		const fetchNextMovie = (useRandom = false) => {
-			const fetchCurrentUserId = () =>
-				fetch('/Sessions', {
-					headers: { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` }
-				})
-				.then(response => response.json())
-				.then(sessions => {
-					const currentSession = sessions.find(session => session.UserId);
-					return currentSession ? currentSession.UserId : null;
-				})
-				.catch(() => null);
+			const token = JSON.parse(localStorage.getItem('jellyfin_credentials')).Servers[0].AccessToken;
+			const headers = {'Authorization': `MediaBrowser Client="Jellyfin Web", Token="${token}"` };
 
-			fetchCurrentUserId().then(currentUserId => {
-				if (!currentUserId) {
-					console.error('Could not retrieve the current user ID.');
-					isChangingSlide = false;
-					return;
-				}
+			if (!useRandom && movieList.length > 0) {
+				if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
+				const movieId = movieList[currentMovieIndex];
+				currentMovieIndex++;
 
-				const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Device="YourDeviceName", DeviceId="YourDeviceId", Version="YourClientVersion", Token="${token}"` };
-
-				if (!useRandom && movieList.length > 0) {
-					if (currentMovieIndex >= movieList.length) currentMovieIndex = 0;
-					const movieId = movieList[currentMovieIndex];
-					currentMovieIndex++;
-
-					fetch(`/Users/${currentUserId}/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-						.then(response => response.json())
-						.then(checkBackdropAndLogo)
-						.catch(() => startSlideChangeTimer())
-						.finally(() => { isChangingSlide = false; });
-				} else {
-					const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
-					fetch(`/Users/${currentUserId}/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
-						.then(response => response.json())
-						.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
-						.catch(() => startSlideChangeTimer())
-						.finally(() => { isChangingSlide = false; });
-				}
-			});
+				fetch(`/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(checkBackdropAndLogo)
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			} else {
+				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
+				fetch(`/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
+					.then(response => response.json())
+					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+					.catch(() => startSlideChangeTimer())
+					.finally(() => { isChangingSlide = false; });
+			}
 		};
 
 		const checkNavigation = () => {
@@ -602,7 +651,7 @@
 		setInterval(checkNavigation, 100);
 
 		document.addEventListener('DOMContentLoaded', () => {
-			if (window.innerWidth < 1001) useTrailers = false;
+			if (window.innerWidth < 1301) useTrailers = false;
 			const isHomePage = url => url.includes('/home') || url.endsWith('/web/') || url.endsWith('/web/index.html');
 			if (isHomePage(window.top.location.href)) {
 				isHomePageActive = true;

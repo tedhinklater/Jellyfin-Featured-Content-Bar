@@ -15,16 +15,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 </details>
 
-2. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` In your Jellyfin Dashboard, under ```API Keys``` create an API key for Spotlight. Open spotlight.html, Ctrl+F and search for ```YOURAPIKEYHERE``` and replace it with your API key.
-
-<details> <summary>Show screenshots</summary>
-
-![Screenshot 2024-11-25 030755](https://github.com/user-attachments/assets/31376edf-4c5c-4514-ab3d-a1299bf0b646)
-
-![Screenshot 2024-11-25 031128](https://github.com/user-attachments/assets/1f28a583-9e36-4076-aab1-27d4e8d95363)
-</details>
-
-3. In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```. Replace everything with this code
+2. ```Important: Open Notepad with Administrator rights, or use Notepad++ for this``` In the jellyfin-web folder, open the file ```home-html.RANDOMSTRINGHERE.chunk.js```. Replace everything with this code
 <details> <summary>Show code</summary>
 
 ```js
@@ -63,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 ```
 </details>
 
-
-4. Save the file. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
+3. Save the file. Empty your browser's cached web content (Ctrl+F5 or empty it from your browser's Cookies and Site Data settings section)
 <details> <summary>Show screenshot</summary>
 
 ![Screenshot 2024-11-25 031248](https://github.com/user-attachments/assets/0fee8b46-2958-4da0-93b0-a00c43835064)
@@ -97,34 +87,20 @@ Same as above, except open this link and download the file [spotlight.html](http
 
 # Fullscreen Version
 
-<details> <summary>Show guide</summary>
+<details><summary>Show guide</summary>
 
-![Screenshot 2024-11-24 133953](https://github.com/user-attachments/assets/ededdd38-c16b-40f4-b5e8-86a03c6522c0)
+![Screenshot 2025-01-03 193847](https://github.com/user-attachments/assets/4cb9cdaf-1a98-4e0c-8fa5-59d08b192932)
 
 Open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) (don't just save the link, it'll save the github page)
 
-insert this into home-html.RANDOMSTRINGHERE.chunk.js after ```data-backdroptype="movie,series,book">``` 
+And use [this version of home-html.chunk.js](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/home-html.chunk.js)
 
-```js
-<style>.featurediframe { width: 99.5vw; height: 100vh; display: block; border: 0px solid #000; margin: 0 auto; margin-bottom: 40px} @media (max-width:1000px) and (orientation:portrait) {.featurediframe {height: 46vh; width: 95vw;}} @media (max-width:1000px) and (orientation:landscape) {.featurediframe {height: 98vh; width: 95vw;}} @media (min-width: 2000px) { .featurediframe {height:102vh;}}</style><iframe class="featurediframe" src="/web/ui/spotlight.html"></iframe>
-```
-
-and add this CSS to the very ```end``` of your Custom CSS
+And add this to your Custom CSS Box in the Jellyfin Dashboard
 
 ```css
-.layout-desktop .page.homePage.libraryPage.allLibraryPage.backdropPage.pageWithAbsoluteTabs.withTabs.mainAnimatedPage { margin-top:-4.5em;}
-.layout-desktop .overflowBackdropCard, .overflowSmallBackdropCard {  width: 12.7vw !important;  padding-right: 1.85em;}
-.layout-desktop .skinHeader-withBackground {background-color: transparent; backdrop-filter: blur(0px);}
-.layout-desktop #homeTab .section0 .sectionTitle.sectionTitle-cards.padded-left {  display: none !important;}
-.layout-desktop #homeTab .verticalSection.section1.emby-scroller-container {  position: relative;  top: -27em;  left: 73em; width: 29vw; margin-bottom: -17em;}
-.layout-desktop #homeTab .verticalSection.section2.emby-scroller-container::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100vw; background: black; z-index: -1;}
-[dir="ltr"] #homeTab .verticalSection.section0.emby-scroller-container .emby-scrollbuttons {right: -5em; top: -2em;}
-.layout-desktop #homeTab .verticalSection.section0 .cardText-first {display: none !important;}
-.layout-desktop #homeTab .sections.homeSectionsContainer { margin-top: 2em;}
-.layout-desktop .sectionTitle.sectionTitle-cards.padded-left + .itemsContainer { margin-bottom: 2em;}
+@import url("https://cdn.jsdelivr.net/gh/tedhinklater/Jellyfin-Featured-Content-Bar@main/fullscreen/fullscreenspotlight.css");
 ```
 
-Finally, empty your browser cache
 </details>
 
 # Linux installation
@@ -169,7 +145,40 @@ sudo systemctl restart jellyfin
 Make sure to clear your browser cache to load the updated home-html.chunk.js & spotlight.html 
 </details>
 
-# Docker installation
+# Docker installation (Mount)
+<details> <summary>Show guide</summary>
+
+1. **Prepare the Files**:
+   - Identify where your Docker configuration files for Jellyfin are stored on the host system. For example, they might be under `/docker/persistentfiles/jellyfin`.
+   - In this folder (on the host system), create a subdirectory called `ui` if it does not already exist.
+   - Copy the following files into this `ui` folder: (don't forget to edit them, as above)
+     - `home-html.chunk.js`  
+     - `spotlight.html`  
+     - `List.txt`  
+
+   **Example Host Path**:  
+   ```
+   /docker/persistentfiles/jellyfin/ui
+   ```
+
+2. **Mount the Folder in the Container**:
+   - In your `docker-compose.yaml` or `docker run` include this `volume` mapping:
+     ```sh
+     /docker/persistentfiles/jellyfin/ui:/usr/share/jellyfin/web/ui:ro
+     ```
+
+3. **Replace the Chunk**:
+   - Once Jellyfin is started and the files are mounted, run the following command on your Docker host to replace the `home-html*.chunk.js` file inside the container:
+     ```sh
+     docker exec jellyfin bash -c "find /usr/share/jellyfin/web -name 'home-html*.chunk.js' -exec cp /config/ui/home-html.chunk.js {} \\;"
+     ```
+- Tip: If you have code hooks on your docker stack, place this line after `docker-compose up -d`, so even if the image or container cache is wiped out, it will always rebuild.
+
+4) Clear Browser Cache; if it doesn't work instantly, restart the container
+
+</details>
+
+# Docker installation (Manual)
 <details> <summary>Show guide</summary>
 
 1) Create the ui Directory (assuming your container is named jellyfin)
