@@ -708,6 +708,7 @@
 		const stopBackgroundVideo = () => {
 			if (player && typeof player.stopVideo === 'function') {
 				player.stopVideo();
+				clearInterval(monitorOutroInterval);
 				player.destroy();
 			}
 			player = null;
