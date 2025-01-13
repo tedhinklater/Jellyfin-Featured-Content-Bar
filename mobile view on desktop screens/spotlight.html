@@ -158,7 +158,12 @@
 			let loremText = `
 				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
 				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
-
+			
+			if (premiereYear) {
+				loremText += `
+					<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span>`;
+			}
+			
 			if (movie.CommunityRating) {
 				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
 				<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
