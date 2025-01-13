@@ -197,7 +197,7 @@
 			const container = document.getElementById('slides-container');
 			if (container) container.innerHTML = '';
 		};
-
+	    
 		const createSlideElement = (movie, hasVideo = false) => {
 			cleanup();
 			const container = document.getElementById('slides-container');
@@ -210,7 +210,11 @@
 			if (previousMovies.length > 50) {
 				previousMovies.shift();
 			}
-			['backdrop', 'logo'].forEach(type => slide.appendChild(createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)));
+			['backdrop', 'logo'].forEach(type =>
+				slide.appendChild(
+					createElem('img', type, null, `/Items/${movie.Id}/Images/${type.charAt(0).toUpperCase() + type.slice(1)}${type === 'backdrop' ? '/0' : ''}`, type)
+				)
+			);
 			slide.appendChild(createElem('div', 'heading', title));
 
 			const textContainer = createElem('div', 'text-container');
@@ -218,48 +222,45 @@
 			let additionalInfo = '';
 
 			if (movie.Type === 'Series') {
-				additionalInfo = movie.ChildCount 
-					? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` 
-					: '';
+				additionalInfo = movie.ChildCount ? `${movie.ChildCount} Season${movie.ChildCount > 1 ? 's' : ''}` : '';
 			} else if (movie.Type === 'BoxSet') {
-				additionalInfo = movie.ChildCount 
-					? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` 
-					: '';
+				additionalInfo = movie.ChildCount ? `${movie.ChildCount} Movie${movie.ChildCount > 1 ? 's' : ''}` : '';
 			} else {
 				const runtimeMinutes = movie.RunTimeTicks ? Math.floor(movie.RunTimeTicks / 600000000) : 0;
 				additionalInfo = runtimeMinutes > 0 ? `${runtimeMinutes} min` : ''; // Ensure empty string if 0 runtime
 			}
 
-			let loremText = `
-				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${additionalInfo}</span> 
-				<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span> `;
-			
-			if (premiereYear) {
-				loremText += `
-					<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span>`;
+			let loremText = '';
+
+			if (additionalInfo) {
+				loremText += `<span style="background: transparent; padding-left: 0em; padding-right: 0em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 0em;">${additionalInfo}</span>`;
 			}
-			
+			if (premiereYear) {
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span>`;
+			}
 			if (movie.CommunityRating) {
 				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
-				</span> `;
+					<i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}
+				</span>`;
 			}
 			if (movie.CriticRating) {
 				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">
-				<img src="https://i.imgur.com/aoLXyXx.png" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">  
-				${movie.CriticRating}%</span>`;
+					<img src="/web/assets/img/fresh.svg" alt="Rotten Tomatoes" style="width: 1.05em; height: 1.25em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.3em;">
+					${movie.CriticRating}%
+				</span>`;
 			}
 			
 			// Age Rating
-			
-			const ageRating = movie.OfficialRating ? movie.OfficialRating : '';
-			const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
-	
-			const ageRatingDiv = createElem('div', 'age-rating');
-			const ageRatingSpan = createElem('span', ratingClass, ageRating);
-			ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
-			ageRatingDiv.appendChild(ageRatingSpan);
-			slide.appendChild(ageRatingDiv);
+			if (movie.OfficialRating) {
+				const ageRating = movie.OfficialRating;
+				const ratingClass = ageRating.toLowerCase().replace(/ /g, '-');
+
+				const ageRatingDiv = createElem('div', 'age-rating');
+				const ageRatingSpan = createElem('span', ratingClass, ageRating);
+				ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
+				ageRatingDiv.appendChild(ageRatingSpan);
+				slide.appendChild(ageRatingDiv);
+			}
 			
 			// Genres Section
 			const genresDiv = createElem('div', 'genres');
