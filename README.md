@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 To preselect content, edit [List.txt](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/List.txt) in the ```ui``` folder and paste the ID of each piece of content to be featured (IDs can be found in the address bar).
 
-```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them). If you want to feature a Collection or Album, make sure it has both a Backdrop and Logo image!
+```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them). If you want to feature a ```Collection``` or ```Album``` make sure it has both a Backdrop and Logo image!
 
 If it is empty ```below``` line 1, the bar will feature content at random.
 
