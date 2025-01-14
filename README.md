@@ -72,7 +72,7 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 
 # Desktop View
 
-![fcb](https://github.com/user-attachments/assets/eb0c9ce0-b96e-4a7e-bf71-ba9a637c25a3)
+![bar](https://github.com/user-attachments/assets/f2c45f47-3530-4525-9f89-fe4e96c7676f)
 
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
