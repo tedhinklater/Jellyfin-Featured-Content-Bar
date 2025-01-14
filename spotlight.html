@@ -485,26 +485,30 @@
 			container.appendChild(slide);
 			};
 		
-			function addSwipeListeners(slide) {
-				let startX, startY, distX, distY;
-				const threshold = 50;
-				const restraint = 100;
+		function addSwipeListeners(slide) {
+			let startX, startY, distX, distY;
+			const threshold = 50;
+			const restraint = 100;
 
-			slide.addEventListener('touchstart', e => {
+			slide.addEventListener('touchstart', (e) => {
 				const touch = e.touches[0];
 				startX = touch.clientX;
 				startY = touch.clientY;
+				distX = 0;
+				distY = 0;
 			});
 
-			slide.addEventListener('touchmove', e => {
-				e.preventDefault();
+			slide.addEventListener('touchmove', (e) => {
 				const touch = e.touches[0];
 				distX = touch.clientX - startX;
 				distY = touch.clientY - startY;
+
+				if (Math.abs(distX) > Math.abs(distY)) {
+					e.preventDefault();
+				}
 			});
 
 			slide.addEventListener('touchend', () => {
-				console.log('Swipe detected:', { distX, distY });
 				if (Math.abs(distX) > threshold && Math.abs(distY) < restraint) {
 					if (distX > 0) {
 						console.log('Swipe Right');
