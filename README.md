@@ -68,7 +68,7 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 
 ![list](https://github.com/user-attachments/assets/5f8f7924-7a9b-49c1-aefa-198cefce0f60)
 
-```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them). If you want to feature a ```Collection``` or ```Album``` make sure it has both a Backdrop and Logo image!
+```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating Limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them). If you want to feature a ```Collection``` or ```Album``` make sure it has both a Backdrop and Logo image!
 
 # Desktop View
 
