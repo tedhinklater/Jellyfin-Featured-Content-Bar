@@ -514,7 +514,7 @@
 		const readCustomList = () =>
 			fetch('List.txt?' + new Date().getTime())
 				.then(response => response.ok ? response.text() : null)
-				.then(text => {
+				.then(async (text) => {
 					if (!text || !text.trim()) {
 						console.warn('List.txt is empty or could not be loaded.');
 						return null; // Fallback to random selection
@@ -529,14 +529,52 @@
 					// Check for mute
 					isMuted = muteSetting === "MuteOn";
 
-					// Remaining lines are media IDs
-					const mediaList = lines.map(line => line.trim().substring(0, 32));
+					// Initialize a temporary array for all media IDs (movies, shows, and collection contents)
+					const mediaList = [];
+					for (const line of lines) {
+						const mediaId = line.trim().substring(0, 32);
+						const isCollection = await checkIfCollection(mediaId);
+						if (isCollection) {
+							const collectionItems = await fetchCollectionItems(mediaId);
+							if (collectionItems) {
+								mediaList.push(...collectionItems);
+							}
+						} else {
+							mediaList.push(mediaId);
+						}
+					}
 					return shuffleArray(mediaList); // Shuffle the list before returning it
 				})
 				.catch(() => {
 					console.error('Error reading List.txt. Falling back to random selection.');
 					return null;
 				});
+	    
+		const checkIfCollection = async (itemId) => {
+			const token = JSON.parse(localStorage.getItem('jellyfin_credentials')).Servers[0].AccessToken;
+			const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Token="${token}"` };
+			try {
+				const response = await fetch(`/Items/${itemId}?Fields=Type`, { headers });
+				const data = await response.json();
+				return data.Type === "BoxSet";
+			} catch (error) {
+				console.error(`Error checking item type for ID: ${itemId}`, error);
+				return false;
+			}
+		};
+		
+		const fetchCollectionItems = async (collectionId) => {
+			const token = JSON.parse(localStorage.getItem('jellyfin_credentials')).Servers[0].AccessToken;
+			const headers = { 'Authorization': `MediaBrowser Client="Jellyfin Web", Token="${token}"` };
+			try {
+				const response = await fetch(`/Items?ParentId=${collectionId}&Recursive=true&Fields=Id`, { headers });
+				const data = await response.json();
+				return data.Items.map(item => item.Id);
+			} catch (error) {
+				console.error(`Error fetching collection items for ID: ${collectionId}`, error);
+				return [];
+			}
+		};
 
 		const fetchRandomMovie = () => {
 			if (isChangingSlide) return;
