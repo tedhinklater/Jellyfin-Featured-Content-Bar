@@ -8,7 +8,7 @@
     <style>
 		@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 		body { margin: 0; padding: 0; overflow: hidden; }
-		.slide { position: relative; width: 100vw; height: 100vh; cursor: pointer; border-radius: 0em; }
+		.slide { position: relative; width: 100vw; height: 100vh; cursor: pointer; border-radius: 0em; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; -ms-user-select: none; touch-action: manipulation;}
 		.slide:focus { outline: 2px solid #fff; }
 		.backdrop { position: absolute; top: 0em; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; z-index: 1; transition: width 0.5s ease, filter 0.8s ease, scale 2s ease; transform-origin: top; animation: objectPositionAnimation 45s ease-in-out infinite; border-radius: 0em;}
 		.logo { position: relative; transform: translateX(-50%) translateY(-50%); top: 56%; left: 14.5%; z-index: 3; text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; transition: transform 0.3s ease, max-height 0.3s ease, max-width 0.3s ease;}
