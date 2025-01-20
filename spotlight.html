@@ -604,11 +604,11 @@
 
 		const startSlideChangeTimer = () => { clearTimeout(slideChangeTimeout); slideChangeTimeout = setTimeout(fetchRandomMovie, shuffleInterval); };
 
-		const checkBackdrop = movie => {
-			Promise.all(['/Images/Backdrop/0'].map(url => 
+		const checkBackdropAndLogo = movie => {
+			Promise.all(['/Images/Backdrop/0', '/Images/Logo'].map(url => 
 				fetch(`/Items/${movie.Id}${url}`, { method: 'HEAD' }).then(response => response.ok)
-			)).then(([backdropExists]) => 
-				backdropExists ? createSlideElement(movie, true) : fetchRandomMovie()
+			)).then(([backdropExists, logoExists]) => 
+				backdropExists && logoExists ? createSlideElement(movie, true) : fetchRandomMovie()
 			).catch(() => fetchRandomMovie());
 		};
 
@@ -721,14 +721,14 @@
 
 				fetch(`/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 					.then(response => response.json())
-					.then(checkBackdrop)
+					.then(checkBackdropAndLogo)
 					.catch(() => startSlideChangeTimer())
 					.finally(() => { isChangingSlide = false; });
 			} else {
 				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
 				fetch(`/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 					.then(response => response.json())
-					.then(data => { if (data.Items[0]) checkBackdrop(data.Items[0]); })
+					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
 					.catch(() => startSlideChangeTimer())
 					.finally(() => { isChangingSlide = false; });
 			}
