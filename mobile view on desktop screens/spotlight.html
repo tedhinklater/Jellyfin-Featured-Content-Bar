@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Jellyfin Spotlight v2.6.2</title>
+    <title>Jellyfin Spotlight v2.6.3</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
@@ -502,11 +502,11 @@
 
 		const startSlideChangeTimer = () => { clearTimeout(slideChangeTimeout); slideChangeTimeout = setTimeout(fetchRandomMovie, shuffleInterval); };
 
-		const checkBackdropAndLogo = movie => {
-			Promise.all(['/Images/Backdrop/0', '/Images/Logo'].map(url => 
+		const checkBackdrop = movie => {
+			Promise.all(['/Images/Backdrop/0'].map(url => 
 				fetch(`/Items/${movie.Id}${url}`, { method: 'HEAD' }).then(response => response.ok)
-			)).then(([backdropExists, logoExists]) => 
-				backdropExists && logoExists ? createSlideElement(movie, true) : fetchRandomMovie()
+			)).then(([backdropExists]) => 
+				backdropExists ? createSlideElement(movie, true) : fetchRandomMovie()
 			).catch(() => fetchRandomMovie());
 		};
 
@@ -614,14 +614,14 @@
 
 				fetch(`/Items/${movieId}?Fields=Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 					.then(response => response.json())
-					.then(checkBackdropAndLogo)
+					.then(checkBackdrop)
 					.catch(() => startSlideChangeTimer())
 					.finally(() => { isChangingSlide = false; });
 			} else {
 				const itemTypes = moviesSeriesBoth === 1 ? 'Movie' : (moviesSeriesBoth === 2 ? 'Series' : 'Movie,Series');
 				fetch(`/Items?IncludeItemTypes=${itemTypes}&Recursive=true&Limit=1&SortBy=random&Fields=Id,Overview,RemoteTrailers,PremiereDate,RunTimeTicks,ChildCount,Genres`, { headers })
 					.then(response => response.json())
-					.then(data => { if (data.Items[0]) checkBackdropAndLogo(data.Items[0]); })
+					.then(data => { if (data.Items[0]) checkBackdrop(data.Items[0]); })
 					.catch(() => startSlideChangeTimer())
 					.finally(() => { isChangingSlide = false; });
 			}
