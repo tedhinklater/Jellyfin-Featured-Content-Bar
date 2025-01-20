@@ -267,6 +267,9 @@
 			const genresDiv = createElem('div', 'genres');
 			if (movie.Genres && movie.Genres.length > 0) {
 				movie.Genres.forEach((genre, index) => {
+					// Limit to 5 genres
+					if (index >= 5) return;
+
 					const genreElem = createElem('span', 'genre-item');
 					genreElem.textContent = genre;
 					genreElem.style.backgroundColor = 'transparent';
@@ -278,11 +281,9 @@
 					genreElem.style.borderRadius = '0em';
 					genreElem.style.marginRight = '0em';
 					genresDiv.appendChild(genreElem);
-
-					if (index < movie.Genres.length - 1) {
+					if (index < Math.min(movie.Genres.length, 5) - 1) {
 						const separator = createElem('span', 'material-symbols-outlined');
-						separator.textContent = 'stat_0'; // The separator symbol
-						separator.style.fontSize = '0.6em';
+						separator.textContent = 'stat_0';
 						genresDiv.appendChild(separator);
 					}
 				});
