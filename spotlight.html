@@ -274,30 +274,32 @@
 				slide.appendChild(ageRatingDiv);
 			}
 			
-			// Genres Section
-			const genresDiv = createElem('div', 'genres');
-			if (movie.Genres && movie.Genres.length > 0) {
-				movie.Genres.forEach((genre, index) => {
-					const genreElem = createElem('span', 'genre-item');
-					genreElem.textContent = genre;
-					genreElem.style.backgroundColor = 'transparent';
-					genreElem.style.paddingLeft = '0.5em';
-					genreElem.style.paddingRight = '0.5em';
-					genreElem.style.paddingTop = '0.1em';
-					genreElem.style.paddingBottom = '0.1em';
-					genreElem.style.color = 'white';
-					genreElem.style.borderRadius = '0em';
-					genreElem.style.marginRight = '0em';
-					genresDiv.appendChild(genreElem);
+		// Genres Section
+		const genresDiv = createElem('div', 'genres');
+		if (movie.Genres && movie.Genres.length > 0) {
+			movie.Genres.forEach((genre, index) => {
+				// Limit to 5 genres
+				if (index >= 5) return;
 
-					if (index < movie.Genres.length - 1) {
-						const separator = createElem('span', 'material-symbols-outlined');
-						separator.textContent = 'stat_0'; // The separator symbol
-						genresDiv.appendChild(separator);
-					}
-				});
-			}
-			slide.appendChild(genresDiv);
+				const genreElem = createElem('span', 'genre-item');
+				genreElem.textContent = genre;
+				genreElem.style.backgroundColor = 'transparent';
+				genreElem.style.paddingLeft = '0.5em';
+				genreElem.style.paddingRight = '0.5em';
+				genreElem.style.paddingTop = '0.1em';
+				genreElem.style.paddingBottom = '0.1em';
+				genreElem.style.color = 'white';
+				genreElem.style.borderRadius = '0em';
+				genreElem.style.marginRight = '0em';
+				genresDiv.appendChild(genreElem);
+				if (index < Math.min(movie.Genres.length, 5) - 1) {
+					const separator = createElem('span', 'material-symbols-outlined');
+					separator.textContent = 'stat_0';
+					genresDiv.appendChild(separator);
+				}
+			});
+		}
+		slide.appendChild(genresDiv);
 
 			const loremDiv = createElem('div', 'lorem-ipsum');
 			loremDiv.innerHTML = loremText;
