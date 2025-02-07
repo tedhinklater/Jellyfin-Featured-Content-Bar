@@ -1,6 +1,6 @@
 # REPO NO LONGER BEING UPDATED
 
-Please move to [this new repo](https://github.com/MakD/Jellyfin-Media-Bar) (a JF plugin) by ![MakD]([https://github.com/MakD/Jellyfin-Media-Bar](https://github.com/MakD))
+Please move to [this new repo](https://github.com/MakD/Jellyfin-Media-Bar) (a JF plugin) by ![MakD](https://github.com/MakD)
 ![makd](https://i.imgur.com/81tkK32.jpeg)
 
 # Featured Content Bar
