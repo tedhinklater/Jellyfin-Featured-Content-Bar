@@ -1,7 +1,7 @@
 # REPO NO LONGER BEING UPDATED
 
-Please move to [this new repo](https://github.com/MakD/Jellyfin-Media-Bar) (a JF plugin) by [MakD](https://github.com/MakD)
-![makd](https://i.imgur.com/81tkK32.jpeg)
+Please move to [this new repo](https://github.com/JSethCreates/jellyfin-script-spotlight) (a JF plugin) by [SethBacon](https://github.com/JSethCreates)
+![gif](https://raw.githubusercontent.com/JSethCreates/jellyfin-script-spotlight/refs/heads/main/screenshots/spotlightdemo.gif)
 
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration)<br>
