@@ -1,6 +1,6 @@
 # REPO NO LONGER BEING UPDATED
 
-Please move to [this new repo](https://github.com/JSethCreates/jellyfin-script-spotlight) (a JF plugin) by [SethBacon](https://github.com/JSethCreates)
+Please move to [this new repo](https://github.com/JSethCreates/jellyfin-script-spotlight) by [SethBacon](https://github.com/JSethCreates)
 ![gif](https://raw.githubusercontent.com/JSethCreates/jellyfin-script-spotlight/refs/heads/main/screenshots/spotlightdemo.gif)
 
 # Featured Content Bar
