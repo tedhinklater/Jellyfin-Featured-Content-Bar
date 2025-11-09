@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Mobile Styling)
 
-![homepage](https://github.com/user-attachments/assets/bf9e99e4-b810-4a64-974e-606342f3a949)
+![homepage](https://github.com/user-attachments/assets/a38979e5-f979-4577-90db-2832886c4b19)
 
 1. Download ```spotlight.html``` and ```List.txt```. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
