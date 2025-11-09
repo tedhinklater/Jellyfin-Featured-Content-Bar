@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Mobile Styling)
 
-![main](https://github.com/user-attachments/assets/cb6c5a44-9121-4fbf-820c-e888efcf20aa)
+<img width="1920" height="1080" alt="Screenshot from 2025-11-09 02-20-29" src="https://github.com/user-attachments/assets/efa61ff4-c8b1-4289-b59c-0ee2e6f25936" />
 
 1. Download ```spotlight.html``` and ```List.txt```. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
@@ -72,36 +72,10 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 
 # Desktop View
 
-![featuredbar](https://github.com/user-attachments/assets/61f7a540-fce9-4694-b7f0-4122ea198ad8)
+![output_final](https://github.com/user-attachments/assets/2fcbf155-d270-46d8-91f0-8473230cc061)
 
 # Mobile View (Landscape / Portrait)
 ![mobile](https://i.imgur.com/OrOzpBK.png)
-
-# Mobile View, but on Desktop-sized screens
-<details> <summary>Show guide</summary>
-
-![mobiledesktop](https://github.com/user-attachments/assets/22aec57b-89b8-48b1-871b-780eb620a2d0)
-
-Same as above, except open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/mobile%20view%20on%20desktop%20screens/spotlight.html) (don't just save the link, it'll save the github page)
-</details>
-
-# Fullscreen Version
-
-<details><summary>Show guide</summary>
-
-![Screenshot 2025-01-03 193847](https://github.com/user-attachments/assets/4cb9cdaf-1a98-4e0c-8fa5-59d08b192932)
-
-Open this link and download the file [spotlight.html](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/spotlight.html) (don't just save the link, it'll save the github page)
-
-And use [this version of home-html.chunk.js](https://github.com/tedhinklater/Jellyfin-Featured-Content-Bar/blob/main/fullscreen/home-html.chunk.js)
-
-And add this to your Custom CSS Box in the Jellyfin Dashboard
-
-```css
-@import url("https://cdn.jsdelivr.net/gh/tedhinklater/Jellyfin-Featured-Content-Bar@main/fullscreen/fullscreenspotlight.css");
-```
-
-</details>
 
 # Linux installation
 <details> <summary>Show guide</summary>
