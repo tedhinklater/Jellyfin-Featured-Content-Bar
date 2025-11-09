@@ -1,4 +1,4 @@
-# Featured Content Bar
+# Jellyfin Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration)<br>
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Mobile Styling)
