@@ -317,14 +317,7 @@
 			posterDiv.style.backgroundImage = `url('${posterUrl}')`;
 			posterDiv.setAttribute('role', 'img');
 			posterDiv.setAttribute('aria-label', `${movie.Name} poster`);
-
-			posterDiv.onclick = () => {
-			    if (currentMovie && currentMovie.Id) {
-			        window.top.Emby.Page.showItem(currentMovie.Id);
-			    } else {
-			        console.warn('No current movie to show.');
-			    }
-			};
+			posterDiv.onclick = () => window.top.location.href = `/#!/details?id=${movie.Id}`;
 
 			slide.appendChild(posterDiv);
 
