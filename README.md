@@ -1,8 +1,3 @@
-# REPO NO LONGER BEING UPDATED
-
-Please move to [this new repo](https://github.com/JSethCreates/jellyfin-script-spotlight) by [JSethCreates](https://github.com/JSethCreates)
-![gif](https://raw.githubusercontent.com/JSethCreates/jellyfin-script-spotlight/refs/heads/main/screenshots/spotlightdemo.gif)
-
 # Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration)<br>
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
