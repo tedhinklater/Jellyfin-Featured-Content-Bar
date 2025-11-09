@@ -23,7 +23,7 @@
 		.clickable-overlay { position: absolute; top: 50px; left: 0; width: 100%; height: calc(100% - 50px); z-index: 2; cursor: pointer; background: transparent; transition: background 0.8s ease, backdrop-filter 0.8s ease;}
 		.lorem-ipsum {position: absolute; bottom: 20.1em; font-family: "Sofia Sans", sans-serif; font-size: 1.1em; font-weight: 500; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 9; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 90vw; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap; transition: padding-right 0.3s ease;}
 		.lorem-ipsum span { margin-right: 0.2em;}
-		.age-rating {position: absolute; top: 1em; left: 4.2em; text-align: left; font-family: "Sofia Sans", sans-serif; font-size: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 1002; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
+		.age-rating {position: absolute; top: 17em; left: 9vw; text-align: left; font-family: "Sofia Sans", sans-serif; font-size: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); opacity: 1; color: #fff; z-index: 1002; box-sizing: border-box; background: transparent; max-width: fit-content; padding-left: 0.3em; padding-right: 0.3em; display: flex; flex-direction: row; max-height: 1.9em; padding-top: 0.15em; white-space: nowrap;}
 		.plot { position: absolute; top: -0.8em; left: 50vw; transform: translateX(-50%); color: #fff; font-family: "Sofia Sans", sans-serif; font-size: 1.1em; font-weight: 500; background: transparent; padding: 10px; z-index: 7; box-sizing: border-box; padding-bottom: 3px; padding-top: 0.5em; line-height: 1.2em; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; border-bottom-left-radius: 0.45em; transition: opacity 0.1s ease, max-height 0.8s ease, width 0.3s ease, left 0.3s ease; opacity: 0; max-width: 96vw; opacity: 1; -webkit-line-clamp: 2; max-height: 7.8em; text-align: center;}
 		.genres { position: absolute; text-shadow: 1px 1px 1px rgba(0, 0, 0, 1); top: -0.25em; color: #fff; font-family: "Sofia Sans", sans-serif; font-size: 1.1em; font-weight: 500; opacity: 1; transition: opacity 0.3s ease; max-width: 39em; overflow: hidden; height: 1.95em; padding-top: 0.25em; line-height: 2em; white-space: nowrap;}		
 		.premiere-year {position: absolute; top: 5.75em; left: 0.5em; font-size: 0.9em; font-family: "Sofia Sans", sans-serif; color: #fff; z-index: 3; opacity: 0; transition: opacity 0.3s; text-align: center; width: 3.5em;}
@@ -68,7 +68,8 @@
 		.video-container:hover .video-player { mask-image: none; -webkit-mask-image: none;}
 		.text-container { z-index: 5; display: flex; position: absolute; width: 100vw; bottom: 0em; height: 2.7em; opacity: 1;}
 		.material-symbols-outlined { vertical-align: middle; font-size: 0.85em; opacity: 0.75; }
-		.spotlight-poster {position: absolute;top: 1em;left: 4vw;width: 11vw;aspect-ratio: 2 / 3;background-size: cover;background-position: center;border-radius: 0.3em;box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.6);cursor: pointer;opacity: 0;transform: translateX(-150%);transition: transform 1s ease-out, opacity 1s ease-out, box-shadow 0.25s ease-in-out;z-index: 1001;}
+		.spotlight-poster {position: absolute;top: 1em;left: 9vw;width: 11vw;aspect-ratio: 2 / 3;background-size: cover;background-position: center;border-radius: 0.3em;box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.6);cursor: pointer;opacity: 0;transform: translateX(-150%);animation: posterFadeIn 2s forwards ease-out;transition: transform 1s ease-out, opacity 1s ease-out, box-shadow 0.25s ease-in-out;z-index: 1001;}
+		@keyframes posterFadeIn {0% { opacity: 0; } 50% { opacity: 0; } 100% { opacity: 1; }}
 		.spotlight-poster:hover { box-shadow: 0px 0px 5px #fffa;}
 		.spotlight-poster.active { transform: translateX(0); opacity: 1;}
 		.logo { opacity: 0; animation: fadeIn 1.5s ease-in forwards; animation-delay: 1s;}
@@ -260,7 +261,7 @@
 				</span>`;
 			}
 			if (movie.CriticRating) {
-				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.1em; padding-bottom: 0.05em; margin-left: 1em;">
+				loremText += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.2em; padding-bottom: 0.05em; margin-left: 1em;">
 					<img src="/web/assets/img/fresh.svg" alt="Rotten Tomatoes" style="width: 1.05em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.4em;">
 					${movie.CriticRating}%
 				</span>`;
@@ -273,7 +274,7 @@
 
 				const ageRatingDiv = createElem('div', 'age-rating');
 				const ageRatingSpan = createElem('span', ratingClass, ageRating);
-				ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.125em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
+				ageRatingSpan.style.cssText = 'border: 0.09em solid currentColor; border-radius: .1em; padding: 0.2em; padding-top: 0.1em; padding-bottom: 0.26em; display: inline-block; text-align: center; line-height: 0.8em;';
 				ageRatingDiv.appendChild(ageRatingSpan);
 				slide.appendChild(ageRatingDiv);
 			}
