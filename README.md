@@ -61,6 +61,8 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 
 ```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating Limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them).
 
+You can add Movies, Shows, Collections and even Music, as long as the items have a logo and backdrop.
+
 # Desktop View
 
 ![output_final](https://github.com/user-attachments/assets/6de623fb-2ad9-4bcf-8a77-24dbdd9dd184)
