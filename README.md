@@ -5,7 +5,11 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 ![homepage](https://github.com/user-attachments/assets/b0a396f6-32bb-4898-bafa-c269dcaf863d)
 
-1. Download ```spotlight.html``` and ```List.txt```. Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
+1. Download ```spotlight.html``` and ```List.txt```. 
+
+### Make sure you download the file and not the github page for the file.
+
+Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-web) and create a folder named ```ui``` and drop ```spotlight.html``` and ```List.txt``` in that folder
 
 <details> <summary>Show screenshots</summary>
 
