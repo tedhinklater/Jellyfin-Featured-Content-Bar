@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -636,47 +637,39 @@
 			).catch(() => fetchRandomMovie());
 		};
 
-		const readCustomList = () =>
-			fetch('List.txt?' + new Date().getTime())
-				.then(response => response.ok ? response.text() : null)
-				.then(async (text) => {
-					if (!text || !text.trim()) {
-						console.warn('List.txt is empty or could not be loaded.');
-						return null; // Fallback to random selection
-					}
-					const lines = text.split('\n').filter(Boolean);
+		const readCustomList = async () => {
+		    try {
+		        const res = await fetch('List.txt?' + Date.now());
+		        if (!res.ok) return null;
+		        const text = await res.text();
+		        if (!text.trim()) return null;
 
-					const firstLine = lines.shift().trim();
-					const [parsedTitle, muteSetting] = firstLine.split(/\s+/);
+		        const lines = text.split('\n').filter(Boolean);
 
-					title = parsedTitle || title;
+		        const [parsedTitle, muteSetting] = lines.shift().trim().split(/\s+/);
+		        title = parsedTitle || title;
+		        isMuted = muteSetting === "MuteOn";
 
-					// Check for mute
-					isMuted = muteSetting === "MuteOn";
+		        const results = await Promise.all(lines.map(async line => {
+		            const mediaId = line.trim().substring(0, 32);
 
-					// Initialize a temporary array for all media IDs (movies, shows, and collection contents)
-					const mediaList = [];
+		            if (await checkIfCollection(mediaId)) {
+		                const items = await fetchCollectionItems(mediaId);
+		                return items || [];
+		            } else {
+		                return [mediaId];
+		            }
+		        }));
 
-					for (const line of lines) {
-						const mediaId = line.trim().substring(0, 32);
-						const isCollection = await checkIfCollection(mediaId);
+		        const mediaList = results.flat();
 
-						if (isCollection) {
-							const collectionItems = await fetchCollectionItems(mediaId);
-							if (collectionItems) {
-								mediaList.push(...collectionItems);
-							}
-						} else {
-							mediaList.push(mediaId);
-						}
-					}
+		        return shuffleArray(mediaList);
 
-					return shuffleArray(mediaList); // Shuffle the list before returning it
-				})
-				.catch(() => {
-					console.error('Error reading List.txt. Falling back to random selection.');
-					return null;
-				});
+		    } catch (e) {
+		        console.error('Error reading List.txt.', e);
+		        return null;
+		    }
+		};
 
 		const checkIfCollection = async (itemId) => {
 			const token = JSON.parse(localStorage.getItem('jellyfin_credentials')).Servers[0].AccessToken;
