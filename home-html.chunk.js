@@ -8,7 +8,7 @@
         body.featured-expanded .featurediframe { height: 100vh !important; margin-bottom: -13.5em !important; }
         @media (max-width: 1000px) and (orientation: portrait) { .featurediframe { height: 25em; margin-bottom: -1em; } }
         @media (max-width: 1000px) and (orientation: landscape) { .featurediframe { height: 26em; margin-bottom: -1em; } }
-        @media (max-width: 421px) and (orientation: portrait) { .featurediframe { height: 12em; margin-bottom: 0em; } }
+        @media (max-width: 421px) and (orientation: portrait) { .featurediframe { height: 11em; margin-bottom: 0em; } }
         @media (max-height: 421px) and (orientation: landscape) { .featurediframe { height: 12em; margin-top: 0em; } }
         #toggleFullscreen { position: absolute; top: 7em; left: 2.1vw; width: 3em; height: 3em; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.25); border-radius: 0.35em; cursor: pointer; opacity: 0.5; display: flex; align-items: center; justify-content: center; padding: 0; backdrop-filter: blur(4px);transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease-in-out; }
         #toggleFullscreen:hover { background: rgba(0,0,0,0.75); transform: scale(1.05); opacity: 1; }
