@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Mobile Styling)
 
-![homepage](https://github.com/user-attachments/assets/446e0f22-e576-4f0d-9ccb-bd5fd584e167)
+![homepage](https://github.com/user-attachments/assets/f3ce9068-9642-4a21-be52-090dcb79f301)
 
 1. Download ```spotlight.html``` and ```List.txt```. 
 
@@ -117,13 +117,6 @@ If it is empty ```below``` line 1, the bar will feature content at random.
 ```IMPORTANT``` If you use List.txt to preselect content and a User has an Age Rating Limit on their account (U, PG etc) make sure you add content for them to see too, or it will just be blank (content above their Age Limit is hidden to them).
 
 You can add Movies, Shows, Collections and even Music, as long as the items have a logo and backdrop.
-
-# Desktop View
-
-![output_final](https://github.com/user-attachments/assets/6de623fb-2ad9-4bcf-8a77-24dbdd9dd184)
-
-# Mobile View (Landscape / Portrait)
-![mobile](https://i.imgur.com/OrOzpBK.png)
 
 # Linux installation
 <details> <summary>Show guide</summary>
