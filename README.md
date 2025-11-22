@@ -1,9 +1,9 @@
 # Jellyfin Featured Content Bar
 Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration)<br>
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
-[MakD](https://github.com/MakD) (Mobile Styling)
+[MakD](https://github.com/MakD) (Styling)
 
-![homepage](https://github.com/user-attachments/assets/f3ce9068-9642-4a21-be52-090dcb79f301)
+![homepage](https://github.com/user-attachments/assets/c7435468-d52e-4a91-a831-639f7ba599e0)
 
 1. Download ```spotlight.html``` and ```List.txt```. 
 
