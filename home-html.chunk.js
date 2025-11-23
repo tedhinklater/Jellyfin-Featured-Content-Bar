@@ -33,21 +33,46 @@
     </div>`;
   }
 }]);
+
 const attachToggleLogic = setInterval(() => {
   const homeTab = document.getElementById("homeTab");
   const btn = document.getElementById("toggleFullscreen");
   const iframe = document.querySelector(".featurediframe");
   if (!homeTab || !btn || !iframe) return;
-  console.log("Toggle button found — enabling expand/shrink feature.");
+
   clearInterval(attachToggleLogic);
+
   let originalHeight = null;
   let originalMargin = null;
   let originalMarginTop = null;
   let originalWidth = null;
+
   const expandIcon = document.getElementById("expandIcon");
   const shrinkIcon = document.getElementById("shrinkIcon");
+
+  // ────────────────────────────────────────────────
+  // Restore previously saved Spotlight fullscreen state
+  // ────────────────────────────────────────────────
+  const saved = localStorage.getItem("spotlightExpanded");
+  if (saved === "1") {
+      document.body.classList.add("featured-expanded");
+      const cs = window.getComputedStyle(iframe);
+      originalHeight = cs.height;
+      originalMargin = cs.marginBottom;
+      originalMarginTop = cs.marginTop;
+      originalWidth = cs.width;
+      iframe.style.height = "100vh";
+      iframe.style.marginBottom = "-9em";
+      iframe.style.marginTop = "-3.5em";
+      iframe.style.width = "100vw";
+      expandIcon.style.display = "none";
+      shrinkIcon.style.display = "block";
+      iframe.contentWindow.postMessage({ spotlightMode: "expanded" }, "*");
+  }
+
   btn.addEventListener("click", () => {
       const expanded = document.body.classList.toggle("featured-expanded");
+      localStorage.setItem("spotlightExpanded", expanded ? "1" : "0");
       const cs = window.getComputedStyle(iframe);
       if (expanded) {
           originalHeight = cs.height;
