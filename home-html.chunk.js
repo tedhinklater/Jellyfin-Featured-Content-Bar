@@ -2,7 +2,7 @@
   5939: function(a,e,t){t.r(e),e.default=`
 <div id="indexPage" style="outline:0" data-role="page" data-dom-cache="true" class="page homePage libraryPage allLibraryPage backdropPage pageWithAbsoluteTabs withTabs" data-backdroptype="movie,series,book">
   <style>
-    .featurediframe { width: 100vw; height: 100vh; display: block; border: 0; margin: 0 auto; margin-bottom: -32vh; margin-top: -3.5em; transition: height 300ms ease, margin 300ms ease;}
+    .featurediframe { width: 100vw; height: 100vh; display: block; border: 0; margin: 0 auto; margin-bottom: -41vh; margin-top: -3.5em; transition: height 300ms ease, margin 300ms ease;}
     body.featured-expanded .featurediframe { height: 100vh !important; margin-bottom: -13.5em !important; }
     @media (max-width: 1000px) and (orientation: portrait) { .featurediframe { height: 25em; margin-bottom: -1em; } }
     @media (max-width: 1000px) and (orientation: landscape) { .featurediframe { height: 26em; margin-bottom: -1em; } }
