@@ -70,7 +70,7 @@
 		.spotlight-poster {position: absolute; aspect-ratio: 2 / 3;background-size: cover;background-position: center;border-radius: 0.3em;box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.6);cursor: pointer; transition: transform 0.3s ease, opacity 1s ease-out, box-shadow 0.25s ease-in-out;z-index: 8;}
 		@keyframes posterFadeIn {0% { opacity: 0; } 50% { opacity: 0; } 100% { opacity: 1; }}
 		@keyframes posterFadeOut {0% { opacity: 1; } 50% { opacity: 1; } 100% { opacity: 0; }}
-		@keyframes logoSlide { 0% { transform: translateY(-65%) translateX(-38%) scale(1.5); } 100% { transform: translateY(-50%) translateX(-38%) scale(1.0); } }
+		@keyframes logoSlide { 0% { transform: translateY(-65%) translateX(-38%) scale(1.3); } 100% { transform: translateY(-50%) translateX(-38%) scale(1.0); } }
 		@keyframes logoFade { from { opacity: 0; } to { opacity: 1; } }
 		.spotlight-poster:hover { box-shadow: 0px 0px 5px #fffa;}
 		.spotlight-poster.active { transform: translateX(-50%); opacity: 1;}
@@ -92,16 +92,16 @@
 		.back-button, .skip-button { top: 41vh; }
 		.buttons-container {animation: fadeIn 1s ease-in forwards; animation-delay: 1.5s; width: 24vw; transform: translateX(-50%); }
 		.clickable-overlay {display: none;}
-		.genres { top: unset !important; bottom: 42.25vh; left: calc(13.2vw + 34vh); font-size: 1.6vh; animation: fadeIn 1s ease-in forwards; animation-delay: 1.2s; font-weight: 400; z-index: 10; transform: translateX(-42%); text-align: center; min-width: 40.8vh;}
-		.logo { width: auto; z-index: 5; text-shadow: -2px 2px 4px rgba(0,0,0,0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; position: absolute; top: 39.5vh; left: calc(13.2vw + 34vh); max-height: calc(1em + 9.7vh) !important; max-width: calc(1em + 36vh) !important; opacity: 0; animation: logoSlide 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards, logoFade 1.5s ease-out forwards; transition: opacity 0.3s ease, transform 0.1s ease, left 0.3s ease-in-out; }
-		.lorem-ipsum { bottom: 45.8vh !important; left: calc(13.2vw + 34vh); font-size: 1.6vh !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1s; font-weight: 400; min-width: 40.8vh !important; transform: translateX(-40%); justify-content: center;}
-		.plot {max-height: 10.6vh !important; -webkit-line-clamp: 5 !important; font-size: 1.6vh !important; max-width: 40.8vh !important; width: auto !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1.4s; font-weight: 400; left: calc(13.2vw + 34vh); transform: translateX(-42%); top: -16.5vh}
+		.genres { top: unset !important; bottom: 52.25vh; left: calc(13.2vw + 34vh); font-size: 1.6vh; animation: fadeIn 1s ease-in forwards; animation-delay: 1.2s; font-weight: 400; z-index: 10; transform: translateX(-42%); text-align: center; min-width: 40.8vh;}
+		.logo { width: auto; z-index: 5; text-shadow: -2px 2px 4px rgba(0,0,0,0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; position: absolute; top: 29.5vh; left: calc(13.2vw + 33vh); max-height: calc(1em + 18.7vh) !important; max-width: calc(1em + 36vh) !important; opacity: 0; animation: logoSlide 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards, logoFade 1.5s 0.5s ease-out forwards; transition: opacity 0.3s ease, transform 0.1s ease, left 0.3s ease-in-out; }
+		.lorem-ipsum { bottom: 55.8vh !important; left: calc(13.2vw + 34vh); font-size: 1.6vh !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1s; font-weight: 400; min-width: 40.8vh !important; transform: translateX(-40%); justify-content: center;}
+		.plot {max-height: 10.6vh !important; -webkit-line-clamp: 5 !important; font-size: 1.6vh !important; max-width: 40.8vh !important; width: auto !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1.4s; font-weight: 400; left: calc(13.2vw + 34vh); transform: translateX(-42%); top: -26.5vh}
 		.slide {border-radius: 0; height: 100vh !important;}
-		.spotlight-poster { top: 17vh; !important; width: 34vh !important; left: 13.2vw; animation: posterFadeIn 1.5s forwards ease-out;}
+		.spotlight-poster { top: 7vh; !important; width: 34vh !important; left: 13.2vw; animation: posterFadeIn 1.5s forwards ease-out;}
 		.text-container::before {background: linear-gradient(0deg, rgb(6.667% 5.49% 11.765%) 0%, rgb(6.667% 5.49% 11.765% / 0.9375) 6.25%, rgb(6.667% 5.49% 11.765% / 0.875) 12.5%, rgb(6.667% 5.49% 11.765% / 0.8125) 18.75%, rgb(6.667% 5.49% 11.765% / 0.75) 25%, rgb(6.667% 5.49% 11.765% / 0.6875) 31.25%, rgb(6.667% 5.49% 11.765% / 0.625) 37.5%, rgb(6.667% 5.49% 11.765% / 0.5625) 43.75%, rgb(6.667% 5.49% 11.765% / 0.5) 50%, rgb(6.667% 5.49% 11.765% / 0.4375) 56.25%, rgb(6.667% 5.49% 11.765% / 0.375) 62.5%, rgb(6.667% 5.49% 11.765% / 0.3125) 68.75%, rgb(6.667% 5.49% 11.765% / 0.25) 75%, rgb(6.667% 5.49% 11.765% / 0.1875) 81.25%, rgb(6.667% 5.49% 11.765% / 0.125) 87.5%, rgb(6.667% 5.49% 11.765% / 0.0625) 93.75%, rgb(6.667% 5.49% 11.765% / 0) 100% );}
 		.text-container { height: 26vh; animation: fadeIn 1.5s ease-in forwards; animation-delay: 0.5s; pointer-events: none; z-index: 9; }
 		.text-container::after { -webkit-mask-image: linear-gradient(180deg, rgb(0% 0% 0%) 0%, rgb(0% 0% 0% / 0.99609375) 6.25%, rgb(0% 0% 0% / 0.984375) 12.5%, rgb(0% 0% 0% / 0.96484375) 18.75%, rgb(0% 0% 0% / 0.9375) 25%, rgb(0% 0% 0% / 0.90234375) 31.25%, rgb(0% 0% 0% / 0.859375) 37.5%, rgb(0% 0% 0% / 0.80859375) 43.75%, rgb(0% 0% 0% / 0.75) 50%, rgb(0% 0% 0% / 0.68359375) 56.25%, rgb(0% 0% 0% / 0.609375) 62.5%, rgb(0% 0% 0% / 0.52734375) 68.75%, rgb(0% 0% 0% / 0.4375) 75%, rgb(0% 0% 0% / 0.33984375) 81.25%, rgb(0% 0% 0% / 0.234375) 87.5%, rgb(0% 0% 0% / 0.12109375) 93.75%, rgb(0% 0% 0% / 0) 100% ); opacity: 1; }
-		.video-container { display: block; height: 23vh; width: 40.8vh !important; z-index: 5; top: 27.5vh; bottom: unset; transform: translateY(0%) translateX(-42%); right: unset; left: calc(13.2vw + 34vh); animation: fadeIn 1s ease-in forwards; animation-delay: 2s; opacity: 0;}
+		.video-container { display: block; height: 23vh; width: 40.8vh !important; z-index: 5; top: 17.5vh; bottom: unset; transform: translateY(0%) translateX(-42%); right: unset; left: calc(13.2vw + 34vh); animation: fadeIn 1s ease-in forwards; animation-delay: 2s; opacity: 0;}
 	}
 		@media (min-width: 952px) { .text-container::after { height: 100vh; } }
     </style>
