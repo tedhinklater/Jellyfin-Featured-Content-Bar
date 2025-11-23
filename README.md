@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Styling)
 
-![homepage](https://github.com/user-attachments/assets/9f0e6c3e-d51c-4c64-b690-1849861f803c)
+![homepage](https://github.com/user-attachments/assets/4e2be4c7-d427-404d-8092-0e57c9732056)
 
 1. Download ```spotlight.html``` and ```List.txt```. 
 
