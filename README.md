@@ -45,10 +45,10 @@ Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-
       .featurediframe { height: 26em; margin-bottom: -1em; }
     }
     @media (max-width: 421px) and (orientation: portrait) {
-      .featurediframe { height: 100vh; margin-bottom: -55vh; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -40em; margin-top: -6.5em; }
     }
     @media (max-height: 421px) and (orientation: landscape) {
-      .featurediframe { height: 100vh; margin-bottom: -25vh; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -40em; margin-top: -6.5em; }
     }
   </style>
 
