@@ -23,10 +23,10 @@
       .featurediframe { height: 26em; margin-bottom: -1em; }
     }
     @media (max-width: 421px) and (orientation: portrait) {
-      .featurediframe { height: 100vh; margin-bottom: -29em; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -28em; margin-top: -6.5em; }
     }
     @media (max-height: 421px) and (orientation: landscape) {
-      .featurediframe { height: 100vh; margin-bottom: -8em; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -6em; margin-top: -6.5em; }
     }
   </style>
 
