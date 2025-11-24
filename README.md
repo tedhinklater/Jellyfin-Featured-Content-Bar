@@ -35,8 +35,11 @@ Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-
   <style>
     .featurediframe {
       width: 100vw; height: 100vh; display: block; border: 0;
-      margin: 0 auto; margin-bottom: -27em; margin-top: -3.5em; min-height: 70em;
+      margin: 0 auto; margin-bottom: -27em; margin-top: -3.5em;
       transition: height 300ms ease, margin 300ms ease;
+    }
+    @media (min-width: 951px) and (min-height: 700px) {
+      .featurediframe { min-height: 70em; }
     }
     @media (max-width: 1000px) and (orientation: portrait) {
       .featurediframe { height: 25em; margin-bottom: -1em; }
@@ -45,10 +48,10 @@ Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-
       .featurediframe { height: 26em; margin-bottom: -1em; }
     }
     @media (max-width: 421px) and (orientation: portrait) {
-      .featurediframe { height: 100vh; margin-bottom: -40em; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -29em; margin-top: -6.5em; }
     }
     @media (max-height: 421px) and (orientation: landscape) {
-      .featurediframe { height: 100vh; margin-bottom: -40em; margin-top: -6.5em; }
+      .featurediframe { height: 100vh; margin-bottom: -8em; margin-top: -6.5em; }
     }
   </style>
 
