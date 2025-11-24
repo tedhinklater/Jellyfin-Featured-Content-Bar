@@ -10,7 +10,7 @@
   <style>
     .featurediframe {
       width: 100vw; height: 100vh; display: block; border: 0;
-      margin: 0 auto; margin-bottom: -41vh; margin-top: -3.5em;
+      margin: 0 auto; margin-bottom: -27em; margin-top: -3.5em; min-height: 70em;
       transition: height 300ms ease, margin 300ms ease;
     }
     @media (max-width: 1000px) and (orientation: portrait) {
