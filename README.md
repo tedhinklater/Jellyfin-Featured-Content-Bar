@@ -35,7 +35,7 @@ Go to your ```jellyfin-web``` folder (C:\Program Files\Jellyfin\Server\jellyfin-
   <style>
     .featurediframe {
       width: 100vw; height: 100vh; display: block; border: 0;
-      margin: 0 auto; margin-bottom: -27em; margin-top: -3.5em;
+      margin: 0 auto; margin-bottom: -26em; margin-top: -3.5em;
       transition: height 300ms ease, margin 300ms ease;
     }
     @media (min-width: 951px) and (min-height: 700px) {
