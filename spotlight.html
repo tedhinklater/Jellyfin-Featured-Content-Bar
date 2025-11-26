@@ -90,7 +90,7 @@
 		.back-button, .skip-button { top: 41vh; }
 		.buttons-container { }
 		.clickable-overlay {display: none;}
-		.genres { top: unset !important; bottom: 52.25vh; left: calc(13.2vw + 34vh); font-size: 1.35vh; animation: fadeIn 1s ease-in forwards; animation-delay: 1.2s; font-weight: 400; z-index: 10; transform: translateX(-42%); text-align: center; min-width: 40.8vh;}
+		.genres { top: unset !important; bottom: 52.5vh; left: calc(13.2vw + 34vh); font-size: 1.35vh; animation: fadeIn 1s ease-in forwards; animation-delay: 1.2s; font-weight: 400; z-index: 10; transform: translateX(-42%); text-align: center; min-width: 40.8vh;}
 		.logo { width: auto; z-index: 15; text-shadow: -2px 2px 4px rgba(0,0,0,0.5); filter: drop-shadow(1px 1px 1px); pointer-events: none; position: absolute; top: 29.5vh; left: calc(13.2vw + 33vh); max-height: calc(1em + 18.7vh) !important; max-width: calc(1em + 36vh) !important; opacity: 0; animation: logoSlide 2s cubic-bezier(0.25,0.46,0.45,0.94) forwards, logoFade 1.5s 0.5s ease-out forwards; transition: opacity 0.3s ease, transform 0.1s ease; }
 		.lorem-ipsum { bottom: 55.8vh !important; left: calc(13.2vw + 34vh); font-size: 1.35vh !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1s; font-weight: 400; min-width: 40.8vh !important; transform: translateX(-40%); justify-content: center;}
 		.plot {mmax-height: 10vh !important; -webkit-line-clamp: 6 !important; font-size: 1.35vh !important; max-width: 40.8vh !important; width: auto !important; animation: fadeIn 1s ease-in forwards; animation-delay: 1.4s; font-weight: 400; left: calc(13.2vw + 34vh); transform: translateX(-42%); top: -26.5vh}
@@ -311,6 +311,34 @@
 	if (premiereYear) infoHtml += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;">${premiereYear}</span>`;
 	if (movie.CommunityRating) infoHtml += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.05em; padding-bottom: 0.05em; margin-left: 1em;"><i class="star-icon fas fa-star"></i> ${movie.CommunityRating.toFixed(1)}</span>`;
 	if (movie.CriticRating) infoHtml += `<span style="background: transparent; padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.1em; padding-bottom: 0.05em; margin-left: 1em;"><img src="/web/assets/img/fresh.svg" alt="Rotten Tomatoes" style="width: 1.05em; font-size: 0.83em; padding-right: 0.4em; margin-left: -0.1em; vertical-align: middle; padding-bottom: 0.4em;"> ${movie.CriticRating}%</span>`;
+
+	const genresDiv = createElem('div', 'genres');
+	if (movie.Genres && movie.Genres.length > 0) {
+
+	    const visibleGenres = movie.Genres.slice(0, 4);
+
+	    visibleGenres.forEach((genre, index) => {
+
+	    const genreElem = createElem('span', 'genre-item');
+	    genreElem.textContent = genre;
+	    genreElem.style.backgroundColor = 'transparent';
+	    genreElem.style.paddingLeft = '0.5em';
+	    genreElem.style.paddingRight = '0.5em';
+	    genreElem.style.paddingTop = '0.1em';
+	    genreElem.style.paddingBottom = '0.1em';
+	    genreElem.style.color = 'white';
+	    genreElem.style.borderRadius = '0em';
+	    genreElem.style.marginRight = '0em';
+	    genresDiv.appendChild(genreElem);
+
+	    if (index < visibleGenres.length - 1) {
+	        const separator = createElem('span', 'material-symbols-outlined');
+	        separator.textContent = 'stat_0';
+	        genresDiv.appendChild(separator);
+	    }
+	});
+	}
+	slide.appendChild(genresDiv);
 
 	const loremDiv = createElem('div', 'lorem-ipsum');
 	loremDiv.innerHTML = infoHtml;
