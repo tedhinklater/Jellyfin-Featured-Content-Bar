@@ -5,7 +5,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 
 ![output](https://github.com/user-attachments/assets/a7616304-bdbe-4497-a589-882e54a64d4e)
 
-1. Download ```spotlight.html``` and ```List.txt```. 
+1. Download the latest [spotlight.html](https://raw.githubusercontent.com/tedhinklater/Jellyfin-Featured-Content-Bar/728c343a12d29992a64ac226d08bafebe43042aa/spotlight.html) and ```List.txt```. 
 
 ### Make sure you download the file and not the github page for the file.
 
