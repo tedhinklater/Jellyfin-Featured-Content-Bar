@@ -3,7 +3,7 @@ Thanks to [SethBacon](https://forum.jellyfin.org/u-sethbacon) (Video integration
 [BobHasNoSoul](https://github.com/BobHasNoSoul) (Original architect)<br>
 [MakD](https://github.com/MakD) (Styling)
 
-![homepage](https://github.com/user-attachments/assets/2aa75974-9873-491b-8982-7eb4c994d29c)
+![homepage](https://github.com/user-attachments/assets/81ab1a96-6bcb-40c3-98d6-6f74f122523c)
 
 1. Download the latest [spotlight.html](https://raw.githubusercontent.com/tedhinklater/Jellyfin-Featured-Content-Bar/728c343a12d29992a64ac226d08bafebe43042aa/spotlight.html) and ```List.txt```. 
 
