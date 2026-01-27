@@ -13,7 +13,7 @@
       margin: 0 auto; margin-bottom: -26em; margin-top: -3.5em;
       transition: height 300ms ease, margin 300ms ease;
     }
-    @media (min-width: 951px) and (min-height: 700px) {
+    @media (min-width: 951px) and (orientation: landscape) {
       .featurediframe { min-height: 70em; }
     }
     @media (max-width: 1000px) and (orientation: portrait) {
